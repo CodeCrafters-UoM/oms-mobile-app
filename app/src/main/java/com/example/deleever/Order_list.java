@@ -1,8 +1,25 @@
 package com.example.deleever;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+
+
+        import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
         import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.SearchView;
+        import androidx.recyclerview.widget.LinearLayoutManager;
+        import androidx.recyclerview.widget.RecyclerView;
 
         import android.annotation.SuppressLint;
         import android.content.Context;
@@ -17,78 +34,69 @@ import androidx.annotation.NonNull;
         import android.widget.ListAdapter;
         import android.widget.ListView;
         import android.widget.TextView;
-        import android.widget.Toast;
+
+        import java.util.ArrayList;
+        import java.util.List;
 
 public class Order_list extends AppCompatActivity {
-    Button order_summery;
-    ListView order_details_list;
-    @SuppressLint("WrongViewCast")
+    SearchView search_order_list;
+    RecyclerView order_details_list;
+    List<Order_list_row> orderList;
+    Order_list_Adapter  orderListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
-
-        String[] date_order_details_name ={"Name","Name","Name","Name","Name","Name","Name","Name"};
-        ListAdapter listAdapter_order_list = new ArrayAdapter<String>(this,R.layout.order_list_details_row,date_order_details_name);
-        order_details_list = findViewById(R.id.order_details_list);
-        order_list_details order_list_details_row = new order_list_details(this,date_order_details_name);
-        order_details_list.setAdapter(order_list_details_row);
-
-        order_details_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        displayItems();
+        search_order_list=findViewById(R.id.search_order_list);
+        search_order_list.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selected_order = (String) parent.getItemAtPosition(position);
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-//                Intent intent_order_list = new Intent(Order_list.this, Order_summery.class);
-//                startActivity(intent_order_list);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
             }
         });
+    }
+
+    private void filter(String newText){
+        List<Order_list_row> filteredList = new ArrayList<>();
+//        String num = String.valueOf(recyclerView.getId());
+        for(Order_list_row item: orderList){
+            if(item.getDate_order_details_name().toLowerCase().contains(newText.toLowerCase())){
+                filteredList.add(item);
+            }
+            if(String.valueOf(item.getDate_order_details_id()).contains((newText))){
+                filteredList.add(item);
+            }
+
+        }
+
+        orderListAdapter.filterList(filteredList);
+    }
 
 
+    private void displayItems(){
+        order_details_list=findViewById(R.id.order_details_list);
+        order_details_list.setHasFixedSize(true);
+        order_details_list.setLayoutManager(new LinearLayoutManager(this));
+        orderList=new ArrayList<>();
+        orderList.add(new Order_list_row(3,3,"FFF",4,"fffabvyf","sdfiovjo"));
+        orderList.add(new Order_list_row(33,3,"FFF",4,"fffabvyf","sdfiovjo"));
+        orderList.add(new Order_list_row(35,3,"FFF",4,"fffabvyf","sdfiovjo"));
+        orderList.add(new Order_list_row(33,3,"FFF",4,"fffabvyf","sdfiovjo"));
+        orderList.add(new Order_list_row(32,3,"FFF",4,"fffabvyf","sdfiovjo"));
+        orderList.add(new Order_list_row(43,3,"FFF",4,"fffabvyf","sdfiovjo"));
+        orderList.add(new Order_list_row(39,3,"FFF",4,"fffabvyf","sdfiovjo"));
+
+
+        orderListAdapter= new Order_list_Adapter(this,orderList);
+        order_details_list.setAdapter(orderListAdapter);
     }
 }
 
-class order_list_details extends ArrayAdapter<String> {
-    Context context;
-    int[] date_order_details_date;
-    int[] date_order_details_time;
-    String[] date_order_details_status;
-    int[] date_order_details_id;
-
-    String[] date_order_details_name;
-
-    String[] date_order_details_address;
-
-
-    order_list_details(Context context, String[] date_order_details_name) {
-        super(context, R.layout.order_list_details_row, R.id.date_order_details_name, date_order_details_name);
-        this.context = context;
-        this.date_order_details_name = date_order_details_name;
-        this.date_order_details_time = date_order_details_time;
-        this.date_order_details_status = date_order_details_status;
-        this.date_order_details_time = date_order_details_time;
-        this.date_order_details_time = date_order_details_time;
-        this.date_order_details_time = date_order_details_time;
-
-    }
-    //single
-
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View order_list_details_row = inflater.inflate(R.layout.order_list_details_row, parent, false);
-        //TextView date_order_details_date  = order_list_details_row.findViewById(R.id.date_order_details_date);
-        // TextView date_order_details_time  = order_list_details_row.findViewById(R.id.date_order_details_time);
-        // TextView date_order_details_status  = order_list_details_row.findViewById(R.id.date_order_details_status);
-        //TextView date_order_details_id    = order_list_details_row.findViewById(R.id.date_order_details_id);
-        TextView date_order_details_name = order_list_details_row.findViewById(R.id.date_order_details_name);
-        //TextView date_order_details_address  = order_list_details_row.findViewById(R.id.date_order_details_address);
-
-//        date_order_details_date.setText(this.date_order_details_name[position]);
-//        date_order_details_time.setText(this.date_order_details_time[position]);
-//        date_order_details_status.setText(this.date_order_details_status[position]);
-        date_order_details_name.setText(this.date_order_details_name[position]);
-        return order_list_details_row;
-    }
-}
