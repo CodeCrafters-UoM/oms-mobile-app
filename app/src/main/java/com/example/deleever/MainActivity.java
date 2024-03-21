@@ -26,13 +26,23 @@ package com.example.deleever;
 
 public class MainActivity extends AppCompatActivity {
 
-
+        Button btn_home_order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        }
 
-}
+
+            btn_home_order = findViewById(R.id.btn_home_order);
+            btn_home_order.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                            Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_list.class);
+                            startActivity(clicked_orders_btn);
+                    }
+            });
+
+            }
+        }
 
