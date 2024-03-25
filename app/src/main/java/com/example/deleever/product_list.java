@@ -1,10 +1,6 @@
 package com.example.deleever;
 
-
-
-
-
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
         import android.content.Intent;
         import android.os.Bundle;
