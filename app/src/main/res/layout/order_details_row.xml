@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:paddingBottom="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Order_id"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order ID" />
+    <TextView
+        android:id="@+id/Order_id_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order ID" />
+
+
+    <TextView
+        android:id="@+id/Order_code"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Code" />
+    <TextView
+        android:id="@+id/Order_code_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order ID" />
+
+    <TextView
+        android:id="@+id/Order_description"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Description" />
+    <TextView
+        android:id="@+id/Order_description_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order ID" />
+
+    <TextView
+        android:id="@+id/quentity"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quentity" />
+    <TextView
+        android:id="@+id/quentity_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order ID" />
+
+
+</LinearLayout>

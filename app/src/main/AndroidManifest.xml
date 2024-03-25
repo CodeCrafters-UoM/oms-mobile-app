@@ -13,6 +13,10 @@
         android:theme="@style/Theme.Deleever"
         tools:targetApi="31">
         <activity
+            android:name=".forgot_password"
+            android:exported="false" />
+        <activity
+            android:name=".Product_details"
             android:name=".Signup"
             android:exported="false" />
         <activity
@@ -20,6 +24,18 @@
             android:exported="false" />
         <activity
             android:name=".Order_list"
+            android:exported="false" />
+        <activity
+            android:name=".Order_summery"
+            android:exported="false" />
+        <activity
+            android:name=".Report"
+            android:exported="false" />
+        <activity
+            android:name=".Customer_details_screen"
+            android:exported="false" />
+        <activity
+            android:name=".product_list"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

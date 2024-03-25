@@ -7,7 +7,11 @@ package com.example.deleever;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
-        import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+ import android.annotation.SuppressLint;
         import android.content.Context;
         import android.content.Intent;
         import android.os.Bundle;
@@ -26,14 +30,23 @@ package com.example.deleever;
 
 public class MainActivity extends AppCompatActivity {
 
-        Button btn_home_order;
+    Button btn_home_product;
+        Button btn_home_order,btn_home_report;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btn_home_product = findViewById(R.id.btn_home_product);
 
-
+        btn_home_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_product_btn = new Intent(getApplicationContext(), product_list.class);
+                startActivity(clicked_product_btn);
+            }
+        });
             btn_home_order = findViewById(R.id.btn_home_order);
             btn_home_order.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -43,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
                     }
             });
 
+
+        btn_home_report = findViewById(R.id.btn_home_report);
+
+        btn_home_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_report_btn = new Intent(getApplicationContext(), Report.class);
+                startActivity(clicked_report_btn);
             }
+        });
+
+    }
         }
 
