@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_home_product = findViewById(R.id.btn_home_report);
+        btn_home_product = findViewById(R.id.btn_home_product);
 
         btn_home_product.setOnClickListener(new View.OnClickListener() {
             @Override
