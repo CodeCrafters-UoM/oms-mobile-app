@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_layout"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="13dp" />
+
+    <TextView
+        android:id="@+id/txt_productDetails"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Product Details"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/txt_productCode"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Product Code"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productDetails" />
+
+    <TextView
+        android:id="@+id/txt_productCodeHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:paddingLeft="20dp"
+        android:text="F005"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productCode" />
+
+    <TextView
+        android:id="@+id/txt_productName"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Product Name"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productCodeHint" />
+
+    <TextView
+        android:id="@+id/txt_productNameHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="232dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:paddingLeft="15dp"
+        android:text="FROCK"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/txt_productPrice"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Product Price"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productNameHint" />
+
+    <TextView
+        android:id="@+id/txt_productPriceHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:paddingLeft="15dp"
+        android:text="LKR2500"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productPrice" />
+
+    <TextView
+        android:id="@+id/txt_productDescription"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Product Description"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productPriceHint" />
+
+    <TextView
+        android:id="@+id/txt_productDescriptionHint"
+        android:layout_width="320dp"
+        android:layout_height="89dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:paddingLeft="10dp"
+        android:text="jfshndjcshdbuivsbhdbchsdbchadncjbsdhcbsah.cuhcuichdsuhc."
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription" />
+
+    <TextView
+        android:id="@+id/txt_productLink"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Order Link"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productDescriptionHint" />
+
+    <TextView
+        android:id="@+id/txt_productLinkHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:text="https://spndimproejkbdhc.com"
+        android:drawableRight="@drawable/baseline_attachment_24"
+        android:textColorHint="#888888"
+        android:textSize="15dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productLink" />
+
+    <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="85dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_btn"
+        android:backgroundTint="#006756"
+        android:fontFamily="@font/archivo_black"
+        android:text="Remove"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="85dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_btn"
+        android:backgroundTint="#006756"
+        android:fontFamily="@font/archivo_black"
+        android:text="Update"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

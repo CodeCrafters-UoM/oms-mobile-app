@@ -40,8 +40,8 @@ public class product_list extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String product = (String) parent.getItemAtPosition(position);
 
-//                Intent i = new Intent(product_list.this, productDetails.class);
-//                startActivity(i);
+                Intent i = new Intent(product_list.this, Product_details.class);
+                startActivity(i);
             }
         });
 
