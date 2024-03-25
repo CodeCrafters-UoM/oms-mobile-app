@@ -26,7 +26,7 @@ package com.example.deleever;
 
 public class MainActivity extends AppCompatActivity {
 
-        Button btn_home_order;
+        Button btn_home_order,btn_home_report;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
                     }
             });
 
+
+        btn_home_report = findViewById(R.id.btn_home_report);
+
+        btn_home_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_report_btn = new Intent(getApplicationContext(), Report.class);
+                startActivity(clicked_report_btn);
             }
+        });
+
+    }
         }
 

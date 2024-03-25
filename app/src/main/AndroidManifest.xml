@@ -18,6 +18,12 @@
         <activity android:name=".Order_summery"
             android:exported="false"/>
         <activity
+            android:name=".Report"
+            android:exported="false" />
+        <activity
+            android:name=".Order_summery"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
