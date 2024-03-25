@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Deleever"
         tools:targetApi="31">
         <activity
+            android:name=".ActivationURL"
+            android:exported="false" />
+        <activity
             android:name=".Order_list"
             android:exported="false" />
         <activity
