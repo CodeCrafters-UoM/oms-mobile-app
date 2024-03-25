@@ -23,6 +23,10 @@
             android:name=".Report"
             android:exported="false" />
         <activity
+            android:name=".Customer_details_screen"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
