@@ -28,7 +28,7 @@ public class Order_summery extends AppCompatActivity {
         String[] payment_method_data ={"Name","Name","Name","Name","Name","Name","Name","Name"};
         String[] customer_name_data ={"Name","Name","Name","Name","Name","Name","Name","Name"};
 
-//        ListAdapter listAdapter_customer_details_list = new ArrayAdapter<String>(this,R.layout.customer_details_list_row,customer_name_data);
+        ListAdapter listAdapter_customer_details_list = new ArrayAdapter<String>(this,R.layout.customer_details_list_row,customer_name_data);
 
         Order_details_list = findViewById(R.id.Order_details_list);
         order_details_row order_details_row = new order_details_row(this,date_order_details_name);
@@ -48,8 +48,8 @@ public class Order_summery extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected_customer_details = (String) parent.getItemAtPosition(position);
 
-//                Intent intent_customer_details_list = new Intent(Order_summery.this, Customer_details_screen.class);
-//                startActivity(intent_customer_details_list);
+                Intent intent_customer_details_list = new Intent(Order_summery.this, Customer_details_screen.class);
+                startActivity(intent_customer_details_list);
             }
         });
     }
