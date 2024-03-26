@@ -17,9 +17,14 @@
             android:exported="false" />
         <activity
             android:name=".Order_questionnaire"
+            android:name=".forgot_password"
             android:exported="false" />
         <activity
             android:name=".Product_details"
+            android:name=".Signup"
+            android:exported="false" />
+        <activity
+            android:name=".ActivationURL"
             android:exported="false" />
         <activity
             android:name=".Order_list"
