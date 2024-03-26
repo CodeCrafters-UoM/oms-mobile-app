@@ -21,6 +21,7 @@ import android.widget.Button;
         import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
+        import android.widget.ImageView;
         import android.widget.ListAdapter;
         import android.widget.ListView;
         import android.widget.TextView;
@@ -64,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent clicked_report_btn = new Intent(getApplicationContext(), Report.class);
                 startActivity(clicked_report_btn);
+            }
+        });
+
+        ImageView icon = findViewById(R.id.imageView7);
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                startActivity(intent);
+
             }
         });
 
