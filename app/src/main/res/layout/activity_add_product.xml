@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--    ADD PRODUCT-->
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_layout"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <EditText
+        android:id="@+id/txt_productCode"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:hint="Product Code"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_addProduct" />
+
+    <TextView
+        android:id="@+id/txt_addProduct"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Add Product"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
+    <EditText
+        android:id="@+id/txt_productName"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:hint="Product Name"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productCode" />
+
+    <EditText
+        android:id="@+id/txt_productDescription"
+        android:layout_width="344dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:hint="Product Description"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:paddingBottom="100dp"
+        android:textColorHint="#888888"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productName" />
+
+
+
+    <Button
+        android:id="@+id/btn_productSave"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_btn"
+        android:backgroundTint="#006756"
+        android:fontFamily="@font/archivo_black"
+        android:text="SAVE"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.573"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription" />
+
+    <TextView
+        android:id="@+id/txt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="640dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Back"
+        android:textColor="#006756"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

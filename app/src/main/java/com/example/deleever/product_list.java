@@ -45,9 +45,9 @@ public class product_list extends AppCompatActivity {
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(product_list.this,"Add product", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getApplicationContext(), addProduct.class);
-//                startActivity(intent);
+                Toast.makeText(product_list.this,"Add product", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Add_product.class);
+                startActivity(intent);
 
             }
         });
