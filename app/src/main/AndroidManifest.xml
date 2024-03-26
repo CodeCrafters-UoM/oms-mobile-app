@@ -23,6 +23,12 @@
             android:name=".forgot_password"
             android:exported="false" />
         <activity
+            android:name=".Add_product"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".Order_questionnaire"
             android:exported="false" />
         <activity
