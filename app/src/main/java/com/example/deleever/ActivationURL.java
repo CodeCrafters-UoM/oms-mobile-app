@@ -16,8 +16,8 @@ public class ActivationURL extends AppCompatActivity {
         activation_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent activated_app = new Intent(ActivationURL.this, Signup.class);
-//                startActivity(activated_app);
+                Intent activated_app = new Intent(ActivationURL.this, Login.class);
+                startActivity(activated_app);
             }
         });
     }
