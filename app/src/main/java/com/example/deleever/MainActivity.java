@@ -29,8 +29,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_home_product;
-        Button btn_home_order,btn_home_report;
+    Button btn_home_product ,btn_home_order_links, btn_home_order,btn_home_report;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(clicked_report_btn);
             }
         });
+
 
         ImageView icon = findViewById(R.id.imageView7);
         icon.setOnClickListener(new View.OnClickListener() {
