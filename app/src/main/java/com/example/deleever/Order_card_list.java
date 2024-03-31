@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class Order_card_list extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Order_cards_adapter orderCardAdapter;
-    List<Order_card> orderCards = new ArrayList<>();
+    List<Order_card> orderCards ;
 
     SearchView search_order_list;
 
@@ -87,14 +88,17 @@ public class Order_card_list extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         orderCardAdapter = new Order_cards_adapter(new ArrayList<>());
         recyclerView.setAdapter(orderCardAdapter);
+
         orderCardAdapter.setOnItemClickListener(new Order_cards_adapter.OnItemClickListener() {
+
             @Override
             public void onItemClick(Order_card order_cards) {
-                String status = order_cards.getStatus();
-                Intent intent = new Intent(Order_card_list.this, Order_summery.class);
-                intent.putExtra("orderCardId",status ); // Pass any necessary data
-                startActivity(intent);
+                    int order_id = order_cards.getOrderId();
+                    Intent intent = new Intent(Order_card_list.this, Order_summery.class);
+                    intent.putExtra("order_id",order_id);
+                    startActivity(intent);
             }
+
         });
 
     }
