@@ -40,7 +40,7 @@ public class product_list extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.10.10.123:8000/") // Replace with your actual API base URL
+                .baseUrl("http://192.168.43.249:8000/") // Replace with your actual API base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
