@@ -61,7 +61,7 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this, "Enter valid email", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(signup_phone_num_validation.isEmpty() || !(android.util.Patterns.PHONE.matcher(signup_phone_num_validation).matches())){
+                if(signup_phone_num_validation.isEmpty() && (signup_phone_num_validation.length() == 10 && signup_phone_num_validation.matches("[0-9]+"))){
                     Toast.makeText(Signup.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }
