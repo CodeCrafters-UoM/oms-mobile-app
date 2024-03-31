@@ -1,10 +1,9 @@
 package com.example.deleever;
 
-import android.telecom.Call;
-
 import java.util.List;
-import retrofit.http.GET;
-public interface ApiService {
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;public interface ApiService {
     @GET("orders")
     Call<List<Order_card>> getItems();
 
