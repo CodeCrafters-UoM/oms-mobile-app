@@ -27,7 +27,6 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        //assign to variables
 
         signup_register_btn = findViewById(R.id.signup_register_btn);
         signup_name=findViewById(R.id.signup_name);
@@ -61,7 +60,7 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this, "Enter valid email", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(signup_phone_num_validation.isEmpty() && (signup_phone_num_validation.length() == 10 && signup_phone_num_validation.matches("[0-9]+"))){
+                if(signup_phone_num_validation.isEmpty() || (signup_phone_num_validation.length() != 10 )){
                     Toast.makeText(Signup.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -71,28 +70,6 @@ public class Signup extends AppCompatActivity {
                     return;
                 }
 
-
-
-
-
-
-
-
-//                String postURL = "";
-//                RequestQueue requestQueue =  Volley.newRequestQueue(this);
-//
-//                JSONObject postData = new JSONObject();
-//                try{
-//                    postData.put("signup_name":signup_name_validation);
-//                    postData.put("signup_business_name":signup_business_name);
-//                    postData.put("signup_email":signup_email_validation);
-//                    postData.put("signup_phone_num":signup_phone_num_validation);
-//                    postData.put("signup_password":signup_password_validation);
-//
-//
-//                }catch (Exception e){
-//
-//                }
 
                 Intent signup = new Intent(Signup.this, MainActivity.class);
                 startActivity(signup);
@@ -117,14 +94,9 @@ public class Signup extends AppCompatActivity {
                 }
             }
 
-//            }
         });
 
 
     }
-//    private void findViews(){
-//
-//
-//    }
 
 }
