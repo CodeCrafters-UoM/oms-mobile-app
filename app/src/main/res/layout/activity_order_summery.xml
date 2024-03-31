@@ -19,7 +19,6 @@ tools:context=".MainActivity">
     <LinearLayout
         android:id="@+id/Order_summery_topic"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
@@ -171,18 +170,19 @@ tools:context=".MainActivity">
     </LinearLayout>
 
     <TextView
-    android:background="#008c74"
-    android:id="@+id/product_details"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="35dp"
-    android:text="Product details"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
-    android:textSize="25dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/Customer_details_list" />
+        android:fontFamily="@font/archivo_black"
+        android:background="#008c74"
+        android:id="@+id/product_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:text="Product details"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Customer_details_list" />
 
     <LinearLayout
         android:paddingLeft="35dp"
