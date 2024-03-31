@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,7 +31,7 @@ public class Order_card_list extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Order_cards_adapter orderCardAdapter;
-    List<Order_card> orderList;
+    List<Order_card> orderCards = new ArrayList<>();
 
     SearchView search_order_list;
 
@@ -37,10 +40,6 @@ public class Order_card_list extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_card_list);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        orderCardAdapter = new Order_cards_adapter();
-        recyclerView.setAdapter(orderCardAdapter);
         // Create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -55,7 +54,6 @@ public class Order_card_list extends AppCompatActivity {
         call.enqueue(new Callback<List<Order_card>>() {
             @Override
             public void onResponse(Call<List<Order_card>> call, Response<List<Order_card>> response) {
-//                System.out.println(response);
                 if (response.isSuccessful()) {
                     List<Order_card> order_cards = response.body();
                     if (order_cards != null) {
@@ -80,6 +78,22 @@ public class Order_card_list extends AppCompatActivity {
                 System.out.println(t);
                 Log.e(TAG, "Error fetching items", t);
                 Toast.makeText(Order_card_list.this, "Error fetching items", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        orderCardAdapter = new Order_cards_adapter(new ArrayList<>());
+        recyclerView.setAdapter(orderCardAdapter);
+        orderCardAdapter.setOnItemClickListener(new Order_cards_adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Order_card order_cards) {
+
+                Intent intent = new Intent(Order_card_list.this, Order_summery.class);
+                intent.putExtra("orderCardId",getText(p) ); // Pass any necessary data
+                startActivity(intent);
             }
         });
 
