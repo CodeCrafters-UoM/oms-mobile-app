@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             btn_home_order.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_list.class);
+                            Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_card_list.class);
                             startActivity(clicked_orders_btn);
                     }
             });
