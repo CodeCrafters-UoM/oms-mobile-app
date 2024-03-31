@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,43 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
-//public class Report extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_report);
-//    }
-//}
-
-
-
-
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.recyclerview.widget.GridLayoutManager;
-        import androidx.recyclerview.widget.RecyclerView;
-
-        import android.content.Context;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.AutoCompleteTextView;
-        import android.widget.Button;
-        import android.widget.CursorAdapter;
-        import android.widget.TextView;
-
-        import java.util.ArrayList;
-        import java.util.List;
-
 public class Report extends AppCompatActivity {
     RecyclerView report_list;
     List<ReportCard> Report_detail_list;
@@ -84,18 +48,6 @@ public class Report extends AppCompatActivity {
 
         reportAdapter = new ReportAdapter(this,Report_detail_list);
         report_list.setAdapter(reportAdapter);
-
-//        autoCompleteTextView=findViewById(R.id.autoComplete_txt);
-//        adapterItem = new ArrayAdapter<String>(this,R.layout.report_dropdown,item);
-//        autoCompleteTextView.setAdapter(adapterItem);
-//        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                String item = adapterView.getItemAtPosition(position).toString();
-////                Toast.makeText(MainActivity.this,"Item: "+item,Toast.LENGTH_LONG).show();
-//            }
-//        });
     }
 }
 
