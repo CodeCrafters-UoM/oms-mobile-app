@@ -90,9 +90,9 @@ public class Order_card_list extends AppCompatActivity {
         orderCardAdapter.setOnItemClickListener(new Order_cards_adapter.OnItemClickListener() {
             @Override
             public void onItemClick(Order_card order_cards) {
-
+                String status = order_cards.getStatus();
                 Intent intent = new Intent(Order_card_list.this, Order_summery.class);
-                intent.putExtra("orderCardId",getText(p) ); // Pass any necessary data
+                intent.putExtra("orderCardId",status ); // Pass any necessary data
                 startActivity(intent);
             }
         });
