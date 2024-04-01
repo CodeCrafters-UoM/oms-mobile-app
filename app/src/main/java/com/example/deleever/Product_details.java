@@ -3,13 +3,21 @@ package com.example.deleever;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +56,7 @@ public class Product_details extends AppCompatActivity {
 
     private void fetchProductDetails(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.249:8000/")
+                .baseUrl("http://192.168.8.144:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -97,14 +105,31 @@ public class Product_details extends AppCompatActivity {
         btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteProduct(product.getProductCode());
+                AlertDialog.Builder builder = new AlertDialog.Builder(Product_details.this);
+                builder.setMessage("Are you sure you want to remove this product?")
+                        .setTitle("Confirm Removal");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        deleteProduct(product.getProductCode());
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked No button, do nothing or dismiss the dialog
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
 
     private void deleteProduct(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.249:8000/")
+                .baseUrl("http://192.168.8.144:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
