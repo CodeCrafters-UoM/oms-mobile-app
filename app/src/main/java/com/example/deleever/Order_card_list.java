@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SearchView;
@@ -18,14 +19,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Order_card_list extends AppCompatActivity {
-
-     private static final String IP_ADDRESS = "10.10.29.55";
-
+public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
+    private static final String IP_ADDRESS = "192.168.88.146";
     private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
-
     private static final String TAG = "MainActivity";
-
     private RecyclerView recyclerView;
     private Order_cards_adapter orderCardAdapter;
     List<Order_card> orderList;
@@ -39,7 +36,7 @@ public class Order_card_list extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        orderCardAdapter = new Order_cards_adapter();
+        orderCardAdapter = new Order_cards_adapter( this);
         recyclerView.setAdapter(orderCardAdapter);
         // Create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
@@ -83,5 +80,18 @@ public class Order_card_list extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        Intent i = new Intent(Order_card_list.this,Order_summery.class);
+        i.putExtra("name",orderCardAdapter.order_cards.get(position).getCustomer().getFirstName());
+        i.putExtra("address",orderCardAdapter.order_cards.get(position).getDeliveryAddress());
+        i.putExtra("contact",orderCardAdapter.order_cards.get(position).getCustomer().getContactNumber());
+        i.putExtra("orderId",orderCardAdapter.order_cards.get(position).getOrderId());
+        i.putExtra("productCode",orderCardAdapter.order_cards.get(position).getProduct().getProductCode());
+        i.putExtra("description",orderCardAdapter.order_cards.get(position).getDescription());
+        //quantity
+        startActivity(i);
     }
 }
