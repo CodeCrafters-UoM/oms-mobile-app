@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -63,8 +64,7 @@ public class Order_summery extends AppCompatActivity {
         TextView order_status = findViewById(R.id.status);
         order_status.setText(order_status_data);
 
-
-        TextView Customer_details = findViewById(R.id.Customer_details);
+       Customer_details = findViewById(R.id.Customer_details);
         Customer_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
