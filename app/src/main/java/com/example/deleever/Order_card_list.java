@@ -85,23 +85,6 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
 
 
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        orderCardAdapter = new Order_cards_adapter(new ArrayList<>());
-        recyclerView.setAdapter(orderCardAdapter);
-
-        orderCardAdapter.setOnItemClickListener(new Order_cards_adapter.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(Order_card order_cards) {
-                    int order_id = order_cards.getOrderId();
-                    Intent intent = new Intent(Order_card_list.this, Order_summery.class);
-                    intent.putExtra("order_id",order_id);
-                    startActivity(intent);
-            }
-
-        });
-
     }
 
     @Override
