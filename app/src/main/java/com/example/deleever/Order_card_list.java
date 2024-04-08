@@ -96,7 +96,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         i.putExtra("orderId",orderCardAdapter.order_cards.get(position).getOrderId());
         i.putExtra("productCode",orderCardAdapter.order_cards.get(position).getProduct().getProductCode());
         i.putExtra("description",orderCardAdapter.order_cards.get(position).getDescription());
-        i.putExtra("status",orderCardAdapter.order_cards.get(position).getDescription());
+        i.putExtra("status",orderCardAdapter.order_cards.get(position).getStatus());
         //quantity
         startActivity(i);
     }

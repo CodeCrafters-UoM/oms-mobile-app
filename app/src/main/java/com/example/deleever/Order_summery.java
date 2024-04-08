@@ -42,16 +42,6 @@ public class Order_summery extends AppCompatActivity {
         TextView Order_description = findViewById(R.id.Order_description_data);
         Order_description.setText(Order_description_data);
 
-      TextView Customer_details = findViewById(R.id.Customer_details);
-        Customer_details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),Customer_details_screen.class);
-                startActivity(i);
-            }
-        });
-
-
 
         TextView Order_code = findViewById(R.id.Order_code_data);
         Order_code.setText(Order_code_data);
@@ -64,7 +54,7 @@ public class Order_summery extends AppCompatActivity {
         TextView order_status = findViewById(R.id.status);
         order_status.setText(order_status_data);
 
-       Customer_details = findViewById(R.id.Customer_details);
+        TextView Customer_details = findViewById(R.id.Customer_details);
         Customer_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
