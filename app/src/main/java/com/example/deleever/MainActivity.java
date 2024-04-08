@@ -29,14 +29,21 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_home_product;
-        Button btn_home_order,btn_home_report;
+    Button btn_home_product ,btn_home_order_links, btn_home_order,btn_home_report;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btn_home_order_links = findViewById(R.id.btn_home_order_links);
+        btn_home_order_links.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_order_link_btn = new Intent(getApplicationContext(), Order_questionnaire.class);
+                startActivity(clicked_order_link_btn);
+            }
+        });
         btn_home_product = findViewById(R.id.btn_home_product);
 
         btn_home_product.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(clicked_report_btn);
             }
         });
+
 
         ImageView icon = findViewById(R.id.imageView7);
         icon.setOnClickListener(new View.OnClickListener() {

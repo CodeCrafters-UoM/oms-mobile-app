@@ -82,12 +82,5 @@ public class Order_list_row {
         this.date_order_details_name = date_order_details_name;
         this.date_order_details_address = date_order_details_address;
     }
-//public Order_list_row(int date_order_details_id, String date_order_details_name, String date_order_details_address) {
-////    this.date_order_details_date = date_order_details_date;
-////    this.date_order_details_time = date_order_details_time;
-////    this.date_order_details_status = date_order_details_status;
-//    this.date_order_details_id = date_order_details_id;
-//    this.date_order_details_name = date_order_details_name;
-//    this.date_order_details_address = date_order_details_address;
-//}
+
 }

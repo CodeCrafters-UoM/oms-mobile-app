@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
+
     <LinearLayout
         android:id="@+id/Order_summery_topic"
         android:layout_width="match_parent"
@@ -48,29 +49,27 @@
 
     </LinearLayout>
 
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:text="Order Status"
+            android:gravity="end"
+            android:textSize="20dp"
+            android:textStyle="bold"
+        />
 
-
-    <TextView
-        android:background="#008c74"
-        android:id="@+id/Order_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="35dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text="Order details"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Order_summery_topic" />
 
 
     <LinearLayout
-        android:id="@+id/Order_details_list"
+        android:paddingLeft="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Order_details"
         android:orientation="vertical"
+
+        android:id="@+id/Order_details_list"
         android:paddingTop="5dp"
         android:paddingBottom="20dp"
         android:layout_width="match_parent"
@@ -127,8 +126,6 @@
 
 
     </LinearLayout>
-
-
     <TextView
         android:background="#008c74"
         android:id="@+id/Customer_details"
@@ -144,6 +141,57 @@
 
 
     <LinearLayout
+        android:id="@+id/Product_details_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_details"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingTop="5dp"
+        android:paddingLeft="35dp"
+        android:paddingBottom="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/payment_method"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment Method" />
+        <TextView
+            android:id="@+id/payment_method_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment Method" />
+        <TextView
+            android:id="@+id/unit_amount"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unit Amount" />
+        <TextView
+            android:id="@+id/unit_amount_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unit Amount" />
+    </LinearLayout>
+
+    <TextView
+        android:fontFamily="@font/archivo_black"
+        android:background="#008c74"
+        android:id="@+id/product_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dp"
+        android:text="Product details"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Customer_details_list" />
+
+    <LinearLayout
+        android:paddingLeft="35dp"
         android:id="@+id/Customer_details_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -242,5 +290,6 @@
             android:layout_height="wrap_content"
             android:text="Unit Amount" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

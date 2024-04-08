@@ -4,15 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order_cards_adapter extends RecyclerView.Adapter<Order_cards_adapter.ItemViewHolder>{
-
     private final Order_card_list_interface orderCardListInterface;
 
     List<Order_card> order_cards = new ArrayList<>();
@@ -25,8 +22,6 @@ public class Order_cards_adapter extends RecyclerView.Adapter<Order_cards_adapte
         this.order_cards = order_cards;
         notifyDataSetChanged();
     }
-
-
 
     @NonNull
     @Override
@@ -52,10 +47,10 @@ public class Order_cards_adapter extends RecyclerView.Adapter<Order_cards_adapte
         return order_cards.size();
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView textdate,textdeliveryAddress,textorderStatus,textName,texttime,textOrderId;
+     public ItemViewHolder(@NonNull View itemView,Order_card_list_interface orderCardListInterface) {
 
-        public ItemViewHolder(@NonNull View itemView,Order_card_list_interface orderCardListInterface) {
             super(itemView);
             textOrderId = itemView.findViewById(R.id.date_order_details_id);
             textdeliveryAddress = itemView.findViewById(R.id.date_order_details_address);
@@ -78,6 +73,7 @@ public class Order_cards_adapter extends RecyclerView.Adapter<Order_cards_adapte
             });
 
         }}
+
 
     void filterList(List<Order_card> filteredList){
         order_cards = filteredList;
