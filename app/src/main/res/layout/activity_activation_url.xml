@@ -22,8 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:paddingLeft="10dp"
         android:text="Enter activation URL"
-        android:textSize="30dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -33,7 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#E6E7E8"
-
         android:ems="10"
         android:inputType="text"
         android:textSize="30dp"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="ACTIVATE"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:background="@color/home_btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
