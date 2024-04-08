@@ -23,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
-    private static final String IP_ADDRESS = "192.168.88.146";
+    private static final String IP_ADDRESS = "192.168.205.146";
     private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;
@@ -113,6 +113,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         i.putExtra("orderId",orderCardAdapter.order_cards.get(position).getOrderId());
         i.putExtra("productCode",orderCardAdapter.order_cards.get(position).getProduct().getProductCode());
         i.putExtra("description",orderCardAdapter.order_cards.get(position).getDescription());
+        i.putExtra("status",orderCardAdapter.order_cards.get(position).getDescription());
         //quantity
         startActivity(i);
     }
