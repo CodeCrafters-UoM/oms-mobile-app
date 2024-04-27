@@ -71,7 +71,7 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this, "Enter valid email", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(signup_phone_num_validation.isEmpty() && (signup_phone_num_validation.length() == 10 && signup_phone_num_validation.matches("[0-9]+"))){
+                if(signup_phone_num_validation.isEmpty() || (signup_phone_num_validation.length() != 10 )){
                     Toast.makeText(Signup.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -135,7 +135,7 @@ public class Signup extends AppCompatActivity {
                 String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getName() + "\n" + "email : " + responseFromAPI.getEmail()+"\n" + "cont : " + responseFromAPI.getContactNumber()+"\n" + "bnaqme : " + responseFromAPI.getBusinessName()+"\n" + "pw : " + responseFromAPI.getPassword()+"\n" + "UN : " + responseFromAPI.getSignup_username();
                 Toast.makeText(Signup.this, "Data added to API"+responseString, Toast.LENGTH_SHORT).show();
 
-            }
+       }
 
             @Override
             public void onFailure(Call<DataModal> call, Throwable t) {
