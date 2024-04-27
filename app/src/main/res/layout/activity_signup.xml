@@ -89,6 +89,26 @@
         app:layout_constraintStart_toStartOf="@+id/signup_email"
         app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
+
+    <EditText
+        android:id="@+id/signup_username"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"
+        android:background="@drawable/rounded_background"
+        android:hint="Enter your user name"
+        android:padding="10dp"
+        android:textSize="15dp"
+        android:fontFamily="@font/archivo_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_phone_num" />
+
+
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="match_parent"
@@ -102,11 +122,10 @@
         android:padding="10dp"
         android:textSize="15dp"
         android:fontFamily="@font/archivo_black"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_phone_num" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_username" />
 
 
     <TextView

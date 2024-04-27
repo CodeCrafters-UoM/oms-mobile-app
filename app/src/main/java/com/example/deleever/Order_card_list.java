@@ -22,8 +22,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+public class Order_card_list extends AppCompatActivity {
+
+   private static final String IP_ADDRESS = "192.168.130.146";
+   private static final String IP_ADDRESS = "192.168.205.146";
+
 public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
-    private static final String IP_ADDRESS = "192.168.205.146";
     private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;

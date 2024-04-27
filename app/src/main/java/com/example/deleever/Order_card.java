@@ -144,7 +144,6 @@ public class Order_card {
         }
     }
 
-
     static class Product{
         private String productCode;
         private String name;
