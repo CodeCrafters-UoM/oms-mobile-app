@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Order_card_list extends AppCompatActivity {
 
-     private static final String IP_ADDRESS = "10.10.29.55";
+    private static final String IP_ADDRESS = "192.168.130.146";
 
     private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
 
