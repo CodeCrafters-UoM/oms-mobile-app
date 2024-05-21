@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Signup extends AppCompatActivity {
 
-    private static final String IP_ADDRESS = "192.168.130.146";
+    private static final String IP_ADDRESS = "192.168.215.146";
 
     private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
     private EditText signup_name;
