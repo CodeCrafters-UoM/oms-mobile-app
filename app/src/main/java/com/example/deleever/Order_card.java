@@ -5,11 +5,33 @@ import com.google.gson.annotations.SerializedName;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.net.ssl.SSLContext;
+
 public class Order_card {
 
     @SerializedName("deliveryAddress")
     private String deliveryAddress;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @SerializedName("description")
+    private String description;
+    @SerializedName("quantity")
+    private int quantity;
     @SerializedName("orderStatus")
     private String status;
 
@@ -32,12 +54,14 @@ public class Order_card {
 
     @SerializedName("createdAt")
     private String dateAndTime;
-    public Order_card(String deliveryAddress, String status, int orderId, Customer customer,Product product) {
+    public Order_card(String deliveryAddress, String status, int orderId, Customer customer, Product product, int quantity, String description) {
         this.deliveryAddress = deliveryAddress;
         this.status = status;
         this.orderId = orderId;
         this.customer = customer;
         this.product = product;
+        this.quantity = quantity;
+        this.description = description;
 
     }
     public String getDateAndTime() {
@@ -88,6 +112,16 @@ public class Order_card {
 
         @SerializedName("lastName")
         private String lastName;
+        @SerializedName("contactNumber")
+        private String contactNumber;
+
+        public String getContactNumber() {
+            return contactNumber;
+        }
+
+        public void setContactNumber(String contactNumber) {
+            this.contactNumber = contactNumber;
+        }
 
         public String getLastName() {
             return lastName;
@@ -109,7 +143,6 @@ public class Order_card {
             this.firstName = firstName;
         }
     }
-
 
     static class Product{
         private String productCode;

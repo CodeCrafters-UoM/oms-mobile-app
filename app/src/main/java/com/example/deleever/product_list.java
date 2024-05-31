@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.deleever.R;
@@ -40,7 +41,7 @@ public class product_list extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.10.10.123:8000/") // Replace with your actual API base URL
+                .baseUrl("http://192.168.8.144:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -81,6 +82,15 @@ public class product_list extends AppCompatActivity {
             }
         });
 
+        ImageView plus_icon=findViewById(R.id.plus_icon);
+        plus_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Add_product.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 
@@ -88,7 +98,7 @@ public class product_list extends AppCompatActivity {
         String[] productDetails = new String[productList.size()];
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
-            productDetails[i] = product.getProductCode() + product.getName();
+            productDetails[i] = product.getProductCode() +(" ")+ product.getName();
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, productDetails);

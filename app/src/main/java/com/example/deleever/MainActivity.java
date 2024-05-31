@@ -36,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btn_home_order_links = findViewById(R.id.btn_home_order_links);
+        btn_home_order_links.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_order_link_btn = new Intent(getApplicationContext(), Order_questionnaire.class);
+                startActivity(clicked_order_link_btn);
+            }
+        });
         btn_home_product = findViewById(R.id.btn_home_product);
 
         btn_home_product.setOnClickListener(new View.OnClickListener() {

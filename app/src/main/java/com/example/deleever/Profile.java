@@ -30,11 +30,12 @@ public class Profile extends AppCompatActivity {
         txt_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), contactUs.class);
-//                startActivity(intent);
+               Intent intent = new Intent(getApplicationContext(), Contact_us.class);
+                startActivity(intent);
 
             }
         });
+
 
         TextView txt_LogOut = findViewById(R.id.txt_LogOut);
         txt_LogOut.setOnClickListener(new View.OnClickListener() {

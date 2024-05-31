@@ -22,17 +22,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Order_card_list extends AppCompatActivity {
-
-     private static final String IP_ADDRESS = "192.168.8.102";
-
-    private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
-
+public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
+    private static final String IP_ADDRESS = "192.168.130.146";
+    private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
     private static final String TAG = "MainActivity";
-
     private RecyclerView recyclerView;
     private Order_cards_adapter orderCardAdapter;
-    List<Order_card> orderCards ;
+    List<Order_card> orderCards;
 
     SearchView search_order_list;
 
@@ -40,6 +36,11 @@ public class Order_card_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_card_list);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        orderCardAdapter = new Order_cards_adapter(this);
+        recyclerView.setAdapter(orderCardAdapter);
 
         // Create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
@@ -63,6 +64,8 @@ public class Order_card_list extends AppCompatActivity {
                     } else {
                         Log.d(TAG, "Response body is null");
                     }
+                    Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Log.d(TAG, "Response unsuccessful. Code: " + response.code());
                     // Add more logging for debugging
@@ -74,6 +77,7 @@ public class Order_card_list extends AppCompatActivity {
                     Toast.makeText(Order_card_list.this, "Failed to fetch items", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<List<Order_card>> call, Throwable t) {
                 System.out.println(t);
@@ -82,24 +86,19 @@ public class Order_card_list extends AppCompatActivity {
             }
         });
 
+    }
 
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        orderCardAdapter = new Order_cards_adapter(new ArrayList<>());
-        recyclerView.setAdapter(orderCardAdapter);
-
-        orderCardAdapter.setOnItemClickListener(new Order_cards_adapter.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(Order_card order_cards) {
-                    int order_id = order_cards.getOrderId();
-                    Intent intent = new Intent(Order_card_list.this, Order_summery.class);
-                    intent.putExtra("order_id",order_id);
-                    startActivity(intent);
-            }
-
-        });
-
+    @Override
+    public void OnItemClick(int position) {
+        Intent i = new Intent(Order_card_list.this, Order_summery.class);
+        i.putExtra("name", orderCardAdapter.order_cards.get(position).getCustomer().getFirstName());
+        i.putExtra("address", orderCardAdapter.order_cards.get(position).getDeliveryAddress());
+        i.putExtra("contact", orderCardAdapter.order_cards.get(position).getCustomer().getContactNumber());
+        i.putExtra("orderId", orderCardAdapter.order_cards.get(position).getOrderId());
+        i.putExtra("productCode", orderCardAdapter.order_cards.get(position).getProduct().getProductCode());
+        i.putExtra("description", orderCardAdapter.order_cards.get(position).getDescription());
+        i.putExtra("status", orderCardAdapter.order_cards.get(position).getStatus());
+        //quantity
+        startActivity(i);
     }
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,11 +10,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Deleever"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".updateProduct"
+            android:exported="false" />
         <activity
             android:name=".Order_card_list"
             android:exported="false" />
@@ -39,7 +43,7 @@
             android:name=".Product_details"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".ActivationURL"
             android:exported="false" />
         <activity
             android:name=".Login"
@@ -60,7 +64,7 @@
             android:name=".product_list"
             android:exported="false" />
         <activity
-            android:name=".ActivationURL"
+            android:name=".Signup"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
