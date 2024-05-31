@@ -9,6 +9,8 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Path;
 
+
+
 public interface ApiService {
     @GET("orders")
     Call<List<Order_card>> getItems();
@@ -16,12 +18,18 @@ public interface ApiService {
     @GET("orders/{orderId}")
     Call<List<Order_card>> getOrderDetails(@Path("orderId") int orderId);
 
+
+//    @POST("api/sellerreg")//
+//        //on below line we are creating a method to post our data.
+//    Call<DataModal> createPost(@Body DataModal dataModal);
+
+//    @POST("register")
+//    Call<SignUp.RegisterResponse> createPost(@Body SignUp.DataModal dataModal);
     @POST("/api/v1/register")
 
         //on below line we are creating a method to post our data.
     //Call<DataModal> createPost(@Body DataModal dataModal);
 Call<DataModal> createPost(@Body DataModal dataModal);
 //    Call<DataModal> createPost(@Path("Datamodal") DataModal dataModal);
-
 
 }

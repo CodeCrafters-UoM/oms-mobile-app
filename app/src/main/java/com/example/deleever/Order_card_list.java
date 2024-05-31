@@ -24,7 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
     private static final String IP_ADDRESS = "192.168.130.146";
-
     private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;
@@ -86,7 +85,6 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                 Toast.makeText(Order_card_list.this, "Error fetching items", Toast.LENGTH_SHORT).show();
             }
         });
-
 
     }
 
