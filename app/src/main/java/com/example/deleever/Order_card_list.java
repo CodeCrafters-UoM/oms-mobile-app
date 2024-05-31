@@ -64,6 +64,8 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                     } else {
                         Log.d(TAG, "Response body is null");
                     }
+                    Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Log.d(TAG, "Response unsuccessful. Code: " + response.code());
                     // Add more logging for debugging
@@ -83,6 +85,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                 Toast.makeText(Order_card_list.this, "Error fetching items", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override

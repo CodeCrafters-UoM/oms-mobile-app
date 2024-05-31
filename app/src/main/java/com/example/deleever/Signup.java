@@ -248,7 +248,6 @@ public class Signup extends AppCompatActivity {
 
     private static final String IP_ADDRESS = "192.168.8.101";
     private static final String BASE_URL = "http://192.168.8.101:8000/api/v1/";
-
     private EditText signup_name;
     private EditText signup_business_name;
     private EditText signup_email;

@@ -12,6 +12,11 @@ import retrofit2.http.Path;
 
 public interface APIservice2 {
 
+    @POST("login")
+    Call<LoginResponse> LogIn(
+            @Body LoginRequest loginRequest
+    );
+
     @GET("products")
     Call<List<com.example.deleever.Product>> getProducts();
 
