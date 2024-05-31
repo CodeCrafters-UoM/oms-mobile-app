@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
 
-    private static final String BASE_URL = "http://192.168.8.101:8000/api/v1/";
+    private static final String BASE_URL = "http://192.168.58.146:8000/api/v1/";
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_TOKEN = "jwtToken";
 
@@ -36,18 +36,29 @@ public class Login extends AppCompatActivity {
 
     private EditText txt_userName;
     private EditText txt_passWord;
-    private TextView txt_showPassword;
+    private TextView txt_showPassword,txt_registerHere;
     private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         // Initialize views
         txt_userName = findViewById(R.id.txt_userName);
         txt_passWord = findViewById(R.id.txt_passWord);
         txt_showPassword = findViewById(R.id.txt_showPassword);
+        txt_registerHere =  findViewById(R.id.txt_registerHere);
+
+
+        txt_registerHere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent register = new Intent(Login.this, Signup.class);
+                startActivity(register);
+            }
+        });
+
 
         // Create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
@@ -111,6 +122,8 @@ public class Login extends AppCompatActivity {
                 });
             }
         });
+
+
 
         // Set onClickListener for Forget Password TextView
         TextView txt_forgetPassword = findViewById(R.id.txt_forgetPassword);

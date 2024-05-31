@@ -22,6 +22,7 @@
 
 
     <EditText
+        android:background="@drawable/edit_background"
         android:textSize="15dp"
         android:fontFamily="@font/archivo_black"
         android:id="@+id/signup_name"
@@ -38,6 +39,8 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_topic" />
 
     <EditText
+        android:background="@drawable/edit_background"
+
         android:id="@+id/signup_business_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -54,6 +57,7 @@
 
     <EditText
         android:id="@+id/signup_email"
+        android:background="@drawable/edit_background"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
@@ -69,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_business_name" />
 
     <EditText
+        android:background="@drawable/edit_background"
         android:id="@+id/signup_phone_num"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -93,8 +98,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:inputType="textPassword"
-        android:background="@drawable/rounded_background"
+        android:background="@drawable/edit_background"
         android:hint="Enter your user name"
         android:padding="10dp"
         android:textSize="15dp"
@@ -106,6 +110,7 @@
 
 
     <EditText
+        android:background="@drawable/edit_background"
         android:id="@+id/signup_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -149,6 +154,7 @@
         app:srcCompat="@drawable/logo" />
 
     <Button
+        android:background="@color/custome_green"
         android:id="@+id/signup_register_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -177,7 +183,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_register_btn" />
 
     <TextView
-        android:id="@+id/signup_login_pg_connector"
+        android:id="@+id/login_pg_connector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"

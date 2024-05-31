@@ -43,7 +43,7 @@
             android:name=".Product_details"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".ActivationURL"
             android:exported="false" />
         <activity
             android:name=".Login"
@@ -64,7 +64,7 @@
             android:name=".product_list"
             android:exported="false" />
         <activity
-            android:name=".ActivationURL"
+            android:name=".Signup"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

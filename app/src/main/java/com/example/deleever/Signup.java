@@ -1,5 +1,5 @@
 package com.example.deleever;
-//
+
 //import androidx.appcompat.app.AppCompatActivity;
 //import android.content.Intent;
 //import android.os.Bundle;
@@ -224,6 +224,7 @@ package com.example.deleever;
 //    }
 //}
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -246,8 +247,9 @@ import retrofit2.http.POST;
 
 public class Signup extends AppCompatActivity {
 
-    private static final String IP_ADDRESS = "192.168.8.101";
-    private static final String BASE_URL = "http://192.168.8.101:8000/api/v1/";
+    private static final String IP_ADDRESS = "192.168.58.146";
+    private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/api/v1/";
+
     private EditText signup_name;
     private EditText signup_business_name;
     private EditText signup_email;
@@ -326,15 +328,26 @@ public class Signup extends AppCompatActivity {
                                 showToast("Registration successful! User ID: " + responseFromAPI.userId);
                                 clearFields();
                                 // Navigate back to the login page (MainActivity)
-                                Intent loginIntent = new Intent(Signup.this, MainActivity.class);
+                                Intent loginIntent = new Intent(Signup.this, Login.class);
                                 startActivity(loginIntent);
                                 // Finish the SignUp activity so that the user cannot navigate back to it
                                 finish();
                             } else {
                                 showToast("Registration failed: " + responseFromAPI.error);
                             }
-                        } else {
-                            showToast("Registration failed  apo erra");
+                        }
+//                        else {
+//                            showToast("Registration failed  apo erra");
+//
+//                        }
+
+                        else {
+                            try {
+                                String errorBody = response.errorBody().string();
+                                showToast("Registration failed: " + errorBody);
+                            } catch (Exception e) {
+                                showToast("Registration failed with unknown error");
+                            }
                         }
                     }
 
@@ -343,9 +356,6 @@ public class Signup extends AppCompatActivity {
                         showToast("Error: " + t.getMessage());
                     }
                 });
-
-//                Intent signup = new Intent(Signup.this, MainActivity.class);
-//                startActivity(signup);
             }
 
         });
@@ -361,6 +371,16 @@ public class Signup extends AppCompatActivity {
                     show_password.setText("Hide password");
                     signup_password.setTransformationMethod(null);
                 }
+            }
+        });
+
+        TextView login_pg_connector = findViewById(R.id.login_pg_connector);
+
+        login_pg_connector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login_pg_connector = new Intent(Signup.this, Login.class);
+                startActivity(login_pg_connector);
             }
         });
     }
@@ -395,7 +415,7 @@ public class Signup extends AppCompatActivity {
             this.seller = new Seller(businessName, contactNumber);
         }
 
-        class User {
+        public static class User {
             @SerializedName("username")
             public String username;
 
@@ -419,7 +439,7 @@ public class Signup extends AppCompatActivity {
             }
         }
 
-      class Seller {
+        public static class Seller {
             @SerializedName("businessName")
             public String businessName;
 

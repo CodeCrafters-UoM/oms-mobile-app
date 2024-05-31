@@ -32,4 +32,5 @@ public interface APIservice2 {
 
     @POST("register")
     Call<Signup.RegisterResponse> createPost(@Body Signup.DataModal dataModal);
+
 }
