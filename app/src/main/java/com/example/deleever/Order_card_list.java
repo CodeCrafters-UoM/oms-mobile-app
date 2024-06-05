@@ -3,7 +3,6 @@ package com.example.deleever;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
-    private static final String IP_ADDRESS = "192.168.130.146";
+    private static final String IP_ADDRESS = "192.168.243.146";
     private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;
@@ -31,11 +28,16 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     List<Order_card> orderCards;
 
     SearchView search_order_list;
+    private String jwtToken;
+    private String sellerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_card_list);
+        Intent intent = getIntent();
+        jwtToken = intent.getStringExtra("jwtToken");
+        sellerId = intent.getStringExtra("sellerid");
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,7 +54,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         ApiService apiService = retrofit.create(ApiService.class);
 
         // Fetch items from the backend
-        Call<List<Order_card>> call = apiService.getItems();
+        Call<List<Order_card>> call = apiService.getItems("Bearer " + jwtToken);
         call.enqueue(new Callback<List<Order_card>>() {
             @Override
             public void onResponse(Call<List<Order_card>> call, Response<List<Order_card>> response) {
@@ -63,9 +65,8 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                         Log.d(TAG, "Items received: " + order_cards.size());
                     } else {
                         Log.d(TAG, "Response body is null");
+                        Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Log.d(TAG, "Response unsuccessful. Code: " + response.code());
                     // Add more logging for debugging
@@ -74,15 +75,15 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(Order_card_list.this, "Failed to fetch items", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Order_card_list.this, "Response unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Order_card>> call, Throwable t) {
                 System.out.println(t);
-                Log.e(TAG, "Error fetching items", t);
-                Toast.makeText(Order_card_list.this, "Error fetching items", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error fetching orders", t);
+                Toast.makeText(Order_card_list.this, "Error fetching orders", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -60,7 +60,5 @@ tools:context=".Order_card_list">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/search_order_list" />
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

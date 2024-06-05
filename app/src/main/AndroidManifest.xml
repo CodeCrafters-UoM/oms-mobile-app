@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DisplayOrderLinks"
+            android:exported="false" />
+        <activity
             android:name=".updateProduct"
             android:exported="false" />
         <activity
