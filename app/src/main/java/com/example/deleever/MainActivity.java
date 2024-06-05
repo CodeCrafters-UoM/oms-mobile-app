@@ -28,6 +28,8 @@ import android.widget.Button;
         import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private String sellerId;
+    private String jwtToken;
 
     Button btn_home_product ,btn_home_order_links, btn_home_order,btn_home_report;
 
@@ -35,12 +37,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        jwtToken = intent.getStringExtra("jwtToken");
+        sellerId = intent.getStringExtra("sellerid");
 
         btn_home_order_links = findViewById(R.id.btn_home_order_links);
         btn_home_order_links.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent clicked_order_link_btn = new Intent(getApplicationContext(), Order_questionnaire.class);
+                Intent clicked_order_link_btn = new Intent(getApplicationContext(), DisplayOrderLinks.class);
+                clicked_order_link_btn.putExtra("jwtToken",jwtToken);
+                clicked_order_link_btn.putExtra("sellerid",sellerId);
                 startActivity(clicked_order_link_btn);
             }
         });
@@ -57,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
             btn_home_order.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_card_list.class);
+                        Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_card_list.class);
+                        clicked_orders_btn.putExtra("jwtToken",jwtToken);
+                        clicked_orders_btn.putExtra("sellerid",sellerId);
                             startActivity(clicked_orders_btn);
                     }
             });
@@ -80,10 +89,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
                 startActivity(intent);
-
             }
         });
-
-    }
         }
+    }
 
