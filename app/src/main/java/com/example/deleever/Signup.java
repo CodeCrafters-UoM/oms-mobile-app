@@ -247,7 +247,7 @@ import retrofit2.http.POST;
 
 public class Signup extends AppCompatActivity {
 
-    private static final String IP_ADDRESS = "192.168.243.146";
+    private static final String IP_ADDRESS = "192.168.147.146";
     private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/api/v1/";
 
     private EditText signup_name;

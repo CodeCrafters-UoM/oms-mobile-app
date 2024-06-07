@@ -37,11 +37,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Intent intent = getIntent();
         jwtToken = intent.getStringExtra("jwtToken");
         sellerId = intent.getStringExtra("sellerid");
 
+        btn_home_order = findViewById(R.id.btn_home_order);
+        btn_home_product = findViewById(R.id.btn_home_product);
         btn_home_order_links = findViewById(R.id.btn_home_order_links);
+        btn_home_report = findViewById(R.id.btn_home_report);
+
+        btn_home_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_card_list.class);
+                clicked_orders_btn.putExtra("jwtToken",jwtToken);
+                clicked_orders_btn.putExtra("sellerid",sellerId);
+                startActivity(clicked_orders_btn);
+            }
+        });
+        btn_home_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent clicked_product_btn = new Intent(getApplicationContext(), product_list.class);
+                startActivity(clicked_product_btn);
+            }
+        });
+
         btn_home_order_links.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,28 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(clicked_order_link_btn);
             }
         });
-        btn_home_product = findViewById(R.id.btn_home_product);
-
-        btn_home_product.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent clicked_product_btn = new Intent(getApplicationContext(), product_list.class);
-                startActivity(clicked_product_btn);
-            }
-        });
-            btn_home_order = findViewById(R.id.btn_home_order);
-            btn_home_order.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent clicked_orders_btn = new Intent(getApplicationContext(), Order_card_list.class);
-                        clicked_orders_btn.putExtra("jwtToken",jwtToken);
-                        clicked_orders_btn.putExtra("sellerid",sellerId);
-                            startActivity(clicked_orders_btn);
-                    }
-            });
-
-
-        btn_home_report = findViewById(R.id.btn_home_report);
 
         btn_home_report.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        ImageView icon = findViewById(R.id.imageView7);
+        ImageView icon = findViewById(R.id.img_threeLine);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

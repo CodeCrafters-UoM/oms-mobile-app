@@ -36,7 +36,7 @@ public class DisplayOrderLinks extends AppCompatActivity {
     RecyclerView order_link_list;
     List<OrderLinkModel> orderLinks;
     OrderLinksAdapter orderLinksAdapter;
-    private static final String IP_ADDRESS = "192.168.243.146";
+    private static final String IP_ADDRESS = "192.168.147.146";
     private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
     private static final String TAG = "MainActivity";
     private String jwtToken;

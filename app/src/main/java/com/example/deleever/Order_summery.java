@@ -63,9 +63,6 @@ public class Order_summery extends AppCompatActivity {
                 click_Customer_details.putExtra("address",customer_address_data);
                 click_Customer_details.putExtra("contact",customer_contact_data);
                 startActivity(click_Customer_details);
-
-
-
             }
         });
     }
