@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
 
-    private static final String BASE_URL = "http://192.168.147.146:8000/api/v1/";
+    private static final String BASE_URL = "http://192.168.172.146:8000/api/v1/";
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_TOKEN = "jwtToken";
 

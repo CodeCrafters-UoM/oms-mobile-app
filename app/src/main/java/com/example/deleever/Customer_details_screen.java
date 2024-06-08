@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 public class Customer_details_screen extends AppCompatActivity {
     ListView customer_details_list;
+    private String jwtToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details_screen);
+        jwtToken = getIntent().getStringExtra("jwtToken");
 
         String customer_name_data = getIntent().getStringExtra("name");
         TextView customer_details_screen_name_data = findViewById(R.id.customer_details_screen_name_data);
@@ -35,6 +38,7 @@ public class Customer_details_screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent custmer_details_to_home = new Intent(getApplicationContext(), MainActivity.class);
+                custmer_details_to_home.putExtra("jwtToken", jwtToken);
                 startActivity(custmer_details_to_home);}
         });
     }

@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Order_card_list extends AppCompatActivity implements Order_card_list_interface {
-    private static final String IP_ADDRESS = "192.168.147.146";
+    private static final String IP_ADDRESS = "192.168.172.146";
     private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
     private static final String TAG = "MainActivity";
     private RecyclerView recyclerView;
@@ -36,9 +36,8 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_card_list);
-        Intent intent = getIntent();
-        jwtToken = intent.getStringExtra("jwtToken");
-        sellerId = intent.getStringExtra("sellerid");
+        jwtToken = getIntent().getStringExtra("jwtToken");
+        sellerId = getIntent().getStringExtra("sellerid");
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -110,21 +109,21 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         Intent i = new Intent(Order_card_list.this, Order_summery.class);
 //        Order_card currentOrder_card = orderCardAdapter.order_cards.get(position);
 
-//        String paymentMethod = currentOrder_card.getPaymentMethod();
 
         i.putExtra("status", orderCardAdapter.order_cards.get(position).getStatus());
-//
-//        i.putExtra("orderId", currentOrder_card.getOrderId());
-//        i.putExtra("productCode", currentOrder_card.getProduct().getProductCode());
-//        i.putExtra("description", currentOrder_card.getProduct().getDescription());
-//        i.putExtra("quantity",String.valueOf(currentOrder_card.getQuantity()));
-//
+
+        i.putExtra("orderId", String.valueOf(orderCardAdapter.order_cards.get(position).getOrderId()));
+        i.putExtra("productCode", orderCardAdapter.order_cards.get(position).getProduct().getProductCode());
+        i.putExtra("description", orderCardAdapter.order_cards.get(position).getProduct().getDescription());
+        i.putExtra("quantity",String.valueOf(orderCardAdapter.order_cards.get(position).getQuantity()));
+
         i.putExtra("name", orderCardAdapter.order_cards.get(position).getCustomer().getFirstName());
         i.putExtra("address", orderCardAdapter.order_cards.get(position).getDeliveryAddress());
         i.putExtra("contact", orderCardAdapter.order_cards.get(position).getCustomer().getContactNumber());
 
-//        i.putExtra("paymentMethod",currentOrder_card.getPaymentMethod());
-//        i.putExtra("price",String.valueOf(currentOrder_card.getProduct().getPrice()));
+        i.putExtra("paymentMethod",orderCardAdapter.order_cards.get(position).getPaymentMethod());
+        i.putExtra("price",String.valueOf(orderCardAdapter.order_cards.get(position).getProduct().getPrice()));
+        i.putExtra("jwtToken", jwtToken);
 
         startActivity(i);
     }

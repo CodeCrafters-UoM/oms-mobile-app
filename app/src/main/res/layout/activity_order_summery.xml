@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:text="Quentity" />
         <TextView
-            android:id="@+id/quentity_data"
+            android:id="@+id/quantity_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
