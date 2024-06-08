@@ -3,6 +3,8 @@ package com.example.deleever;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +28,6 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     private RecyclerView recyclerView;
     private Order_cards_adapter orderCardAdapter;
     List<Order_card> orderCards;
-
     SearchView search_order_list;
     private String jwtToken;
     private String sellerId;
@@ -63,6 +64,21 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                     if (order_cards != null) {
                         orderCardAdapter.setItems(order_cards);
                         Log.d(TAG, "Items received: " + order_cards.size());
+                        for (Order_card orderCard : order_cards) {
+                            Log.d(TAG, "Order ID: " + orderCard.getOrderId());
+                            Log.d(TAG, "Status: " + orderCard.getStatus());
+                            Log.d(TAG, "Delivery Address: " + orderCard.getDeliveryAddress());
+                            Log.d(TAG, "Description: " + orderCard.getProduct().getDescription());
+                            Log.d(TAG, "Quantity: " + orderCard.getQuantity());
+                            Log.d(TAG, "Payment Method: " + orderCard.getPaymentMethod());
+                            Log.d(TAG, "Customer Name: " + orderCard.getCustomer().getFirstName() + " " + orderCard.getCustomer().getLastName());
+                            Log.d(TAG, "Customer Contact: " + orderCard.getCustomer().getContactNumber());
+                            Log.d(TAG, "Product Code: " + orderCard.getProduct().getProductCode());
+                            Log.d(TAG, "Product Name: " + orderCard.getProduct().getName());
+                            Log.d(TAG, "Product Price: " + orderCard.getProduct().getPrice());
+                            Log.d(TAG, "Order Date: " + orderCard.getDateAndTime());
+                        }
+
                     } else {
                         Log.d(TAG, "Response body is null");
                         Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
@@ -92,14 +108,24 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     @Override
     public void OnItemClick(int position) {
         Intent i = new Intent(Order_card_list.this, Order_summery.class);
+//        Order_card currentOrder_card = orderCardAdapter.order_cards.get(position);
+
+//        String paymentMethod = currentOrder_card.getPaymentMethod();
+
+        i.putExtra("status", orderCardAdapter.order_cards.get(position).getStatus());
+//
+//        i.putExtra("orderId", currentOrder_card.getOrderId());
+//        i.putExtra("productCode", currentOrder_card.getProduct().getProductCode());
+//        i.putExtra("description", currentOrder_card.getProduct().getDescription());
+//        i.putExtra("quantity",String.valueOf(currentOrder_card.getQuantity()));
+//
         i.putExtra("name", orderCardAdapter.order_cards.get(position).getCustomer().getFirstName());
         i.putExtra("address", orderCardAdapter.order_cards.get(position).getDeliveryAddress());
         i.putExtra("contact", orderCardAdapter.order_cards.get(position).getCustomer().getContactNumber());
-        i.putExtra("orderId", orderCardAdapter.order_cards.get(position).getOrderId());
-        i.putExtra("productCode", orderCardAdapter.order_cards.get(position).getProduct().getProductCode());
-        i.putExtra("description", orderCardAdapter.order_cards.get(position).getDescription());
-        i.putExtra("status", orderCardAdapter.order_cards.get(position).getStatus());
-        //quantity
+
+//        i.putExtra("paymentMethod",currentOrder_card.getPaymentMethod());
+//        i.putExtra("price",String.valueOf(currentOrder_card.getProduct().getPrice()));
+
         startActivity(i);
     }
 }

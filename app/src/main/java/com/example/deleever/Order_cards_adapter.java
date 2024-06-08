@@ -40,6 +40,8 @@ public class Order_cards_adapter extends RecyclerView.Adapter<Order_cards_adapte
         holder.textdate.setText(currentOrder_card.SeparatedateString(currentOrder_card.getDateAndTime()));
         holder.texttime.setText(currentOrder_card.SeparateTimeString(currentOrder_card.getDateAndTime()));
         holder.textName.setText(currentOrder_card.getCustomer().getFirstName()+" "+currentOrder_card.getCustomer().getLastName());
+        holder.textProductCode.setText(currentOrder_card.getProduct().getProductCode());
+        holder.textProductName.setText(currentOrder_card.getProduct().getName());
     }
 
     @Override
@@ -48,16 +50,18 @@ public class Order_cards_adapter extends RecyclerView.Adapter<Order_cards_adapte
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView textdate,textdeliveryAddress,textorderStatus,textName,texttime,textOrderId;
+        private TextView textdate,textdeliveryAddress,textorderStatus,textName,texttime,textOrderId,textProductCode,textProductName;
      public ItemViewHolder(@NonNull View itemView,Order_card_list_interface orderCardListInterface) {
 
             super(itemView);
-            textOrderId = itemView.findViewById(R.id.date_order_details_id);
-            textdeliveryAddress = itemView.findViewById(R.id.date_order_details_address);
-            textName = itemView.findViewById(R.id.date_order_details_name);
-            textorderStatus = itemView.findViewById(R.id.date_order_details_status);
-            textdate = itemView.findViewById(R.id.date_order_details_date);
-            texttime = itemView.findViewById(R.id.date_order_details_time);
+            textOrderId = itemView.findViewById(R.id.data_order_details_id);
+            textdeliveryAddress = itemView.findViewById(R.id.data_order_details_address);
+            textName = itemView.findViewById(R.id.data_order_details_name);
+            textorderStatus = itemView.findViewById(R.id.data_order_details_status);
+            textdate = itemView.findViewById(R.id.data_order_details_date);
+            texttime = itemView.findViewById(R.id.data_order_details_time);
+            textProductCode = itemView.findViewById(R.id.data_order_details_productCode);
+            textProductName = itemView.findViewById(R.id.data_order_details_productName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
