@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent clicked_report_btn = new Intent(getApplicationContext(), Report.class);
+                clicked_report_btn.putExtra("jwtToken",jwtToken);
+                clicked_report_btn.putExtra("sellerid",sellerId);
                 startActivity(clicked_report_btn);
             }
         });
