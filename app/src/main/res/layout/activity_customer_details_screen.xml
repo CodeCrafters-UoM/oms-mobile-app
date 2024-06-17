@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="15dp"
     tools:context=".MainActivity">
 
     <ImageView
@@ -38,7 +38,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="15dp"
         android:paddingBottom="20dp"
+        android:layout_marginStart="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -52,7 +54,6 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:textSize="15dp"
             android:id="@+id/customer_details_screen_name_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +73,6 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:textSize="15dp"
             android:id="@+id/customer_details_address_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +92,6 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:textSize="15dp"
             android:id="@+id/customer_details_contact_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,7 +113,6 @@
             android:id="@+id/customer_details_past_orders_All_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
             android:text="Past orders(All)"
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
@@ -134,7 +132,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Past orders(My)"
-            android:textSize="15dp"
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -154,7 +151,6 @@
             android:layout_height="wrap_content"
             android:text="Return orders(All)"
             android:paddingBottom="10dp"
-            android:textSize="15dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
         <TextView
@@ -169,7 +165,6 @@
 
         <TextView
             android:id="@+id/customer_details_return_orders_My_data"
-            android:textSize="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Return orders(My)"
@@ -177,8 +172,6 @@
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
     </LinearLayout>
-
-
 
     <Button
         android:id="@+id/custmer_details_to_home"

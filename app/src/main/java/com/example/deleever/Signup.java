@@ -247,8 +247,8 @@ import retrofit2.http.POST;
 
 public class Signup extends AppCompatActivity {
 
-    private static final String IP_ADDRESS = "192.168.58.146";
-    private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/api/v1/";
+    private static final String IP_ADDRESS = "192.168.91.146";
+    private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
 
     private EditText signup_name;
     private EditText signup_business_name;
@@ -277,7 +277,7 @@ public class Signup extends AppCompatActivity {
         signup_password = findViewById(R.id.signup_password);
 
         // Create ApiService instance
-        APIservice2 apiService = retrofit.create(APIservice2.class);
+        ApiService apiService = retrofit.create(ApiService.class);
 
         signup_register_btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:paddingBottom="15dp"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,47 +11,63 @@
         android:paddingBottom="5dp"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/date_order_details_date"
+            android:id="@+id/data_order_details_date"
             android:layout_weight="1"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/custome_green"
             android:text="Date" />
 
         <TextView
             android:textStyle="bold"
-            android:id="@+id/date_order_details_time"
+            android:id="@+id/data_order_details_time"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/custome_green"
             android:text="Time" />
 
         <TextView
-            android:id="@+id/date_order_details_status"
+            android:id="@+id/data_order_details_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
+            android:textColor="@color/custome_green"
             android:text="Status" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/data_order_details_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID :" />
+        <TextView
+            android:id="@+id/data_order_details_productCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID -" />
+        <TextView
+            android:id="@+id/data_order_details_productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID" />
+    </LinearLayout>
+
+
     <TextView
-        android:id="@+id/date_order_details_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order ID" />
-    <TextView
-        android:id="@+id/date_order_details_name"
+        android:id="@+id/data_order_details_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name" />
 
     <TextView
-        android:id="@+id/date_order_details_address"
+        android:id="@+id/data_order_details_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address" />
-
-
-
 </LinearLayout>

@@ -8,17 +8,21 @@ import java.time.format.DateTimeFormatter;
 import javax.net.ssl.SSLContext;
 
 public class Order_card {
-
+    @SerializedName("customer")
+    private Customer customer;
+    @SerializedName("product")
+    private Product product;
     @SerializedName("deliveryAddress")
     private String deliveryAddress;
+    @SerializedName("orderId")
+    private int orderId;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    @SerializedName("quantity")
+    private int quantity;
+    @SerializedName("orderStatus")
+    private String status;
+    @SerializedName("paymentMethod")
+    private String paymentMethod;
 
     public int getQuantity() {
         return quantity;
@@ -28,21 +32,6 @@ public class Order_card {
         this.quantity = quantity;
     }
 
-    @SerializedName("description")
-    private String description;
-    @SerializedName("quantity")
-    private int quantity;
-    @SerializedName("orderStatus")
-    private String status;
-
-    @SerializedName("orderId")
-    private int orderId;
-
-    @SerializedName("customer")
-    private Customer customer;
-
-    @SerializedName("product")
-    private Product product;
 
     public Product getProduct() {
         return product;
@@ -54,14 +43,14 @@ public class Order_card {
 
     @SerializedName("createdAt")
     private String dateAndTime;
-    public Order_card(String deliveryAddress, String status, int orderId, Customer customer, Product product, int quantity, String description) {
+    public Order_card(String deliveryAddress, String status, int orderId, Customer customer, Product product, int quantity,String paymentMethod) {
         this.deliveryAddress = deliveryAddress;
         this.status = status;
         this.orderId = orderId;
         this.customer = customer;
         this.product = product;
         this.quantity = quantity;
-        this.description = description;
+        this.paymentMethod = paymentMethod;
 
     }
     public String getDateAndTime() {
@@ -78,6 +67,14 @@ public class Order_card {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public String getDeliveryAddress() {
@@ -103,8 +100,6 @@ public class Order_card {
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
-
-
 
     static class Customer {
         @SerializedName("firstName")
@@ -145,8 +140,33 @@ public class Order_card {
     }
 
     static class Product{
+        @SerializedName("description")
+        private String description;
+        @SerializedName("productCode")
         private String productCode;
+        @SerializedName("name")
+
         private String name;
+
+        @SerializedName("price")
+
+        private float price;
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public float getPrice() {
+            return price;
+        }
+
+        public void setPrice(float price) {
+            this.price = price;
+        }
 
         public String getProductCode() {
             return productCode;

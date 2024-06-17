@@ -30,7 +30,6 @@ public interface APIservice2 {
     @PUT("products/{productCode}")
     Call<Void> updateProduct(@Path("productCode") String productCode, @Body com.example.deleever.Product product);
 
-    @POST("register")
-    Call<Signup.RegisterResponse> createPost(@Body Signup.DataModal dataModal);
+
 
 }
