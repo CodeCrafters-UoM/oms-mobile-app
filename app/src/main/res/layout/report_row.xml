@@ -11,7 +11,7 @@ android:layout_height="wrap_content">
     android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/OrderType"
+        android:id="@+id/OrderStatus"
         android:layout_margin="5dp"
         android:shadowDx="100"
         android:text="New Orders"

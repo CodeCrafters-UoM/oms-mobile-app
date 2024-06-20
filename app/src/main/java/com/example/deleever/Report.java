@@ -1,116 +1,187 @@
 package com.example.deleever;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.google.gson.annotations.SerializedName;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
+
+
+
+
 public class Report extends AppCompatActivity {
-    RecyclerView report_list;
-    List<ReportCard> Report_detail_list;
-    ReportAdapter reportAdapter;
-    Button report_to_home;
+
+    private static final String TAG = "ReportActivity";
+    private String jwtToken;
+
+    private RecyclerView reportList;
+    private ReportAdapter reportAdapter;
+    private List<ReportCard.OrderStatusCounts> reportCards = new ArrayList<>();
+    private TextView username, businessName, created_date;
+    private Button reportToHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        report_to_home = findViewById(R.id.report_to_home);
-        report_to_home.setOnClickListener(new View.OnClickListener() {
+        jwtToken = getIntent().getStringExtra("jwtToken");
+
+        username = findViewById(R.id.username);
+        businessName = findViewById(R.id.businessName);
+        created_date = findViewById(R.id.created_date);
+        reportList = findViewById(R.id.report_list);
+
+        reportList.setLayoutManager(new LinearLayoutManager(this));
+        reportAdapter = new ReportAdapter(this, reportCards);
+        reportList.setAdapter(reportAdapter);
+
+        setCurrentDate();
+        fetchReportDetails();
+    }
+
+    private void setCurrentDate() {
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String formattedDate = dateFormat.format(currentDate);
+        created_date.setText(formattedDate);
+    }
+
+    private void fetchReportDetails() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ReportCard> call = apiService.getReportDetails("Bearer " + jwtToken);
+
+        call.enqueue(new Callback<ReportCard>() {
             @Override
-            public void onClick(View v) {
-                Intent clicked_report_to_home = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(clicked_report_to_home);            }
+            public void onResponse(Call<ReportCard> call, Response<ReportCard> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ReportCard reportCard = response.body();
+                    username.setText(reportCard.getUserName());
+                    businessName.setText(reportCard.getBusinessName());
+                    reportAdapter.setItems(reportCard.getOrderStatusCounts());
+                } else {
+                    Toast.makeText(Report.this, "Failed to fetch report details", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReportCard> call, Throwable t) {
+                Toast.makeText(Report.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error fetching data", t);
+            }
         });
-
-        report_list = findViewById(R.id.report_list);
-        report_list.setHasFixedSize(true);
-        report_list.setLayoutManager(new GridLayoutManager(this,1));
-        Report_detail_list=new ArrayList<>();
-
-        Report_detail_list.add(new ReportCard("New Orders",40));
-        Report_detail_list.add(new ReportCard("Accept Orders",34));
-        Report_detail_list.add(new ReportCard("Reject Orders",4));
-        Report_detail_list.add(new ReportCard("Delivered Orders",10));
-        Report_detail_list.add(new ReportCard("Return Orders",3));
-        Report_detail_list.add(new ReportCard("Settle Orders",20));
-        Report_detail_list.add(new ReportCard("Non-settle Orders",9));
-        Report_detail_list.add(new ReportCard("Closed Orders",7));
-
-        reportAdapter = new ReportAdapter(this,Report_detail_list);
-        report_list.setAdapter(reportAdapter);
     }
 }
 
-class ReportViewHolder extends RecyclerView.ViewHolder{
 
-    public TextView Order_type,Total_order;
-    public ReportViewHolder(@NonNull View itemView) {
-        super(itemView);
-
-        Order_type=itemView.findViewById(R.id.OrderType);
-        Total_order=itemView.findViewById(R.id.TotalOrders);
-    }
-}
-
-class ReportAdapter extends RecyclerView.Adapter<ReportViewHolder>{
+class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
 
     private Context context;
-    private List<ReportCard> Report_detail_list;
-    public  ReportAdapter(Context context,List<ReportCard> Report_detail_list){
-        this.context=context;
-        this.Report_detail_list=Report_detail_list;
+    private List<ReportCard.OrderStatusCounts> reportCard;
+
+    public ReportAdapter(Context context, List<ReportCard.OrderStatusCounts> reportCard) {
+        this.context = context;
+        this.reportCard = reportCard;
     }
+
     @NonNull
     @Override
     public ReportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //PASS THE LAYOUT
-        return new ReportViewHolder(LayoutInflater.from(context).inflate(R.layout.report_row,parent,false)) ;
+        View view = LayoutInflater.from(context).inflate(R.layout.report_row, parent, false);
+        return new ReportViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
-        holder.Order_type.setText(Report_detail_list.get(position).getOrder_type());
-        holder.Total_order.setText(String.valueOf(Report_detail_list.get(position).getTotal_orders()));
+        ReportCard.OrderStatusCounts orderStatus = reportCard.get(position);
+        holder.OrderStatus.setText(orderStatus.getTitle());
+        holder.TotalOrders.setText(String.valueOf(orderStatus.getNumber()));
     }
 
     @Override
     public int getItemCount() {
-        return Report_detail_list.size();
+        return reportCard.size();
+    }
+
+    public void setItems(List<ReportCard.OrderStatusCounts> reportCards) {
+        this.reportCard = reportCards;
+        notifyDataSetChanged();
+    }
+
+    class ReportViewHolder extends RecyclerView.ViewHolder {
+        TextView OrderStatus, TotalOrders;
+
+        ReportViewHolder(@NonNull View itemView) {
+            super(itemView);
+            OrderStatus = itemView.findViewById(R.id.OrderStatus);
+            TotalOrders = itemView.findViewById(R.id.TotalOrders);
+        }
     }
 }
 
-class ReportCard{
-    String Order_type="";
-    int Total_orders =0;
+class ReportCard {
+    @SerializedName("userName")
+    private String userName;
 
-    public ReportCard(String order_type, int total_orders) {
-        Order_type = order_type;
-        Total_orders = total_orders;
+    @SerializedName("businessName")
+    private String businessName;
+
+    @SerializedName("orderStatusCounts")
+    private List<OrderStatusCounts> orderStatusCounts;
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setOrder_type(String order_type) {
-        Order_type = order_type;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setTotal_orders(int total_orders) {
-        Total_orders = total_orders;
+    public List<OrderStatusCounts> getOrderStatusCounts() {
+        return orderStatusCounts;
     }
 
-    public String getOrder_type() {
-        return Order_type;
-    }
+    public static class OrderStatusCounts {
+        @SerializedName("title")
+        private String title;
 
-    public int getTotal_orders() {
-        return Total_orders;
+        @SerializedName("number")
+        private int number;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public int getNumber() {
+            return number;
+        }
     }
 }
+

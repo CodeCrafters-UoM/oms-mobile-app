@@ -23,17 +23,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
+
 
 public class Order_summery extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String jwtToken;
-    private static final String IP_ADDRESS = "192.168.91.146";
-    private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
-//    private String orderIdData,current_status;
-String orderId ;
+
+    String orderId ;
 
     TextView order_id,order_description,order_code,quantity,customer_name,customer_address,customer_contact,payment_method,price;
-//    String[] order_status;
-//String currentStatus;
 
     UpdateStatus updateStatus;
     String[] new_order_status;
@@ -42,7 +40,7 @@ String orderId ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_summery);
-        String[] order_status = {" ","NEW","ACCEPT","REJECT", "'DELIVER'", "RETURN"};
+        String[] order_status = {" ","NEW","ACCEPT","REJECT", "DELIVER", "RETURN"};
         Log.d(TAG, "array old: " + order_status[0]);
 
         setValues();
@@ -51,30 +49,8 @@ String orderId ;
         String current_status = status;
         new_order_status = updateCurrentStatus(current_status,order_status);
         dropDown(new_order_status);
-
-
     }
 
-//    private void dropDown(String[] new_order_status) {
-//
-//        Spinner dropDown = findViewById(R.id.status_dropdown);
-//        dropDown.setOnItemSelectedListener(this);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new_order_status);
-//        Log.d(TAG, "adapter: " + adapter);
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        dropDown.setAdapter(adapter);
-//
-//     dropDown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//               String currentStatus = new_order_status[position];
-//               String orderId = getIntent().getStringExtra("id");
-//               updateStatus = new UpdateStatus(orderId,currentStatus);
-//            }
-//        });
-//
-//    }
 private void dropDown(String[] new_order_status) {
 
     Spinner dropDown = findViewById(R.id.status_dropdown);
@@ -84,65 +60,6 @@ private void dropDown(String[] new_order_status) {
 
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     dropDown.setAdapter(adapter);
-
-
-
-//    dropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//        // Declare x at the class level or as a final variable here
-//        String x;
-//
-//        @Override
-//        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//            // Retrieve the selected item from the Spinner
-//            x = (String) parent.getItemAtPosition(position);
-//
-//            if(x == new_order_status[0]){
-//                Toast.makeText(Order_summery.this, "please select another", Toast.LENGTH_SHORT).show();
-//            }else{
-//            // Use x to create the UpdateStatus object
-//            UpdateStatus updateStatus = new UpdateStatus(orderId, x);
-//            Log.d(TAG," staus "+x+" id "+orderId);
-////            updateStatus = new UpdateStatus(orderId, x);
-////
-//
-//            // Set up Retrofit
-//            Retrofit retrofit = new Retrofit.Builder()
-//                    .baseUrl(BASE_URL)
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build();
-//            ApiService apiService = retrofit.create(ApiService.class);
-//
-//            // Make the API call to update the status
-//            Call<Void> call = apiService.updateStatus(updateStatus, "Bearer " + jwtToken);
-//            call.enqueue(new Callback<Void>() {
-//                @Override
-//                public void onResponse(Call<Void> call, Response<Void> response) {
-//                    if (response.isSuccessful()) {
-//                        Toast.makeText(Order_summery.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
-////                        Log.d(TAG, "update status: " + updateStatus.orderStatus + " " + updateStatus.orderId);
-//                    } else {
-//                        try {
-//                            String errorBody = response.errorBody().string();
-//                            Log.e(TAG, "Failed to update status: " + errorBody);
-//                            Toast.makeText(Order_summery.this, "Failed to update status: " + errorBody, Toast.LENGTH_SHORT).show();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Void> call, Throwable t) {
-//                    Toast.makeText(Order_summery.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });}
-        //}
-
-//        @Override
-//        public void onNothingSelected(AdapterView<?> parent) {
-//            Toast.makeText(Order_summery.this, "Please update the order status", Toast.LENGTH_SHORT).show();
-//        }
-//    });
 
 }
 
@@ -174,7 +91,6 @@ public String[] delete(int y, String[] order_status) {
         new_order_status[j] = order_status[k];
         j++;
     }
-
     return new_order_status;
 }
 
@@ -228,7 +144,8 @@ public String[] delete(int y, String[] order_status) {
         if(currentStatus == new_order_status[0]){
             Toast.makeText(Order_summery.this, "please change the status: " + new_order_status[0], Toast.LENGTH_SHORT).show();
         }else{
-        Log.d(TAG," staus "+currentStatus+" id "+orderId);
+        Log.d(TAG," status "+currentStatus+" id "+orderId);
+
         updateStatus = new UpdateStatus(orderId, currentStatus);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -236,16 +153,16 @@ public String[] delete(int y, String[] order_status) {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
+            Log.d(TAG, "update status: " + updateStatus.orderStatus+" "+updateStatus.orderId);
 
-        Call<Void> call = apiService.updateStatus(updateStatus, "Bearer " + jwtToken);
+
+            Call<Void> call = apiService.updateStatus(updateStatus, "Bearer " + jwtToken);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(Order_summery.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "update status: " + updateStatus.orderStatus+" "+updateStatus.orderId);
-
-
+                    Log.d(TAG, "update body: " + response.body());
                 } else {
                     try {
                         String errorBody = response.errorBody().string();
@@ -273,10 +190,10 @@ public String[] delete(int y, String[] order_status) {
 
 
 class UpdateStatus {
-    @SerializedName("orderId")
+    @SerializedName("id")
     String orderId;
 
-    @SerializedName("orderStatus")
+    @SerializedName("status")
     String orderStatus;
 
     public UpdateStatus(String orderId, String orderStatus) {
