@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 
 public interface APIservice2 {
 
-    @POST("login")
+    @POST("api/v1/login")
     Call<LoginResponse> LogIn(
             @Body LoginRequest loginRequest
     );

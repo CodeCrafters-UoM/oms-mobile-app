@@ -31,14 +31,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 public class DisplayOrderLinks extends AppCompatActivity {
 
     RecyclerView order_link_list;
     List<OrderLinkModel> orderLinks;
     OrderLinksAdapter orderLinksAdapter;
-    private static final String IP_ADDRESS = "192.168.91.146";
-    private static final String BASE_URL = "http://" + IP_ADDRESS + ":8000/";
     private static final String TAG = "MainActivity";
     public String jwtToken;
 
@@ -50,14 +49,15 @@ public class DisplayOrderLinks extends AppCompatActivity {
         Intent intent = getIntent();
         jwtToken = intent.getStringExtra("jwtToken");
 
-
-
         order_link_list = findViewById(R.id.order_link_list);
         order_link_list.setLayoutManager(new LinearLayoutManager(this));
         orderLinksAdapter = new OrderLinksAdapter(DisplayOrderLinks.this,orderLinks,jwtToken);
         order_link_list.setAdapter(orderLinksAdapter);
 
+        displayLinks();
+    }
 
+    private void displayLinks() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -74,8 +74,8 @@ public class DisplayOrderLinks extends AppCompatActivity {
                         orderLinksAdapter.setItems(orderLinks);
                         Log.d(TAG, "Items received: " + orderLinks.size());
                     } else {
-                    Log.d(TAG, "Response body is null");
-                    Toast.makeText(DisplayOrderLinks.this, "Order list is empty", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Response body is null");
+                        Toast.makeText(DisplayOrderLinks.this, "Order list is empty", Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Log.d(TAG, "Response unsuccessful. Code: " + response.code());
@@ -101,8 +101,7 @@ public class DisplayOrderLinks extends AppCompatActivity {
 class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLinksViewHolder> {
     Dialog dialog;
     Button yes_btn,no_btn;
-    private static final String IP_ADDRESS = "192.168.91.146";
-    private static final String BASE_URL = "http://"+ IP_ADDRESS + ":8000/";
+
     Context context;
     List<OrderLinkModel> orderLinks = new ArrayList<>();
     String jwtToken;
@@ -191,11 +190,6 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
         }
     }
 
-
-
-
-//
-
     private void deleteOrderLink(OrderLinkModel orderLinkModel,String name,String jwtToken) {
 
         String id = orderLinkModel.getId();
@@ -206,18 +200,9 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
         Call<Void> callForDelete = apiService.deleteOrderLink("Bearer " + jwtToken,id);
-        Toast.makeText(context,jwtToken,Toast.LENGTH_SHORT);
-        Log.d(TAG, "jwt :  "+jwtToken);
-        Log.d(TAG, "id "+id);
         callForDelete.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-//                Toast.makeText(context, name + "id "+id+" \n\n", Toast.LENGTH_SHORT).show();
-//                Toast.makeText(context,"body  "+ response.body(), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "jwt :  "+jwtToken);
-                Log.d(TAG, "Response body "+response.body());
-                Log.d(TAG, "id "+id);
-
                 if (response.isSuccessful()) {
                     int position = orderLinks.indexOf(orderLinkModel);
                     if (position != -1) {

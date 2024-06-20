@@ -25,10 +25,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 public class Login extends AppCompatActivity {
-
-    private static final String BASE_URL = "http://192.168.91.146:8000/api/v1/";
 
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_TOKEN = "jwtToken";

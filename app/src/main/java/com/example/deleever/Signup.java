@@ -225,6 +225,8 @@ package com.example.deleever;
 //}
 
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -244,11 +246,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import com.google.gson.annotations.SerializedName;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import static com.example.deleever.constant.Constant.*;
 
 public class Signup extends AppCompatActivity {
 
-    private static final String IP_ADDRESS = "192.168.91.146";
-    private static final String BASE_URL = "http://"+IP_ADDRESS+":8000/";
+
 
     private EditText signup_name;
     private EditText signup_business_name;
@@ -277,7 +279,6 @@ public class Signup extends AppCompatActivity {
         signup_password = findViewById(R.id.signup_password);
 
         // Create ApiService instance
-        ApiService apiService = retrofit.create(ApiService.class);
 
         signup_register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,70 +293,74 @@ public class Signup extends AppCompatActivity {
                 DataModal dataModal = new DataModal(signup_username_validation, signup_password_validation, signup_email_validation, signup_name_validation, signup_business_name_validation, signup_phone_num_validation);
 
                 if (signup_name_validation.isEmpty()) {
-                    showToast("Enter your name");
+                    Toast.makeText(Signup.this, "Enter your name", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (signup_business_name_validation.isEmpty()) {
-                    showToast("Enter your business name");
+                    Toast.makeText(Signup.this, "Enter your business name", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (signup_email_validation.isEmpty() || !(Patterns.EMAIL_ADDRESS.matcher(signup_email_validation).matches())) {
-                    showToast("Enter valid email");
+                    Toast.makeText(Signup.this, "Enter valid email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (signup_phone_num_validation.isEmpty() || (signup_phone_num_validation.length() != 10)) {
-                    showToast("Enter valid phone number");
+                    Toast.makeText(Signup.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (signup_password_validation.isEmpty()) {
-                    showToast("Enter your password");
+                    Toast.makeText(Signup.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(signup_password_validation.length() <8){
+                    Toast.makeText(Signup.this, "Enter minimum 8 characters for your password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (signup_username_validation.isEmpty()) {
-                    showToast("Enter your username");
+                    Toast.makeText(Signup.this, "Enter your username", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                sendSignupDetails(dataModal);
+            }
 
-                Call<RegisterResponse> call = apiService.createPost(dataModal);
+            private void sendSignupDetails(DataModal dataModal) {
+                    ApiService apiService = retrofit.create(ApiService.class);
 
-                call.enqueue(new Callback<RegisterResponse>() {
-                    @Override
-                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            RegisterResponse responseFromAPI = response.body();
-                            if (responseFromAPI.userId != null) {
-                                showToast("Registration successful! User ID: " + responseFromAPI.userId);
-                                clearFields();
-                                // Navigate back to the login page (MainActivity)
-                                Intent loginIntent = new Intent(Signup.this, Login.class);
-                                startActivity(loginIntent);
-                                // Finish the SignUp activity so that the user cannot navigate back to it
-                                finish();
-                            } else {
-                                showToast("Registration failed: " + responseFromAPI.error);
+
+                    Call<RegisterResponse> call = apiService.createPost(dataModal);
+
+                    call.enqueue(new Callback<RegisterResponse>() {
+                        @Override
+                        public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                            if (response.isSuccessful() && response.body() != null) {
+                                RegisterResponse responseFromAPI = response.body();
+                                if (responseFromAPI.userId != null) {
+                                    Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                    clearFields();
+                                    Intent loginIntent = new Intent(Signup.this, Login.class);
+                                    startActivity(loginIntent);
+                                    // Finish the SignUp activity so that the user cannot navigate back to it
+                                    finish();
+                                } else {
+                                    Toast.makeText(Signup.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else {
+                                try {
+                                    String errorBody = response.errorBody().string();
+                                    Toast.makeText(Signup.this, "Registration failed :"+errorBody, Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    Toast.makeText(Signup.this, "Registration failed with unknown error", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
-//                        else {
-//                            showToast("Registration failed  apo erra");
-//
-//                        }
 
-                        else {
-                            try {
-                                String errorBody = response.errorBody().string();
-                                showToast("Registration failed: " + errorBody);
-                            } catch (Exception e) {
-                                showToast("Registration failed with unknown error");
-                            }
+                        @Override
+                        public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                            Toast.makeText(Signup.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                        showToast("Error: " + t.getMessage());
-                    }
-                });
+                    });
             }
 
         });
@@ -386,12 +391,12 @@ public class Signup extends AppCompatActivity {
     }
 
 
-    private void showToast(String message) {
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 1110);
-        toast.setMargin(50, 50);
-        toast.show();
-    }
+//    private void showToast(String message) {
+//        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+//        toast.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 1110);
+//        toast.setMargin(50, 50);
+//        toast.show();
+//    }
 
     private void clearFields() {
         signup_email.setText("");
