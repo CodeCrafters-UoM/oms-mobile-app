@@ -46,8 +46,7 @@ public class DisplayOrderLinks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_order_links);
 
-        Intent intent = getIntent();
-        jwtToken = intent.getStringExtra("jwtToken");
+        jwtToken = getIntent().getStringExtra("jwtToken");
 
         order_link_list = findViewById(R.id.order_link_list);
         order_link_list.setLayoutManager(new LinearLayoutManager(this));
@@ -55,6 +54,8 @@ public class DisplayOrderLinks extends AppCompatActivity {
         order_link_list.setAdapter(orderLinksAdapter);
 
         displayLinks();
+
+
     }
 
     private void displayLinks() {

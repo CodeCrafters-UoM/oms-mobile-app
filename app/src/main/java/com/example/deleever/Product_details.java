@@ -150,12 +150,18 @@ public class Product_details extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<OrderLink> orderLinks = response.body();
                     Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
+
                     if (orderLinks != null) {
                         for (OrderLink orderLink : orderLinks) {
+                            try{
                             if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
-                                txtProductOrderLink.setText(orderLink.getName());
+
                                 copyLink = orderLink.getLink();
                                 break;
+                            }}
+                            catch (NullPointerException e){
+                                Log.e("NullPointerException", "ff",e);
+
                             }
                         }
                     } else {

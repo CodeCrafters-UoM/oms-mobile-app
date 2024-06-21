@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.deleever.constant.Constant.*;
 
-class product_list extends AppCompatActivity {
+public class product_list extends AppCompatActivity {
 
     private ListView listView;
     private ArrayAdapter<Product> adapter; // Use ArrayAdapter<Product> instead of ArrayAdapter<String>
@@ -188,7 +188,7 @@ class Product {
     @SerializedName("price")
     private Double price;
 
-    @SerializedName("productOrderLink")
+    @SerializedName("productOrderLinkId")
     private String productOrderLink;
 
     @SerializedName("sellerId")
