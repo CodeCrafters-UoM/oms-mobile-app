@@ -9,14 +9,14 @@
     <include
         android:id="@+id/include"
         layout="@layout/common_layout"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="13dp" />
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="35dp" />
 
     <TextView
         android:id="@+id/txt_productDetails"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="75dp"
         android:fontFamily="@font/archivo_black"
         android:text="Product Details"
         android:textSize="20dp"
@@ -29,12 +29,12 @@
         android:id="@+id/txt_productCode"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/archivo_black"
         android:text="Product Code"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_productDetails" />
 
@@ -46,7 +46,6 @@
         android:ems="10"
         android:fontFamily="@font/archivo_black"
         android:paddingLeft="20dp"
-        android:text="F005"
         android:textColorHint="#888888"
         android:textSize="20dp"
         app:flow_horizontalAlign="center"
@@ -58,12 +57,12 @@
         android:id="@+id/txt_productName"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/archivo_black"
         android:text="Product Name"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_productCodeHint" />
 
@@ -71,30 +70,28 @@
         android:id="@+id/txt_productNameHint"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="232dp"
         android:background="@drawable/edit_background"
         android:ems="10"
         android:fontFamily="@font/archivo_black"
         android:paddingLeft="15dp"
-        android:text="FROCK"
         android:textColorHint="#888888"
         android:textSize="20dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_productName" />
 
     <TextView
         android:id="@+id/txt_productPrice"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/archivo_black"
         android:text="Product Price"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_productNameHint" />
 
@@ -106,7 +103,6 @@
         android:ems="10"
         android:fontFamily="@font/archivo_black"
         android:paddingLeft="15dp"
-        android:text="LKR2500"
         android:textColorHint="#888888"
         android:textSize="20dp"
         app:flow_horizontalAlign="center"
@@ -118,43 +114,48 @@
         android:id="@+id/txt_productDescription"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/archivo_black"
         android:text="Product Description"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productPriceHint" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
 
-    <TextView
-        android:id="@+id/txt_productDescriptionHint"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="320dp"
-        android:layout_height="89dp"
-        android:background="@drawable/edit_background"
-        android:ems="10"
-        android:fontFamily="@font/archivo_black"
-        android:paddingLeft="10dp"
-        android:text="jfshndjcshdbuivsbhdbchsdbchadncjbsdhcbsah.cuhcuichdsuhc."
-        android:textColorHint="#888888"
-        android:textSize="20dp"
-        app:flow_horizontalAlign="center"
+        android:layout_height="90dp"
+        android:layout_marginEnd="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription">
+
+        <TextView
+            android:id="@+id/txt_productDescriptionHint"
+            android:layout_width="320dp"
+            android:layout_height="90dp"
+            android:background="@drawable/edit_background"
+            android:ems="10"
+            android:fontFamily="@font/archivo_black"
+            android:paddingLeft="10dp"
+            android:textColorHint="#888888"
+            android:textSize="20dp"
+            app:flow_horizontalAlign="center" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/txt_productLink"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/archivo_black"
         android:text="Order Link"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productDescriptionHint" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_productPriceHint" />
 
     <TextView
         android:id="@+id/txt_productLinkHint"
@@ -163,21 +164,36 @@
         android:background="@drawable/edit_background"
         android:ems="10"
         android:fontFamily="@font/archivo_black"
-        android:text="https://spndimproejkbdhc.com"
-        android:drawableRight="@drawable/baseline_attachment_24"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
         android:textColorHint="#888888"
         android:textSize="15dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_productLink" />
+
+    <ImageView
+        android:id="@+id/copy_icon"
+        android:layout_width="28dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        android:src="@drawable/baseline_content_copy_24"
+        app:layout_constraintBottom_toTopOf="@+id/btn_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_productLinkHint"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <Button
         android:id="@+id/btn_remove"
         android:layout_width="85dp"
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_btn"
         android:backgroundTint="#006756"
@@ -185,16 +201,16 @@
         android:text="Remove"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <Button
         android:id="@+id/btn_update"
         android:layout_width="85dp"
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_btn"
         android:backgroundTint="#006756"
@@ -202,8 +218,23 @@
         android:text="Update"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <TextView
+        android:id="@+id/txt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Back"
+        android:textColor="#006756"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
