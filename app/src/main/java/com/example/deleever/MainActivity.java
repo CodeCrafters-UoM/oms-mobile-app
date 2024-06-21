@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent clicked_product_btn = new Intent(getApplicationContext(), product_list.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("sellerid", sellerId);
                 startActivity(clicked_product_btn);
             }
         });
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("sellerid", sellerId);
                 startActivity(intent);
             }
         });
