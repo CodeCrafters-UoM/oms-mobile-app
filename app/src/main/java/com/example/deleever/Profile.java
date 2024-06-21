@@ -35,35 +35,35 @@ public class Profile extends AppCompatActivity {
         });
 
         // Profile Group
-//        findViewById(R.id.profile_group_container).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Profile.this, myProfile.class);
-//                intent.putExtra("jwtToken", jwtToken);
-//                intent.putExtra("sellerid", userId);
-//                startActivity(intent);
-//            }
-//        });
+        findViewById(R.id.profile_group_container).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(Profile.this, myProfile.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("sellerid", userId);
+                startActivity(intent);
+            }
+        });
 
         // Notification Group
-//        findViewById(R.id.notification_group_container).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent intent = new Intent(profile.this, NotificationActivity.class);
-////                startActivity(intent);
-//            }
-//        });
+        findViewById(R.id.notification_group_container).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(profile.this, NotificationActivity.class);
+//                startActivity(intent);
+            }
+        });
 
         // Contact Group
-//        findViewById(R.id.contact_group_container).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Profile.this, contactUs.class);
-//                intent.putExtra("jwtToken", jwtToken);
-//                intent.putExtra("sellerid", userId);
-//                startActivity(intent);
-//            }
-//        });
+        findViewById(R.id.contact_group_container).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Contact_us.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("sellerid", userId);
+                startActivity(intent);
+            }
+        });
 
         // Language Group
 //        findViewById(R.id.language_group_container).setOnClickListener(new View.OnClickListener() {
