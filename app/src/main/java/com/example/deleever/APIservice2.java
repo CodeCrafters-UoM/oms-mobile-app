@@ -42,11 +42,11 @@ public interface APIservice2 {
             @Path("productCode") String productCode
     );
 
-    @GET("profile/viewprofile/{userId}") // Replace with your actual endpoint
+    @GET("api/v1/profile/viewprofile/{userId}") // Replace with your actual endpoint
     Call<ProfileResponse> getProfile(@Header("Authorization") String token, @Path("userId") String userId);
 
 
-    @PUT("profile/updateprofile/{userId}")
+    @PUT("api/v1/profile/updateprofile/{userId}")
     Call<ProfileResponse> updateProfile(@Header("Authorization") String token,
                                         @Path("userId") String userId,
                                         @Body ProfileResponse profile);

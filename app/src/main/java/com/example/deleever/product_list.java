@@ -26,6 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.deleever.constant.Constant.*;
 
 class product_list extends AppCompatActivity {
 
@@ -80,7 +81,7 @@ class product_list extends AppCompatActivity {
 
     private void fetchProductList() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.8.144:8000/") // Replace with your actual API base URL
+                .baseUrl(BASE_URL) // Replace with your actual API base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

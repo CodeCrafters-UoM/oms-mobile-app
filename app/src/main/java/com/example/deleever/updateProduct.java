@@ -22,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 public class updateProduct extends AppCompatActivity {
     private EditText edtProductName, edtProductDescription, edtProductPrice, edtProductCode, edtProductOrderLink;
@@ -85,7 +86,7 @@ public class updateProduct extends AppCompatActivity {
     }
 
     private void fetchExistingProductCodes() {
-        Retrofit retrofit = RetrofitClient.getClient("http://192.168.8.144:8000"); // Replace with your actual API base URL
+        Retrofit retrofit = RetrofitClient.getClient(BASE_URL); // Replace with your actual API base URL
         APIservice2 apiService = retrofit.create(APIservice2.class);
         Call<List<Product>> call = apiService.getProducts("Bearer " + jwtToken); // Adjust this to your actual API endpoint
         call.enqueue(new Callback<List<Product>>() {
@@ -140,7 +141,7 @@ public class updateProduct extends AppCompatActivity {
     }
 
     private void updateProductMethod(String previousProductCode, Product updatedProduct) {
-        Retrofit retrofit = RetrofitClient.getClient("http://192.168.84.10:8000"); // Replace with your actual API base URL
+        Retrofit retrofit = RetrofitClient.getClient(BASE_URL); // Replace with your actual API base URL
         APIservice2 apiService = retrofit.create(APIservice2.class);
         Call<Product> call = apiService.updateProduct("Bearer " + jwtToken, previousProductCode, updatedProduct); // Pass JWT token to API
         call.enqueue(new Callback<Product>() {

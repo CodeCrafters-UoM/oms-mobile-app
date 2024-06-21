@@ -19,6 +19,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static com.example.deleever.constant.Constant.*;
+import static com.example.deleever.constant.Constant.*;
+
+
 public class updateProfile extends AppCompatActivity {
 
     private EditText editName, editEamil, editBusinessName, editContactNumber, editUserName, editRole;
@@ -106,7 +110,7 @@ public class updateProfile extends AppCompatActivity {
     }
 
     private void updateProfileMethod(String userId, ProfileResponse updatedProfile) {
-        Retrofit retrofit = updateProduct.RetrofitClient.getClient("http://10.10.19.114:8000/api/v1/"); // Replace with your actual API base URL
+        Retrofit retrofit = updateProduct.RetrofitClient.getClient(BASE_URL); // Replace with your actual API base URL
         APIservice2 apiService = retrofit.create(APIservice2.class);
         Call<ProfileResponse> call = apiService.updateProfile("Bearer " + jwtToken, userId, updatedProfile); // Pass JWT token to API
         call.enqueue(new Callback<ProfileResponse>() {

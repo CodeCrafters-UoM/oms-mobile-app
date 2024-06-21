@@ -29,6 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 
 public class Product_details extends AppCompatActivity {
@@ -137,7 +138,7 @@ public class Product_details extends AppCompatActivity {
 
     private void fetchOrderLinks() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.8.144:8000/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

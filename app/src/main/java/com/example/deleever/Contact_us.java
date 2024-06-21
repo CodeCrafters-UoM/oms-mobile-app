@@ -15,6 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 public class Contact_us extends AppCompatActivity {
 
@@ -63,7 +64,7 @@ public class Contact_us extends AppCompatActivity {
 
     private void sendContactUs(ContactUsRequest request) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.10.19.114:8000/") // Replace with your actual API base URL
+                .baseUrl(BASE_URL) // Replace with your actual API base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.deleever.Login;
 import com.example.deleever.MainActivity;
+import static com.example.deleever.constant.Constant.*;
+
 
 public class Profile extends AppCompatActivity {
 

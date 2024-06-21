@@ -19,6 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 public class myProfile extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class myProfile extends AppCompatActivity {
 
     private void fetchProfile() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.10.19.114:8000/api/v1/") // Replace with your actual API base URL
+                .baseUrl(BASE_URL) // Replace with your actual API base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
