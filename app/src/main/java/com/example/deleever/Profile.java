@@ -1,5 +1,6 @@
 package com.example.deleever;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.example.deleever.constant.Constant.BASE_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,14 +30,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import android.util.Log;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.net.URISyntaxException;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class Profile extends AppCompatActivity {
     private String jwtToken, userId;
+    private SocketManager socketManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        socketManager = SocketManager.getInstance();
+        socketManager.connect();
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             if(ContextCompat.checkSelfPermission(Profile.this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
@@ -168,9 +181,11 @@ public class Profile extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d(TAG, "mas "+response.body());
                 if(response.isSuccessful()){
                     i.putExtra("sendData",response.body().toString());//can  pass api url
-
+                    Toast.makeText(Profile.this,"notif  "+response.body().toString(),Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "mas "+response.body().toString());
                 }
             }
 
@@ -181,4 +196,66 @@ public class Profile extends AppCompatActivity {
         });
     }
 }
+
+
+class SocketManager {
+    private static SocketManager instance;
+    private Socket socket;
+    private final String TAG = "SocketManager";
+
+    private SocketManager() {
+        try {
+            socket = IO.socket(BASE_URL);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static SocketManager getInstance() {
+        if (instance == null) {
+            instance = new SocketManager();
+        }
+        return instance;
+    }
+
+    public void connect() {
+        socket.connect();
+        socket.on(Socket.EVENT_CONNECT, onConnect);
+        socket.on(Socket.EVENT_DISCONNECT, onDisconnect);
+        socket.on("notification", onNotification);
+    }
+
+    private Emitter.Listener onConnect = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.d(TAG, "Connected to Socket.IO server");
+        }
+    };
+
+    private Emitter.Listener onDisconnect = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.d(TAG, "Disconnected from Socket.IO server");
+        }
+    };
+
+    private Emitter.Listener onNotification = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            JSONObject data = (JSONObject) args[0];
+            try {
+                String message = data.getString("message");
+                Log.d(TAG, "Received notification: " + message);
+                // Handle the notification as needed
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    public void disconnect() {
+        socket.disconnect();
+    }
+}
+
 
