@@ -24,8 +24,49 @@ public class Order_card {
     @SerializedName("paymentMethod")
     private String paymentMethod;
 
+    @SerializedName("totalOrdersForCustomer")
+    int totalOrdersForCustomer;
+    @SerializedName("totalOrdersForCustomerForSeller")
+    int totalOrdersForCustomerForSeller;
+    @SerializedName("totalReturnOrdersForCustomer")
+    int totalReturnOrdersForCustomer;
+
+    @SerializedName("totalReturnOrdersForCustomerForSeller")
+    int totalReturnOrdersForCustomerForSeller;
     public int getQuantity() {
         return quantity;
+    }
+
+    public int getTotalOrdersForCustomer() {
+        return totalOrdersForCustomer;
+    }
+
+    public void setTotalOrdersForCustomer(int totalOrdersForCustomer) {
+        this.totalOrdersForCustomer = totalOrdersForCustomer;
+    }
+
+    public int getTotalOrdersForCustomerForSeller() {
+        return totalOrdersForCustomerForSeller;
+    }
+
+    public void setTotalOrdersForCustomerForSeller(int totalOrdersForCustomerForSeller) {
+        this.totalOrdersForCustomerForSeller = totalOrdersForCustomerForSeller;
+    }
+
+    public int getTotalReturnOrdersForCustomer() {
+        return totalReturnOrdersForCustomer;
+    }
+
+    public void setTotalReturnOrdersForCustomer(int totalReturnOrdersForCustomer) {
+        this.totalReturnOrdersForCustomer = totalReturnOrdersForCustomer;
+    }
+
+    public int getTotalReturnOrdersForCustomerForSeller() {
+        return totalReturnOrdersForCustomerForSeller;
+    }
+
+    public void setTotalReturnOrdersForCustomerForSeller(int totalReturnOrdersForCustomerForSeller) {
+        this.totalReturnOrdersForCustomerForSeller = totalReturnOrdersForCustomerForSeller;
     }
 
     public void setQuantity(int quantity) {
@@ -43,16 +84,24 @@ public class Order_card {
 
     @SerializedName("createdAt")
     private String dateAndTime;
-    public Order_card(String deliveryAddress, String status, int orderId, Customer customer, Product product, int quantity,String paymentMethod) {
-        this.deliveryAddress = deliveryAddress;
-        this.status = status;
-        this.orderId = orderId;
+
+    public Order_card(Customer customer, Product product, String deliveryAddress, int orderId, int quantity, String status,
+                      String paymentMethod, int totalOrdersForCustomer, int totalOrdersForCustomerForSeller,
+                      int totalReturnOrdersForCustomer, int totalReturnOrdersForCustomerForSeller, String dateAndTime) {
         this.customer = customer;
         this.product = product;
+        this.deliveryAddress = deliveryAddress;
+        this.orderId = orderId;
         this.quantity = quantity;
+        this.status = status;
         this.paymentMethod = paymentMethod;
-
+        this.totalOrdersForCustomer = totalOrdersForCustomer;
+        this.totalOrdersForCustomerForSeller = totalOrdersForCustomerForSeller;
+        this.totalReturnOrdersForCustomer = totalReturnOrdersForCustomer;
+        this.totalReturnOrdersForCustomerForSeller = totalReturnOrdersForCustomerForSeller;
+        this.dateAndTime = dateAndTime;
     }
+
     public String getDateAndTime() {
         return dateAndTime;
     }

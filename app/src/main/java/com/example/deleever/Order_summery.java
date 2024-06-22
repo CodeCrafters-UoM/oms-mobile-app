@@ -61,6 +61,7 @@ private void dropDown(String[] new_order_status) {
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     dropDown.setAdapter(adapter);
 
+
 }
 
     private String[] updateCurrentStatus(String currentStatus,String[] order_status) {
@@ -71,7 +72,6 @@ private void dropDown(String[] new_order_status) {
     }
 
     public int findCurrentStatus(String[] order_status ,String currentStatus){
-        Toast.makeText(Order_summery.this,"curr " + currentStatus,Toast.LENGTH_SHORT).show();
             for(int i=1;i<order_status.length;i++){
                 if(currentStatus.equals(order_status[i])){
                     return i;
@@ -131,6 +131,11 @@ public String[] delete(int y, String[] order_status) {
                 intent.putExtra("address", getIntent().getStringExtra("address"));
                 intent.putExtra("contact", getIntent().getStringExtra("contact"));
                 intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
+                intent.putExtra("return(All)",getIntent().getStringExtra("returns(All)"));
+                intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
+                intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
+
                 startActivity(intent);
             }
         });
@@ -142,7 +147,7 @@ public String[] delete(int y, String[] order_status) {
         String currentStatus = (String) parent.getItemAtPosition(position);
 
         if(currentStatus == new_order_status[0]){
-            Toast.makeText(Order_summery.this, "please change the status: " + new_order_status[0], Toast.LENGTH_SHORT).show();
+            Toast.makeText(Order_summery.this, "please change the status " , Toast.LENGTH_SHORT).show();
         }else{
         Log.d(TAG," status "+currentStatus+" id "+orderId);
 

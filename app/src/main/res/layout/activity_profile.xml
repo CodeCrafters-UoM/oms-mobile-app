@@ -1,209 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
-    tools:context=".profile">
+    tools:context=".Profile">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_layout"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="15dp" />
 
     <TextView
-        android:id="@+id/txt_profile"
-        android:layout_width="76dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/txt_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/archivo_black"
-        android:text="Profile"
-        android:textSize="20dp"
+        android:text="Settings"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_backIcon"
+    <!-- Profile Group -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_group_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/txt_settings">
+
+        <ImageView
+            android:id="@+id/profilePhotoImageView"
+            android:layout_width="56dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/circular_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_photo_bg"
+            app:layout_constraintEnd_toStartOf="@+id/txt_name"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="139dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/archivo_black"
+            android:paddingTop="5dp"
+            android:text="Profile"
+            android:textSize="25dp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Notification Group -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notification_group_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/profile_group_container">
+
+        <ImageView
+            android:id="@+id/img_notification"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/txt_notification"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_circle_notifications_24" />
+
+        <TextView
+            android:id="@+id/txt_notification"
+            android:layout_width="207dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/archivo_black"
+            android:text="Notification"
+            android:textSize="25dp"
+            android:paddingTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.698"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Contact Group -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contact_group_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/notification_group_container">
+
+        <ImageView
+            android:id="@+id/img_contact"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/txt_contact"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_contact_page_24" />
+
+        <TextView
+            android:id="@+id/txt_contact"
+            android:layout_width="221dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/archivo_black"
+            android:text="Contact Us"
+            android:textSize="25dp"
+            android:paddingTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.767"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Language Group -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/language_group_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/contact_group_container">
+
+        <ImageView
+            android:id="@+id/img_language"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/txt_language"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_contact_page_24" />
+
+        <TextView
+            android:id="@+id/txt_language"
+            android:layout_width="158dp"
+            android:layout_height="39dp"
+            android:fontFamily="@font/archivo_black"
+            android:text="Language"
+            android:textSize="25dp"
+            android:paddingTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Log Out Group -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logOut_group_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@+id/language_group_container">
+
+        <ImageView
+            android:id="@+id/img_logOut"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/txt_LogOut"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_exit_to_app_24" />
+
+        <TextView
+            android:id="@+id/txt_LogOut"
+            android:layout_width="188dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/archivo_black"
+            android:text="Log Out"
+            android:textSize="25dp"
+            android:paddingTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.605"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txt_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/txt_profile"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
-
-    <ImageView
-        android:id="@+id/profilePhotoImageView"
-        android:layout_width="91dp"
-        android:layout_height="89dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/circular_background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/profile_photo_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/archivo_black"
-        android:textStyle="bold"
+        android:text="Back"
+        android:textColor="#006756"
         android:textSize="15dp"
-        android:text="Anjana KK"
-        app:flow_horizontalAlign="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_editProfile"
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="184dp"
-        android:background="@drawable/edit_btn"
-        android:backgroundTint="#006756"
-        android:fontFamily="@font/archivo_black"
-        android:text="Edit Profile"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.357"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/img_contactUs"
-        android:layout_width="41dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="272dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_circle_notifications_24" />
-
-    <TextView
-        android:id="@+id/txt_notification"
-        android:layout_width="106dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="280dp"
-        android:fontFamily="@font/archivo_black"
-        android:paddingTop="5dp"
-        android:text="Notification"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/img_forword1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_forward_ios_24" />
-
-    <ImageView
-        android:id="@+id/img_contact"
-        android:layout_width="41dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="380dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_contact_page_24" />
-
-    <TextView
-        android:id="@+id/txt_contact"
-        android:layout_width="94dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="380dp"
-        android:fontFamily="@font/archivo_black"
-        android:paddingTop="5dp"
-        android:text="Contact Us"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/forword3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="388dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_forward_ios_24" />
-
-    <ImageView
-        android:id="@+id/img_language"
-        android:layout_width="41dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="480dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_contact_page_24" />
-
-    <TextView
-        android:id="@+id/txt_language"
-        android:layout_width="94dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="480dp"
-        android:fontFamily="@font/archivo_black"
-        android:paddingTop="5dp"
-        android:text="Language"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/forword2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="492dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_forward_ios_24" />
-
-    <ImageView
-        android:id="@+id/img_logOut"
-        android:layout_width="41dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="596dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_exit_to_app_24" />
-
-    <TextView
-        android:id="@+id/txt_LogOut"
-        android:layout_width="94dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="596dp"
-        android:fontFamily="@font/archivo_black"
-        android:paddingTop="5dp"
-        android:text="Log Out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/logOut_group_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
