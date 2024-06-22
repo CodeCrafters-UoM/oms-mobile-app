@@ -222,7 +222,7 @@ class SocketManager {
         socket.connect();
         socket.on(Socket.EVENT_CONNECT, onConnect);
         socket.on(Socket.EVENT_DISCONNECT, onDisconnect);
-        socket.on("notification", onNotification);
+        socket.on("notification", sendNotification);
     }
 
     private Emitter.Listener onConnect = new Emitter.Listener() {
@@ -239,7 +239,7 @@ class SocketManager {
         }
     };
 
-    private Emitter.Listener onNotification = new Emitter.Listener() {
+    private Emitter.Listener sendNotification = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
             JSONObject data = (JSONObject) args[0];
