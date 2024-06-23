@@ -80,7 +80,7 @@
         android:ems="10"
         android:fontFamily="@font/archivo_black"
         android:hint="Product Price"
-        android:inputType="text"
+        android:inputType="number"
         android:paddingLeft="20dp"
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"

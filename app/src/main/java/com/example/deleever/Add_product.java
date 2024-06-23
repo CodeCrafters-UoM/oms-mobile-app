@@ -75,9 +75,9 @@ public class Add_product extends AppCompatActivity {
 
     private String jwtToken, sellerId;
 
-    private Map<String, String> orderLinksMap = new HashMap<>();
+    private Map<String, OrderLink> orderLinksMap = new HashMap<>();
     private List<String> orderLinks = new ArrayList<>();
-    private List<String> existingProductCodes = new ArrayList<>(); // List to store existing product codes
+    private List<String> existingProductCodes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,6 @@ public class Add_product extends AppCompatActivity {
         if (i != null) {
             jwtToken = i.getStringExtra("jwtToken");
             sellerId = i.getStringExtra("sellerid");
-            System.out.println("new seller id " + sellerId);
         } else {
             Toast.makeText(this, "No JWT token received", Toast.LENGTH_SHORT).show();
             finish();
@@ -152,41 +151,37 @@ public class Add_product extends AppCompatActivity {
                     List<OrderLink> links = response.body();
                     if (links != null) {
                         orderLinks.clear();
-                        orderLinksMap.clear();  // Clear the map to avoid outdated entries
+                        orderLinksMap.clear();
                         for (OrderLink orderLink : links) {
                             orderLinks.add(orderLink.getLink());
-                            orderLinksMap.put(orderLink.getLink(), orderLink.getId());  // Ensure map is updated with the link and its corresponding id
+                            orderLinksMap.put(orderLink.getLink(), orderLink);
                         }
                         ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerOrderLink.getAdapter();
                         if (adapter != null) {
-                            adapter.notifyDataSetChanged(); // Notify dataset changed
+                            adapter.notifyDataSetChanged();
                         } else {
                             adapter = new ArrayAdapter<>(Add_product.this, android.R.layout.simple_spinner_item, orderLinks);
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinnerOrderLink.setAdapter(adapter);
                         }
-                        Log.d("FetchOrderLinks", "Order links fetched successfully");
-                        fetchExistingProductCodes(); // Fetch existing product codes after fetching order links
+                        fetchExistingProductCodes();
                     } else {
-                        Log.e("FetchOrderLinksError", "Response body is null");
                         Toast.makeText(Add_product.this, "Failed to fetch order links", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Log.e("FetchOrderLinksError", "API error: " + response.code());
                     Toast.makeText(Add_product.this, "Failed to fetch order links", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<OrderLink>> call, Throwable t) {
-                Log.e("FetchOrderLinksError", "Network error: " + t.getMessage());
                 Toast.makeText(Add_product.this, "Network error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void fetchExistingProductCodes() {
-        Call<List<Product>> call = apiService.getProducts("Bearer " + jwtToken); // Adjust this to your actual API endpoint
+        Call<List<Product>> call = apiService.getProducts("Bearer " + jwtToken);
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -197,18 +192,12 @@ public class Add_product extends AppCompatActivity {
                         for (Product product : products) {
                             existingProductCodes.add(product.getProductCode());
                         }
-                        Log.d("FetchProductCodes", "Product codes fetched successfully");
-                    } else {
-                        Log.e("FetchProductCodesError", "Response body is null");
                     }
-                } else {
-                    Log.e("FetchProductCodesError", "API error: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.e("FetchProductCodesError", "Network error: " + t.getMessage());
             }
         });
     }
@@ -216,7 +205,6 @@ public class Add_product extends AppCompatActivity {
     private void addNewProduct() {
         if (orderLinks.isEmpty()) {
             Toast.makeText(Add_product.this, "Please create an order link first", Toast.LENGTH_LONG).show();
-            // Navigate to ProductListActivity
             navigateToProductList();
             return;
         }
@@ -244,13 +232,19 @@ public class Add_product extends AppCompatActivity {
             return;
         }
 
+        OrderLink selectedOrderLinkObj = orderLinksMap.get(selectedOrderLink);
+        if (selectedOrderLinkObj != null && selectedOrderLinkObj.getProduct() != null) {
+            Toast.makeText(this, "Order link is already associated with another product", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Product newProduct = new Product();
         newProduct.setProductCode(code);
         newProduct.setName(name);
         newProduct.setDescription(description);
         newProduct.setPrice(price);
         newProduct.setSellerId(sellerId);
-        newProduct.setOrderLink(orderLinksMap.get(selectedOrderLink));
+        newProduct.setOrderLink(selectedOrderLinkObj.getId());
 
         Call<Product> call = apiService.addProduct("Bearer " + jwtToken, newProduct);
         call.enqueue(new Callback<Product>() {
@@ -263,18 +257,15 @@ public class Add_product extends AppCompatActivity {
                         navigateToProductList();
                         clearInputFields();
                     } else {
-                        Log.e("AddProductError", "Response body is null");
                         Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Log.e("AddProductError", "API error: " + response.code() + " - " + response.message());
                     Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
-                Log.e("AddProductError", "Network error: " + t.getMessage());
                 Toast.makeText(Add_product.this, "Network error", Toast.LENGTH_SHORT).show();
             }
         });
@@ -284,7 +275,7 @@ public class Add_product extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), product_list.class);
         intent.putExtra("jwtToken", jwtToken);
         startActivity(intent);
-        finish(); // Close the current activity to prevent users from returning to it
+        finish();
     }
 
     private void clearInputFields() {
@@ -294,3 +285,5 @@ public class Add_product extends AppCompatActivity {
         edtPrice.setText("");
     }
 }
+
+
