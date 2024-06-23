@@ -24,7 +24,8 @@ public class Profile extends AppCompatActivity {
         jwtToken = getIntent().getStringExtra("jwtToken");
         userId = getIntent().getStringExtra("sellerid");
 
-        System.out.println("userrrr" + userId);
+//        System.out.println("userrrr" + userId);
+//        System.out.println("jwwwwww" + jwtToken);
 
         TextView txt_back = findViewById(R.id.txt_back);
         txt_back.setOnClickListener(new View.OnClickListener()
