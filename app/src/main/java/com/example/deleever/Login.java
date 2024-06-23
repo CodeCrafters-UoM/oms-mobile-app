@@ -54,6 +54,15 @@ public class Login extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        TextView txt_forgot = findViewById(R.id.txt_forgetPassword);
+        txt_forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), forgot_password.class);
+                startActivity(intent);
+            }
+        });
+
         // Create ApiService instance
         APIservice2 apiService = retrofit.create(APIservice2.class);
 

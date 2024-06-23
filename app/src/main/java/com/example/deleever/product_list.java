@@ -92,7 +92,7 @@ public class product_list extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful()) {
-//                    Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
+                    Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
                     productList = response.body();
                     if (productList != null) {
                         Log.d(TAG, "Product list size: " + productList.size());
