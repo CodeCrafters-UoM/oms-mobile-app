@@ -29,7 +29,7 @@
     <EditText
         android:id="@+id/signup_name"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
@@ -49,9 +49,9 @@
     <EditText
         android:id="@+id/signup_business_name"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -69,9 +69,9 @@
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -88,9 +88,9 @@
     <EditText
         android:id="@+id/signup_phone_num"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -108,9 +108,9 @@
     <EditText
         android:id="@+id/signup_username"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -129,9 +129,9 @@
         android:id="@+id/signup_password"
         android:background="@drawable/edit_background"
         android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:ems="10"
         android:hint="Create password"
@@ -144,13 +144,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_username" />
 
+    <EditText
+        android:id="@+id/signup_cnfrmpw"
+        android:background="@drawable/edit_background"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:ems="10"
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_show_password" />
+
+
 
     <TextView
         android:id="@+id/signup_show_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="215dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:text="Show Password"
         android:textSize="15dp"
@@ -166,14 +186,14 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="5dp"
         android:text="Register"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_show_password" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_cnfrmpw" />
 
     <TextView
         android:id="@+id/signup_login_pd_connector"
