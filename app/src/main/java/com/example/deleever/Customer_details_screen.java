@@ -29,14 +29,17 @@ public class Customer_details_screen extends AppCompatActivity {
         ordersAll = findViewById(R.id.orders_All);
         ordersAll.setText(String.valueOf(orders_All));
 
-        return_orders_All = getIntent().getStringExtra("returns(All)");
+        return_orders_All = getIntent().getStringExtra("return(All)");
         returnOrdersAll = findViewById(R.id.return_orders_All);
         returnOrdersAll.setText(String.valueOf(return_orders_All));
         Log.d(TAG, "return_orders_All: " + return_orders_All);
+        Log.d(TAG, "return(All: " + getIntent().getStringExtra("returns(All)"));
 
         orders_My = getIntent().getStringExtra("orders(my)");
         ordersMy = findViewById(R.id.orders_My);
         ordersMy.setText(String.valueOf(orders_My));
+        Log.d(TAG, "order: " + getIntent().getStringExtra("orders(my)"));
+
 
         return_orders_My = getIntent().getStringExtra("return(my)");
         returnOrdersMy = findViewById(R.id.return_orders_My);

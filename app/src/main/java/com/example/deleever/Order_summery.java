@@ -132,11 +132,13 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
                 intent.putExtra("contact", getIntent().getStringExtra("contact"));
                 intent.putExtra("jwtToken", jwtToken);
                 intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
-                intent.putExtra("return(All)",getIntent().getStringExtra("returns(All)"));
+                intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
                 intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
                 intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
+                Log.d(TAG, "return(All: " + getIntent().getStringExtra("returns(All)"));
 
-                startActivity(intent);
+                Log.d(TAG, "return(order: " + getIntent().getStringExtra("orders(my)"));
+                        startActivity(intent);
             }
         });
     }
