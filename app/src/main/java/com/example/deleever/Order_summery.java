@@ -51,17 +51,18 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
         dropDown(new_order_status);
     }
 
-private void dropDown(String[] new_order_status) {
+    private void dropDown(String[] new_order_status) {
 
-    Spinner dropDown = findViewById(R.id.status_dropdown);
-    dropDown.setOnItemSelectedListener(this);
-    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new_order_status);
-    Log.d(TAG, "adapter: " + adapter);
+        Spinner dropDown = findViewById(R.id.status_dropdown);
+        dropDown.setOnItemSelectedListener(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new_order_status);
+        Log.d(TAG, "adapter: " + adapter);
 
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    dropDown.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropDown.setAdapter(adapter);
 
-}
+
+    }
 
     private String[] updateCurrentStatus(String currentStatus,String[] order_status) {
         order_status[0] = currentStatus;
@@ -71,28 +72,27 @@ private void dropDown(String[] new_order_status) {
     }
 
     public int findCurrentStatus(String[] order_status ,String currentStatus){
-        Toast.makeText(Order_summery.this,"curr " + currentStatus,Toast.LENGTH_SHORT).show();
-            for(int i=1;i<order_status.length;i++){
-                if(currentStatus.equals(order_status[i])){
-                    return i;
-                }
+        for(int i=1;i<order_status.length;i++){
+            if(currentStatus.equals(order_status[i])){
+                return i;
             }
-            return -1;
-    }
-
-public String[] delete(int y, String[] order_status) {
-    String[] new_order_status = new String[order_status.length - 1];
-
-    int j = 0;
-    for (int k = 0; k < order_status.length; k++) {
-        if (k == y) {
-            continue;
         }
-        new_order_status[j] = order_status[k];
-        j++;
+        return -1;
     }
-    return new_order_status;
-}
+
+    public String[] delete(int y, String[] order_status) {
+        String[] new_order_status = new String[order_status.length - 1];
+
+        int j = 0;
+        for (int k = 0; k < order_status.length; k++) {
+            if (k == y) {
+                continue;
+            }
+            new_order_status[j] = order_status[k];
+            j++;
+        }
+        return new_order_status;
+    }
 
 
 
@@ -131,6 +131,11 @@ public String[] delete(int y, String[] order_status) {
                 intent.putExtra("address", getIntent().getStringExtra("address"));
                 intent.putExtra("contact", getIntent().getStringExtra("contact"));
                 intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
+                intent.putExtra("return(All)",getIntent().getStringExtra("returns(All)"));
+                intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
+                intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
+
                 startActivity(intent);
             }
         });
@@ -141,43 +146,42 @@ public String[] delete(int y, String[] order_status) {
 
         String currentStatus = (String) parent.getItemAtPosition(position);
 
-        if(currentStatus == new_order_status[0]){
-            Toast.makeText(Order_summery.this, "please change the status: " + new_order_status[0], Toast.LENGTH_SHORT).show();
-        }else{
-        Log.d(TAG," status "+currentStatus+" id "+orderId);
+        if(!currentStatus.equals(new_order_status[0])){
 
-        updateStatus = new UpdateStatus(orderId, currentStatus);
+            Log.d(TAG," status "+currentStatus+" id "+orderId);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiService apiService = retrofit.create(ApiService.class);
+            updateStatus = new UpdateStatus(orderId, currentStatus);
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            ApiService apiService = retrofit.create(ApiService.class);
             Log.d(TAG, "update status: " + updateStatus.orderStatus+" "+updateStatus.orderId);
 
 
             Call<Void> call = apiService.updateStatus(updateStatus, "Bearer " + jwtToken);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(Order_summery.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "update body: " + response.body());
-                } else {
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e(TAG, "Failed to update status: " + errorBody);
-                        Toast.makeText(Order_summery.this, "Failed to update status: " + errorBody, Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(Order_summery.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "update body: " + response.body());
+                    } else {
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e(TAG, "Failed to update status: " + errorBody);
+                            Toast.makeText(Order_summery.this, "Failed to update status: " + errorBody, Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(Order_summery.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(Order_summery.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
@@ -215,5 +219,5 @@ class UpdateStatus {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
-    }
+}
 }

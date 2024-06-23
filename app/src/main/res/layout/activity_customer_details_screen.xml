@@ -110,7 +110,7 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:id="@+id/customer_details_past_orders_All_data"
+            android:id="@+id/orders_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Past orders(All)"
@@ -128,7 +128,7 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:id="@+id/customer_details_past_orders_My_data"
+            android:id="@+id/orders_My"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Past orders(My)"
@@ -146,7 +146,7 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:id="@+id/customer_details_return_orders_All_data"
+            android:id="@+id/return_orders_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Return orders(All)"
@@ -164,7 +164,7 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:id="@+id/customer_details_return_orders_My_data"
+            android:id="@+id/return_orders_My"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Return orders(My)"
