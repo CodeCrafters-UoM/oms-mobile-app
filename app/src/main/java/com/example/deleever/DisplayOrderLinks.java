@@ -46,7 +46,8 @@ public class DisplayOrderLinks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_order_links);
 
-        jwtToken = getIntent().getStringExtra("jwtToken");
+        Intent intent = getIntent();
+        jwtToken = intent.getStringExtra("jwtToken");
 
         order_link_list = findViewById(R.id.order_link_list);
         order_link_list.setLayoutManager(new LinearLayoutManager(this));
@@ -54,8 +55,6 @@ public class DisplayOrderLinks extends AppCompatActivity {
         order_link_list.setAdapter(orderLinksAdapter);
 
         displayLinks();
-
-
     }
 
     private void displayLinks() {
@@ -144,7 +143,7 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
             public void onClick(View v) {
                 try {
                     String productCode = orderLinkModel.getProduct().getProductCode();
-                    Toast.makeText(context,name +"Can't delete the link because product is assigned",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"product is assigned",Toast.LENGTH_SHORT).show();
                 }catch(NullPointerException e){
                     confirmation(orderLinkModel,name);
 
@@ -185,9 +184,9 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
             ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clipData = ClipData.newPlainText("Copy",linkValue);;
             clipboardManager.setPrimaryClip(clipData);
-            Toast.makeText(context,name +"copied",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,name +" copied",Toast.LENGTH_SHORT).show();
         }catch (NullPointerException e){
-            Toast.makeText(context,"cant copy.because product is not assign",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"product is not assigned",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -210,7 +209,7 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
                         orderLinks.remove(position);
                         notifyItemRemoved(position);
                     }
-                    Toast.makeText(context, name + "link delete successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, name + " link delete successfully", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "mas "+response.message());
                     Log.d(TAG, "mas "+response.body());
 
@@ -313,8 +312,7 @@ class OrderLinkModel{
 
         public void setProductCode(String productCode) {
             this.productCode = productCode;
-        }
+  }
 
-    }
 }
-
+}

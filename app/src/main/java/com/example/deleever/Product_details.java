@@ -150,22 +150,12 @@ public class Product_details extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<OrderLink> orderLinks = response.body();
                     Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
-
                     if (orderLinks != null) {
                         for (OrderLink orderLink : orderLinks) {
-                            try{
-                            if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
-
-                                copyLink = orderLink.getLink();
-                                break;
-                            }}
-                            catch (NullPointerException e){
-                                Log.e("NullPointerException", "ff",e);
-
                             if (orderLink.getProduct() != null && orderLink.getProduct().getProductCode() != null) {
                                 if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
                                     txtProductOrderLink.setText(orderLink.getName());
-                                    Log.d(TAG, "Order Link set:" + txtProductOrderLink.getText());
+                                    Log.d(TAG, "Order Link set:ggggggggggggggggggrrrrrrrrrrr " + txtProductOrderLink.getText());
                                     copyLink = orderLink.getLink();
                                     break;
                                 }
@@ -190,7 +180,7 @@ public class Product_details extends AppCompatActivity {
 
     private void deleteProduct(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl("http://172.20.10.2:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -229,6 +219,6 @@ public class Product_details extends AppCompatActivity {
             Toast.makeText(this, "Order link copied to clipboard", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "No order link to copy", Toast.LENGTH_SHORT).show();
-        }
-    }
+ }
+}
 }
