@@ -188,7 +188,7 @@ class Product {
     @SerializedName("price")
     private Double price;
 
-    @SerializedName("productOrderLink")
+    @SerializedName("productOrderLinkId")
     private String productOrderLink;
 
     @SerializedName("sellerId")
