@@ -26,8 +26,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.deleever.constant.Constant.*;
 
-class product_list extends AppCompatActivity {
+public class product_list extends AppCompatActivity {
 
     private ListView listView;
     private ArrayAdapter<Product> adapter; // Use ArrayAdapter<Product> instead of ArrayAdapter<String>
@@ -80,7 +81,7 @@ class product_list extends AppCompatActivity {
 
     private void fetchProductList() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.8.144:8000/") // Replace with your actual API base URL
+                .baseUrl(BASE_URL) // Replace with your actual API base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -91,7 +92,7 @@ class product_list extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.isSuccessful()) {
-//                    Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
+                    Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
                     productList = response.body();
                     if (productList != null) {
                         Log.d(TAG, "Product list size: " + productList.size());

@@ -5,6 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -27,7 +28,7 @@ public interface APIservice2 {
     @GET("orderlinks/available")
     Call<List<OrderLink>> getAvailableOrderLinks(@Header("Authorization") String authToken);
 
-    @POST("product/Add_product")
+    @POST("product/addProduct")
     Call<Product> addProduct(
             @Header("Authorization") String token,
             @Body Product newProduct);
@@ -42,11 +43,32 @@ public interface APIservice2 {
             @Path("productCode") String productCode
     );
 
+    @GET("api/v1/profile/viewprofile/{userId}") // Replace with your actual endpoint
+    Call<ProfileResponse> getProfile(@Header("Authorization") String token, @Path("userId") String userId);
+
+
+    @PUT("api/v1/profile/updateprofile/{userId}")
+    Call<ProfileResponse> updateProfile(@Header("Authorization") String token,
+                                        @Path("userId") String userId,
+                                        @Body ProfileResponse profile);
+
     @PUT("product/{previousProductCode}")
     Call<Product> updateProduct(
             @Header("Authorization") String token,
             @Path("previousProductCode") String previousProductCode,
             @Body Product product);
+
+    @POST("contactus")
+    Call<ContactUsRequest> sendContactUs(@Header("Authorization") String authToken, @Body ContactUsRequest request);
+
+    @POST("forgotpassword")
+    Call<Void> sendUserName(@Body String username);
+
+    @POST("verifyotp")
+    Call<Void> VerifyOTP(@Field("username") String username, @Field("otp") String otp);
+
+    @POST("resetpassword") // Adjust to your actual endpoint
+    Call<Void> resetPassword(@Field("username") String username, @Field("password") String password);
 
 
 

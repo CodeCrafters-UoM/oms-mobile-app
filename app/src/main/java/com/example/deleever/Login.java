@@ -23,10 +23,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
+
 
 public class Login extends AppCompatActivity {
 
-    private static final String BASE_URL = "http://10.10.19.114:8000/api/v1/";
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_TOKEN = "jwtToken";
 
@@ -52,6 +53,15 @@ public class Login extends AppCompatActivity {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        TextView txt_forgot = findViewById(R.id.txt_forgetPassword);
+        txt_forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), forgot_password.class);
+                startActivity(intent);
+            }
+        });
 
         // Create ApiService instance
         APIservice2 apiService = retrofit.create(APIservice2.class);

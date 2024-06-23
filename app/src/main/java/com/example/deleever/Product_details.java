@@ -29,6 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
 
 
 public class Product_details extends AppCompatActivity {
@@ -137,7 +138,7 @@ public class Product_details extends AppCompatActivity {
 
     private void fetchOrderLinks() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.8.144:8000/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -151,10 +152,15 @@ public class Product_details extends AppCompatActivity {
                     Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
                     if (orderLinks != null) {
                         for (OrderLink orderLink : orderLinks) {
-                            if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
-                                txtProductOrderLink.setText(orderLink.getName());
-                                copyLink = orderLink.getLink();
-                                break;
+                            if (orderLink.getProduct() != null && orderLink.getProduct().getProductCode() != null) {
+                                if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
+                                    txtProductOrderLink.setText(orderLink.getName());
+                                    Log.d(TAG, "Order Link set:" + txtProductOrderLink.getText());
+                                    copyLink = orderLink.getLink();
+                                    break;
+                                }
+                            } else {
+                                Log.e(TAG, "OrderLink or Product or ProductCode is null gggggggggggg");
                             }
                         }
                     } else {
@@ -174,7 +180,7 @@ public class Product_details extends AppCompatActivity {
 
     private void deleteProduct(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.20.10.2:8000/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

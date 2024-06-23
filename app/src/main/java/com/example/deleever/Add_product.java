@@ -1,7 +1,7 @@
 package com.example.deleever;
-import static com.example.deleever.constant.Constant.*;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.example.deleever.constant.Constant.BASE_URL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,7 +19,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.lang.NumberFormatException;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -103,7 +102,7 @@ public class Add_product extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.8.144:8000/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -261,10 +260,14 @@ public class Add_product extends AppCompatActivity {
                     Product addedProduct = response.body();
                     if (addedProduct != null) {
                         Toast.makeText(Add_product.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                        clearInputFields();
                         navigateToProductList();
+                        clearInputFields();
+                    } else {
+                        Log.e("AddProductError", "Response body is null");
+                        Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    Log.e("AddProductError", "API error: " + response.code() + " - " + response.message());
                     Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
                 }
             }
