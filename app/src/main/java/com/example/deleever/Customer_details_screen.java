@@ -42,7 +42,6 @@ public class Customer_details_screen extends AppCompatActivity {
         returnOrdersMy = findViewById(R.id.return_orders_My);
         returnOrdersMy.setText(String.valueOf(return_orders_My));
 
-
         customer_name_data = getIntent().getStringExtra("name");
         customer_details_screen_name_data = findViewById(R.id.customer_details_screen_name_data);
         customer_details_screen_name_data.setText(customer_name_data);

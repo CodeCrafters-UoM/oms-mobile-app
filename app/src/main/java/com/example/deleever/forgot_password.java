@@ -18,6 +18,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.deleever.constant.Constant.*;
+
 
 public class forgot_password extends AppCompatActivity {
 
@@ -39,7 +41,7 @@ public class forgot_password extends AppCompatActivity {
 
         username = findViewById(R.id.txt_userName);
 
-        Button btn_submit = findViewById(R.id.btn_submit);
+        Button btn_submit = findViewById(R.id.btn_sendOtp);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

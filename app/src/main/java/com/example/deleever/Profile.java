@@ -1,6 +1,9 @@
 package com.example.deleever;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -78,15 +81,40 @@ public class Profile extends AppCompatActivity {
 //        });
 
         // Log Out Group
-//        findViewById(R.id.logOut_group_container).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(profile.this, Login.class);
-//                Toast.makeText(profile.this, "Log Out", Toast.LENGTH_SHORT).show();
-//                startActivity(intent);
-//            }
-//        });
+        findViewById(R.id.logOut_group_container).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutConfirmationDialog();
+            }
+        });
 
+    }
+
+
+    private void showLogoutConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Profile.this);
+        builder.setMessage("Are you sure you want to log out?")
+                .setTitle("Log Out Confirmation");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                performLogout();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void performLogout() {
+        Intent intent = new Intent(Profile.this, Login.class);
+        Toast.makeText(Profile.this, "Logging Out", Toast.LENGTH_SHORT).show();
+        startActivity(intent);
+        finish(); // Finish the current activity to prevent users from returning to it after logging out
     }
 
     private void navigateHome() {

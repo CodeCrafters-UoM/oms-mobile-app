@@ -1,15 +1,11 @@
 package com.example.deleever;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,8 +16,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,13 +23,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import static com.example.deleever.constant.Constant.*;
 
+import static com.example.deleever.constant.Constant.*;
 
 public class Product_details extends AppCompatActivity {
 
-    private TextView txtProductCode, txtProductName, txtProductDescription, txtProductPrice, txtProductOrderLink, txt_back;
-    private String jwtToken,copyLink;
+    private TextView txtProductCode, txtProductName, txtProductDescription, txtProductPrice, txtProductOrderLink;
+    private String jwtToken, copyLink;
+    private static final String TAG = "Product_details";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +47,10 @@ public class Product_details extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             jwtToken = intent.getStringExtra("jwtToken");
-            if (intent.hasExtra("productCode")) {
-                String productCode = intent.getStringExtra("productCode");
-                txtProductCode.setText(productCode);
-            }
-            if (intent.hasExtra("productName")) {
-                String productName = intent.getStringExtra("productName");
-                txtProductName.setText(productName);
-            }
-            if (intent.hasExtra("productDescription")) {
-                String productDescription = intent.getStringExtra("productDescription");
-                txtProductDescription.setText(productDescription);
-
-            }
-            if (intent.hasExtra("productPrice")) {
-                double productPrice = intent.getDoubleExtra("productPrice", 0.0);
-                txtProductPrice.setText(String.valueOf(productPrice));
-            }
+            txtProductCode.setText(intent.getStringExtra("productCode"));
+            txtProductName.setText(intent.getStringExtra("productName"));
+            txtProductDescription.setText(intent.getStringExtra("productDescription"));
+            txtProductPrice.setText(String.valueOf(intent.getDoubleExtra("productPrice", 0.0)));
 
             fetchOrderLinks();
         } else {
@@ -88,7 +70,7 @@ public class Product_details extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("productDetails", "Update button clicked");
+                Log.d(TAG, "Update button clicked");
                 Intent updateIntent = new Intent(Product_details.this, updateProduct.class);
                 updateIntent.putExtra("jwtToken", jwtToken);
                 updateIntent.putExtra("productCode", txtProductCode.getText().toString());
@@ -97,7 +79,6 @@ public class Product_details extends AppCompatActivity {
                 updateIntent.putExtra("productPrice", txtProductPrice.getText().toString());
                 updateIntent.putExtra("productOrderLink", txtProductOrderLink.getText().toString());
                 startActivity(updateIntent);
-                Log.d("productDetails", "Update intent started");
             }
         });
 
@@ -111,13 +92,14 @@ public class Product_details extends AppCompatActivity {
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-                        deleteProduct(txtProductCode.getText().toString());
+                        String productCode = txtProductCode.getText().toString();
+                        Log.d(TAG, "Attempting to delete product with code: " + productCode);
+                        Log.d(TAG, "Using JWT token: " + jwtToken);
+                        deleteProduct(productCode);
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked No button, do nothing or dismiss the dialog
                         dialog.dismiss();
                     }
                 });
@@ -132,9 +114,7 @@ public class Product_details extends AppCompatActivity {
                 copyOrderLinkToClipboard();
             }
         });
-
     }
-
 
     private void fetchOrderLinks() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -143,7 +123,7 @@ public class Product_details extends AppCompatActivity {
                 .build();
 
         APIservice2 apiService = retrofit.create(APIservice2.class);
-        Call<List<OrderLink>> call = apiService.getAllOrderlinks("Bearer " + jwtToken); // Adjust this to your actual API endpoint
+        Call<List<OrderLink>> call = apiService.getAllOrderlinks("Bearer " + jwtToken);
         call.enqueue(new Callback<List<OrderLink>>() {
             @Override
             public void onResponse(Call<List<OrderLink>> call, Response<List<OrderLink>> response) {
@@ -155,12 +135,12 @@ public class Product_details extends AppCompatActivity {
                             if (orderLink.getProduct() != null && orderLink.getProduct().getProductCode() != null) {
                                 if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
                                     txtProductOrderLink.setText(orderLink.getName());
-                                    Log.d(TAG, "Order Link set:ggggggggggggggggggrrrrrrrrrrr " + txtProductOrderLink.getText());
+                                    Log.d(TAG, "Order Link set: " + txtProductOrderLink.getText());
                                     copyLink = orderLink.getLink();
                                     break;
                                 }
                             } else {
-                                Log.e(TAG, "OrderLink or Product or ProductCode is null gggggggggggg");
+                                Log.e(TAG, "OrderLink or Product or ProductCode is null");
                             }
                         }
                     } else {
@@ -180,7 +160,7 @@ public class Product_details extends AppCompatActivity {
 
     private void deleteProduct(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.20.10.2:8000/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -190,15 +170,18 @@ public class Product_details extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    Log.d(TAG, "Product deleted successfully. Response code: " + response.code());
                     Toast.makeText(Product_details.this, "Product removed successfully", Toast.LENGTH_SHORT).show();
                     navigateToProductList();
                 } else {
+                    Log.e(TAG, "Failed to delete product. Response code: " + response.code());
                     Toast.makeText(Product_details.this, "Failed to remove product", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                Log.e(TAG, "Network error: " + t.getMessage());
                 Toast.makeText(Product_details.this, "Network error", Toast.LENGTH_SHORT).show();
             }
         });
@@ -219,6 +202,6 @@ public class Product_details extends AppCompatActivity {
             Toast.makeText(this, "Order link copied to clipboard", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "No order link to copy", Toast.LENGTH_SHORT).show();
- }
-}
+        }
+    }
 }
