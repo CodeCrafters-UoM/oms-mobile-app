@@ -4,9 +4,10 @@ import static com.example.deleever.constant.Constant.BASE_URL;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +46,7 @@ class OrderLink {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -153,8 +155,8 @@ public class Add_product extends AppCompatActivity {
                         orderLinks.clear();
                         orderLinksMap.clear();
                         for (OrderLink orderLink : links) {
-                            orderLinks.add(orderLink.getLink());
-                            orderLinksMap.put(orderLink.getLink(), orderLink);
+                            orderLinks.add(orderLink.getName()); // Add link name instead of link
+                            orderLinksMap.put(orderLink.getName(), orderLink); // Use name as key in map
                         }
                         ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerOrderLink.getAdapter();
                         if (adapter != null) {
@@ -246,36 +248,38 @@ public class Add_product extends AppCompatActivity {
         newProduct.setSellerId(sellerId);
         newProduct.setOrderLink(selectedOrderLinkObj.getId());
 
-        Call<Product> call = apiService.addProduct("Bearer " + jwtToken, newProduct);
-        call.enqueue(new Callback<Product>() {
-            @Override
-            public void onResponse(Call<Product> call, Response<Product> response) {
-                if (response.isSuccessful()) {
-                    Product addedProduct = response.body();
-                    if (addedProduct != null) {
-                        Toast.makeText(Add_product.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                        navigateToProductList();
-                        clearInputFields();
-                    } else {
-                        Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm Product Creation")
+                .setMessage("Are you sure you want to create this product?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Call<Product> call = apiService.addProduct("Bearer " + jwtToken, newProduct);
+                        call.enqueue(new Callback<Product>() {
+                            @Override
+                            public void onResponse(Call<Product> call, Response<Product> response) {
+                                if (response.isSuccessful()) {
+                                    Product addedProduct = response.body();
+                                    if (addedProduct != null) {
+                                        Toast.makeText(Add_product.this, "Product added successfully", Toast.LENGTH_SHORT).show();
+                                        navigateToProductList();
+                                        clearInputFields();
+                                    } else {
+                                        Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Product> call, Throwable t) {
+                                Toast.makeText(Add_product.this, "Network error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                } else {
-                    Toast.makeText(Add_product.this, "Failed to add product", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Product> call, Throwable t) {
-                Toast.makeText(Add_product.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void navigateToProductList() {
-        Intent intent = new Intent(getApplicationContext(), product_list.class);
-        intent.putExtra("jwtToken", jwtToken);
-        startActivity(intent);
-        finish();
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
     }
 
     private void clearInputFields() {
@@ -284,6 +288,12 @@ public class Add_product extends AppCompatActivity {
         edtDescription.setText("");
         edtPrice.setText("");
     }
+
+    private void navigateToProductList() {
+        Intent intent = new Intent(Add_product.this, product_list.class);
+        intent.putExtra("jwtToken", jwtToken);
+        intent.putExtra("sellerid", sellerId);
+        startActivity(intent);
+        finish();
+    }
 }
-
-

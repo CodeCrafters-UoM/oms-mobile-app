@@ -60,26 +60,7 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
 //                startActivity(intent);
 //            }
 //        });
-        TextView Customer_details = findViewById(R.id.Customer_details);
 
-        Customer_details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Customer_details_screen.class);
-//                fetchOrderDetails(id,intent);
-                intent.putExtra("name", getIntent().getStringExtra("name"));
-                intent.putExtra("address", getIntent().getStringExtra("address"));
-                intent.putExtra("contact", getIntent().getStringExtra("contact"));
-                intent.putExtra("jwtToken", jwtToken);
-                intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
-                intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
-                intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
-                intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
-//
-
-                startActivity(intent);
-            }
-        });
 
 
 
@@ -156,7 +137,26 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
         payment_method.setText(getIntent().getStringExtra("paymentMethod"));
         price.setText(getIntent().getStringExtra("price"));
         int id = Integer.valueOf(orderId);
+        TextView Customer_details = findViewById(R.id.Customer_details);
 
+        Customer_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Customer_details_screen.class);
+//                fetchOrderDetails(id,intent);
+                intent.putExtra("name", getIntent().getStringExtra("name"));
+                intent.putExtra("address", getIntent().getStringExtra("address"));
+                intent.putExtra("contact", getIntent().getStringExtra("contact"));
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
+                intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
+                intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
+                intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
+//
+
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -188,6 +188,7 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
                                 intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
                                 intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
                                 intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
+                                System.out.println(getIntent().getStringExtra("return(All)"));
                             }
                         }
 

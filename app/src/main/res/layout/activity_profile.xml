@@ -40,7 +40,8 @@
         <ImageView
             android:id="@+id/profilePhotoImageView"
             android:layout_width="56dp"
-            android:layout_height="49dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/circular_background"
             android:scaleType="centerCrop"
@@ -52,7 +53,7 @@
 
         <TextView
             android:id="@+id/txt_name"
-            android:layout_width="139dp"
+            android:layout_width="165dp"
             android:layout_height="50dp"
             android:fontFamily="@font/archivo_black"
             android:paddingTop="5dp"
@@ -60,7 +61,7 @@
             android:textSize="25dp"
             app:flow_horizontalAlign="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,25 +79,26 @@
 
         <ImageView
             android:id="@+id/img_notification"
-            android:layout_width="59dp"
+            android:layout_width="56dp"
             android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toStartOf="@+id/txt_notification"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_circle_notifications_24" />
 
         <TextView
             android:id="@+id/txt_notification"
-            android:layout_width="207dp"
+            android:layout_width="165dp"
             android:layout_height="50dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/archivo_black"
+            android:paddingTop="5dp"
             android:text="Notification"
             android:textSize="25dp"
-            android:paddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.698"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,25 +116,26 @@
 
         <ImageView
             android:id="@+id/img_contact"
-            android:layout_width="59dp"
+            android:layout_width="56dp"
             android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txt_contact"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_contact_page_24" />
 
         <TextView
             android:id="@+id/txt_contact"
-            android:layout_width="221dp"
+            android:layout_width="165dp"
             android:layout_height="50dp"
             android:fontFamily="@font/archivo_black"
+            android:paddingTop="5dp"
             android:text="Contact Us"
             android:textSize="25dp"
-            android:paddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.767"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,25 +153,26 @@
 
         <ImageView
             android:id="@+id/img_language"
-            android:layout_width="59dp"
+            android:layout_width="56dp"
             android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toStartOf="@+id/txt_language"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_contact_page_24" />
 
         <TextView
             android:id="@+id/txt_language"
-            android:layout_width="158dp"
-            android:layout_height="39dp"
+            android:layout_width="165dp"
+            android:layout_height="50dp"
             android:fontFamily="@font/archivo_black"
+            android:paddingTop="5dp"
             android:text="Language"
             android:textSize="25dp"
-            android:paddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -186,26 +190,26 @@
 
         <ImageView
             android:id="@+id/img_logOut"
-            android:layout_width="59dp"
+            android:layout_width="56dp"
             android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toStartOf="@+id/txt_LogOut"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
         <TextView
             android:id="@+id/txt_LogOut"
-            android:layout_width="188dp"
-            android:layout_height="45dp"
+            android:layout_width="165dp"
+            android:layout_height="50dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/archivo_black"
+            android:paddingTop="5dp"
             android:text="Log Out"
             android:textSize="25dp"
-            android:paddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.605"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -215,7 +219,7 @@
         android:id="@+id/txt_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="5dp"
         android:fontFamily="@font/archivo_black"
         android:text="Back"
@@ -223,7 +227,7 @@
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logOut_group_container" />
 

@@ -126,7 +126,6 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         i.putExtra("orders(my)",String.valueOf(orderCardAdapter.order_cards.get(position).getTotalOrdersForCustomerForSeller()));
         i.putExtra("return(my)",String.valueOf(orderCardAdapter.order_cards.get(position).getTotalReturnOrdersForCustomerForSeller()));
 
-
         i.putExtra("jwtToken", jwtToken);
         startActivity(i);
     }

@@ -91,7 +91,7 @@
 
     <EditText
         android:id="@+id/txt_productDescription"
-        android:layout_width="344dp"
+        android:layout_width="340dp"
         android:layout_height="153dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="11dp"
@@ -113,8 +113,8 @@
 
     <Spinner
         android:id="@+id/spinner_orderLink"
-        android:layout_width="340dp"
-        android:layout_height="50dp"
+        android:layout_width="344dp"
+        android:layout_height="54dp"
         android:layout_marginTop="11dp"
         android:paddingLeft="20dp"
         android:textColorHint="#888888"

@@ -1,6 +1,6 @@
 package com.example.deleever;
 
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -69,7 +70,6 @@ public class updateProduct extends AppCompatActivity {
             edtProductCode.setText(productCode);
             edtProductOrderLink.setText(productOrderLink);
 
-
         } else {
             Toast.makeText(this, "No product details received", Toast.LENGTH_SHORT).show();
             finish();
@@ -80,7 +80,7 @@ public class updateProduct extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProductDetails();
+                showUpdateConfirmationDialog();
             }
         });
     }
@@ -113,6 +113,25 @@ public class updateProduct extends AppCompatActivity {
                 Log.e("FetchProductCodesError", "Network error: " + t.getMessage());
             }
         });
+    }
+
+    private void showUpdateConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to update this product?")
+                .setTitle("Confirm Update");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                updateProductDetails();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void updateProductDetails() {
