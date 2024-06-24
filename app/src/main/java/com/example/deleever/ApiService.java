@@ -35,6 +35,9 @@ public interface ApiService {
     @GET("/notifications/read")
     Call<Void> getNotifications(@Header("Authorization") String authToke);
 
+    @POST("/notifications")
+    Call<Void> createNotification(@Header("Authorization") String authToken,@Body );
+
 }
 
 

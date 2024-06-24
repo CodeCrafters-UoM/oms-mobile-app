@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.Socket;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,9 +35,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.net.URISyntaxException;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
+
 
 public class Profile extends AppCompatActivity {
     private String jwtToken, userId;
@@ -59,6 +58,11 @@ public class Profile extends AppCompatActivity {
 
         jwtToken = getIntent().getStringExtra("jwtToken");
         userId = getIntent().getStringExtra("sellerid");
+
+        Intent intent = new Intent(Profile.this, SocketManager.class);
+        intent.putExtra("jwtToken", jwtToken);
+        intent.putExtra("sellerid", userId);
+        startActivity(intent);
 
         System.out.println("userrrr" + userId);
 
@@ -146,7 +150,8 @@ public class Profile extends AppCompatActivity {
 
         Intent i = new Intent(getApplicationContext(),Notification.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        displayNotification(i);
+//        i.putExtra()
+//        displayNotification(i);
 
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,i,PendingIntent.FLAG_MUTABLE);
@@ -199,6 +204,8 @@ public class Profile extends AppCompatActivity {
 
 
 class SocketManager {
+
+    String jwtToken = getInstance().jwtToken;
     private static SocketManager instance;
     private Socket socket;
     private final String TAG = "SocketManager";
@@ -246,11 +253,44 @@ class SocketManager {
             try {
                 String message = data.getString("message");
                 Log.d(TAG, "Received notification: " + message);
+
+                createNotification(message);
                 // Handle the notification as needed
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.d(TAG, "printStackTrace: " + e);
+
             }
         }
+
+        private void createNotification(String message) {
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            ApiService apiService = retrofit.create(ApiService.class);
+
+            Call<Void> call = apiService.createNotification("Bearer " + jwtToken);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Log.d(TAG, "mas "+response.body());
+                    if(response.isSuccessful()){
+                        i.putExtra("sendData",response.body().toString());//can  pass api url
+                        Toast.makeText(Profile.this,"notif  "+response.body().toString(),Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "mas "+response.body().toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+
+                }
+            });
+        }
+
+
     };
 
     public void disconnect() {
