@@ -8,6 +8,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+import org.json.JSONObject;
+import org.json.JSONException;
+
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -23,7 +29,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.Socket;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,7 +40,18 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.net.URISyntaxException;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.net.URISyntaxException;
+
+//import io.socket.client.IO;
+//import io.socket.client.Socket;
+//import io.socket.emitter.Emitter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Profile extends AppCompatActivity {
     private String jwtToken, userId;
@@ -151,7 +167,7 @@ public class Profile extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(),Notification.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        i.putExtra()
-//        displayNotification(i);
+//        SocketManager.displayNotification(i,jwtToken);
 
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,i,PendingIntent.FLAG_MUTABLE);
@@ -176,34 +192,13 @@ public class Profile extends AppCompatActivity {
     }
 
     private void displayNotification(Intent i) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiService apiService = retrofit.create(ApiService.class);
 
-        Call<Void> call = apiService.getNotifications("Bearer " + jwtToken);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d(TAG, "mas "+response.body());
-                if(response.isSuccessful()){
-                    i.putExtra("sendData",response.body().toString());//can  pass api url
-                    Toast.makeText(Profile.this,"notif  "+response.body().toString(),Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "mas "+response.body().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-
-            }
-        });
     }
 }
 
 
 class SocketManager {
+
 
     String jwtToken = getInstance().jwtToken;
     private static SocketManager instance;
@@ -224,6 +219,8 @@ class SocketManager {
         }
         return instance;
     }
+
+
 
     public void connect() {
         socket.connect();
@@ -253,8 +250,10 @@ class SocketManager {
             try {
                 String message = data.getString("message");
                 Log.d(TAG, "Received notification: " + message);
+                handleNotificationMessage(message);
 
-                createNotification(message);
+
+
                 // Handle the notification as needed
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -263,22 +262,19 @@ class SocketManager {
             }
         }
 
-        private void createNotification(String message) {
-
+        private void handleNotificationMessage(String message) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ApiService apiService = retrofit.create(ApiService.class);
 
-            Call<Void> call = apiService.createNotification("Bearer " + jwtToken);
+            Call<Void> call = apiService.getNotifications("Bearer " + jwtToken);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     Log.d(TAG, "mas "+response.body());
                     if(response.isSuccessful()){
-                        i.putExtra("sendData",response.body().toString());//can  pass api url
-                        Toast.makeText(Profile.this,"notif  "+response.body().toString(),Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "mas "+response.body().toString());
                     }
                 }
@@ -288,11 +284,42 @@ class SocketManager {
 
                 }
             });
+
+
         }
+
+//        private void createNotification(String message) {
+//
+//            Retrofit retrofit = new Retrofit.Builder()
+//                    .baseUrl(BASE_URL)
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build();
+//            ApiService apiService = retrofit.create(ApiService.class);
+//
+//            Call<Void> call = apiService.createNotification("Bearer " + jwtToken);
+//            call.enqueue(new Callback<Void>() {
+//                @Override
+//                public void onResponse(Call<Void> call, Response<Void> response) {
+//                    Log.d(TAG, "mas "+response.body());
+//                    if(response.isSuccessful()){
+//                        i.putExtra("sendData",response.body().toString());//can  pass api url
+//                        Toast.makeText(Profile.this,"notif  "+response.body().toString(),Toast.LENGTH_SHORT).show();
+//                        Log.d(TAG, "mas "+response.body().toString());
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Void> call, Throwable t) {
+//
+//                }
+//            });
+//        }
 
 
     };
+    public static void displayNotification(Intent i,String jwtToken,String message) {
 
+    }
     public void disconnect() {
         socket.disconnect();
     }
