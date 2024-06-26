@@ -60,7 +60,8 @@ public class VerifyOTP extends AppCompatActivity {
                 .build();
 
         APIservice2 apiService = retrofit.create(APIservice2.class);
-        Call<Void> call = apiService.VerifyOTP(username, OTP);
+        verifyOtpRequest reqOTP = new verifyOtpRequest(username, OTP);
+        Call<Void> call = apiService.VerifyOTP(reqOTP);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -87,7 +88,8 @@ public class VerifyOTP extends AppCompatActivity {
                 .build();
 
         APIservice2 apiService = retrofit.create(APIservice2.class);
-        Call<Void> call = apiService.sendUserName(username);
+        forgot_password.ForgotPasswordRequest reqnew = new forgot_password.ForgotPasswordRequest(username);
+        Call<Void> call = apiService.sendUserName(reqnew);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -111,5 +113,15 @@ public class VerifyOTP extends AppCompatActivity {
         intent.putExtra("username", username);
         startActivity(intent);
         finish(); // Close the current activity to prevent users from returning to it
+    }
+
+    public class verifyOtpRequest {
+        private String username;
+        private String OTP;
+
+        public verifyOtpRequest(String username, String OTP) {
+            this.username = username;
+            this.OTP = OTP;
+        }
     }
 }

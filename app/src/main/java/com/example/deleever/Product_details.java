@@ -29,8 +29,9 @@ import static com.example.deleever.constant.Constant.*;
 public class Product_details extends AppCompatActivity {
 
     private TextView txtProductCode, txtProductName, txtProductDescription, txtProductPrice, txtProductOrderLink;
-    private String jwtToken, copyLink;
+    private String jwtToken, copyLink, sellerId;
     private static final String TAG = "Product_details";
+    private Button btnRemove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +44,19 @@ public class Product_details extends AppCompatActivity {
         txtProductPrice = findViewById(R.id.txt_productPriceHint);
         txtProductOrderLink = findViewById(R.id.txt_productLinkHint);
         ImageView imgCopy = findViewById(R.id.copy_icon);
+        btnRemove = findViewById(R.id.btn_remove);
 
         Intent intent = getIntent();
         if (intent != null) {
             jwtToken = intent.getStringExtra("jwtToken");
+            sellerId = intent.getStringExtra("sellerid");
             txtProductCode.setText(intent.getStringExtra("productCode"));
             txtProductName.setText(intent.getStringExtra("productName"));
             txtProductDescription.setText(intent.getStringExtra("productDescription"));
             txtProductPrice.setText(String.valueOf(intent.getDoubleExtra("productPrice", 0.0)));
 
             fetchOrderLinks();
+            checkProductOrders(intent.getStringExtra("productCode"));
         } else {
             Toast.makeText(this, "No intent data received", Toast.LENGTH_SHORT).show();
             finish();
@@ -82,8 +86,7 @@ public class Product_details extends AppCompatActivity {
             }
         });
 
-        Button btn_remove = findViewById(R.id.btn_remove);
-        btn_remove.setOnClickListener(new View.OnClickListener() {
+        btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Product_details.this);
@@ -122,6 +125,7 @@ public class Product_details extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        System.out.println("odreevss link fetch or noooooo");
         APIservice2 apiService = retrofit.create(APIservice2.class);
         Call<List<OrderLink>> call = apiService.getAllOrderlinks("Bearer " + jwtToken);
         call.enqueue(new Callback<List<OrderLink>>() {
@@ -129,19 +133,24 @@ public class Product_details extends AppCompatActivity {
             public void onResponse(Call<List<OrderLink>> call, Response<List<OrderLink>> response) {
                 if (response.isSuccessful()) {
                     List<OrderLink> orderLinks = response.body();
-                    Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
+                    Log.d(TAG, "Response Body: hiiiiiiiiiiii " + new Gson().toJson(response.body()));
                     if (orderLinks != null) {
+                        boolean orderLinkFound = false;
                         for (OrderLink orderLink : orderLinks) {
                             if (orderLink.getProduct() != null && orderLink.getProduct().getProductCode() != null) {
                                 if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
                                     txtProductOrderLink.setText(orderLink.getName());
                                     Log.d(TAG, "Order Link set: " + txtProductOrderLink.getText());
                                     copyLink = orderLink.getLink();
+                                    orderLinkFound = true;
                                     break;
                                 }
                             } else {
                                 Log.e(TAG, "OrderLink or Product or ProductCode is null");
                             }
+                        }
+                        if (!orderLinkFound) {
+                            Log.e(TAG, "No matching order link found for product code: " + txtProductCode.getText().toString());
                         }
                     } else {
                         Log.e("FetchOrderLinksError", "Response body is null");
@@ -154,6 +163,46 @@ public class Product_details extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<OrderLink>> call, Throwable t) {
                 Log.e("FetchOrderLinksError", "Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    private void checkProductOrders(String productCode) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<List<Order_card>> call = apiService.getItems("Bearer " + jwtToken);
+        call.enqueue(new Callback<List<Order_card>>() {
+            @Override
+            public void onResponse(Call<List<Order_card>> call, Response<List<Order_card>> response) {
+                if (response.isSuccessful()) {
+                    List<Order_card> orders = response.body();
+                    boolean hasOrders = false;
+                    if (orders != null) {
+                        for (Order_card order : orders) {
+                            if (order.getProduct().getProductCode().equals(productCode)) {
+                                hasOrders = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (hasOrders) {
+                        btnRemove.setEnabled(false);
+                        Toast.makeText(Product_details.this, "Product has orders, cannot be removed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        btnRemove.setEnabled(true);
+                    }
+                } else {
+                    Log.e(TAG, "API error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Order_card>> call, Throwable t) {
+                Log.e(TAG, "Network error: " + t.getMessage());
             }
         });
     }
@@ -190,6 +239,7 @@ public class Product_details extends AppCompatActivity {
     private void navigateToProductList() {
         Intent intent = new Intent(getApplicationContext(), product_list.class);
         intent.putExtra("jwtToken", jwtToken);
+        intent.putExtra("sellerid", sellerId);
         startActivity(intent);
         finish(); // Close the current activity to prevent users from returning to it
     }
@@ -199,9 +249,9 @@ public class Product_details extends AppCompatActivity {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("Order Link", copyLink);
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(this, "Order link copied to clipboard", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Product_details.this, "Order link copied to clipboard", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "No order link to copy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Product_details.this, "No order link to copy", Toast.LENGTH_SHORT).show();
         }
     }
 }

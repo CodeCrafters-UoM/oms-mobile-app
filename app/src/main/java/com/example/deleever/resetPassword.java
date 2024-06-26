@@ -74,7 +74,8 @@ public class resetPassword extends AppCompatActivity {
                 .build();
 
         APIservice2 apiService = retrofit.create(APIservice2.class);
-        Call<Void> call = apiService.resetPassword(username, password);
+        resetPasswordRequest resetPass = new resetPasswordRequest(username, password);
+        Call<Void> call = apiService.resetPassword(resetPass);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -93,5 +94,15 @@ public class resetPassword extends AppCompatActivity {
                 t.printStackTrace(); // Log the error
             }
         });
+    }
+
+    public class resetPasswordRequest {
+        private String username;
+        private String password;
+
+        public resetPasswordRequest(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
     }
 }

@@ -14,13 +14,16 @@ import retrofit2.http.Path;
 
 public interface APIservice2 {
 
-    @POST("api/v1/login")
+    @POST("login")
     Call<LoginResponse> LogIn(
             @Body LoginRequest loginRequest
     );
 
     @GET("products")
     Call<List<Product>> getProducts(@Header("Authorization") String authToken);
+
+    @GET("orders")
+    Call<Boolean> getOrders(@Header("Authorization") String authToken);
 
     @GET("orderlinks")
     Call<List<OrderLink>> getAllOrderlinks(@Header("Authorization") String authToken);
@@ -43,11 +46,11 @@ public interface APIservice2 {
             @Path("productCode") String productCode
     );
 
-    @GET("api/v1/profile/viewprofile/{userId}") // Replace with your actual endpoint
+    @GET("profile/viewprofile/{userId}") // Replace with your actual endpoint
     Call<ProfileResponse> getProfile(@Header("Authorization") String token, @Path("userId") String userId);
 
 
-    @PUT("api/v1/profile/updateprofile/{userId}")
+    @PUT("profile/updateprofile/{userId}")
     Call<ProfileResponse> updateProfile(@Header("Authorization") String token,
                                         @Path("userId") String userId,
                                         @Body ProfileResponse profile);
@@ -62,13 +65,13 @@ public interface APIservice2 {
     Call<ContactUsRequest> sendContactUs(@Header("Authorization") String authToken, @Body ContactUsRequest request);
 
     @POST("forgotpassword")
-    Call<Void> sendUserName(@Body String username);
+    Call<Void> sendUserName(@Body forgot_password.ForgotPasswordRequest request);
 
     @POST("verifyotp")
-    Call<Void> VerifyOTP(@Field("username") String username, @Field("otp") String otp);
+    Call<Void> VerifyOTP(@Body VerifyOTP.verifyOtpRequest reqOTP);
 
     @POST("resetpassword") // Adjust to your actual endpoint
-    Call<Void> resetPassword(@Field("username") String username, @Field("password") String password);
+    Call<Void> resetPassword(@Body resetPassword.resetPasswordRequest resetPass);
 
 
 

@@ -97,6 +97,7 @@ public class Add_product extends AppCompatActivity {
         if (i != null) {
             jwtToken = i.getStringExtra("jwtToken");
             sellerId = i.getStringExtra("sellerid");
+            System.out.println("add product " + sellerId);
         } else {
             Toast.makeText(this, "No JWT token received", Toast.LENGTH_SHORT).show();
             finish();
