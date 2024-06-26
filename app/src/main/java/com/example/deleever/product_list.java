@@ -146,6 +146,7 @@ public class product_list extends AppCompatActivity {
                         intent.putExtra("productDescription", selectedProduct.getDescription());
                         intent.putExtra("productPrice", selectedProduct.getPrice());
                         intent.putExtra("jwtToken", jwtToken);
+                        intent.putExtra("sellerid", sellerId);
                         startActivity(intent);
 
                         System.out.println("ppppppp" + selectedProduct.getProductCode());
