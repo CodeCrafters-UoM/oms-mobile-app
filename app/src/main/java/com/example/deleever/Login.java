@@ -18,14 +18,13 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.SQLOutput;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.deleever.constant.Constant.*;
+
 
 public class Login extends AppCompatActivity {
 
@@ -36,7 +35,7 @@ public class Login extends AppCompatActivity {
 
     private EditText txt_userName;
     private EditText txt_passWord;
-    private TextView txt_showPassword,txt_registerHere;
+    private TextView txt_showPassword;
     private boolean isPasswordVisible = false;
 
     @Override
@@ -48,23 +47,21 @@ public class Login extends AppCompatActivity {
         txt_userName = findViewById(R.id.txt_userName);
         txt_passWord = findViewById(R.id.txt_passWord);
         txt_showPassword = findViewById(R.id.txt_showPassword);
-        txt_registerHere =  findViewById(R.id.txt_registerHere);
-
-
-        txt_registerHere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent register = new Intent(Login.this, Signup.class);
-                startActivity(register);
-            }
-        });
-
 
         // Create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        TextView txt_forgot = findViewById(R.id.txt_forgetPassword);
+        txt_forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), forgot_password.class);
+                startActivity(intent);
+            }
+        });
 
         // Create ApiService instance
         APIservice2 apiService = retrofit.create(APIservice2.class);
@@ -97,12 +94,21 @@ public class Login extends AppCompatActivity {
                                 String receivedToken = loginResponse.getToken();
                                 User user = loginResponse.getUser();
 
-
-                                // Store the token and seller ID
+                                // Display user information (you can update TextViews or any UI element accordingly)
+//                                if (user != null) {
+//                                    Log.e("User", "ID: " + user.getId());
+//                                    Log.e("User", "Username: " + user.getUsername());
+//                                    Log.e("User", "Role: " + user.getRole());
+//                                    Log.e("User", "Email: " + user.getEmail());
+//                                    Log.e("User", "Image: " + user.getImage());
+//                                    // Update UI elements with user information if needed
+//                                }
+//
+//                                // Store the token and seller ID
                                 storeToken(receivedToken);
                                 storeSellerId(user.getId());
 
-                                // Navigate to Home_page activity
+                                // Navigate to MainActivity activity
                                 navigateToHomePage();
                             }
                         } else {
@@ -123,18 +129,16 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
-
         // Set onClickListener for Forget Password TextView
-        TextView txt_forgetPassword = findViewById(R.id.txt_forgetPassword);
-        txt_forgetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to ForgotPassword activity
-                Intent intent = new Intent(Login.this, forgot_password.class);
-                startActivity(intent);
-            }
-        });
+//        TextView txt_forgetPassword = findViewById(R.id.txt_forgetPassword);
+//        txt_forgetPassword.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Navigate to ForgotPassword activity
+//                Intent intent = new Intent(Login.this, ForgotPassword.class);
+//                startActivity(intent);
+//            }
+//        });
 
         // Set onClickListener for Show/Hide Password TextView
         txt_showPassword.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +183,7 @@ public class Login extends AppCompatActivity {
 
 
     private void navigateToHomePage() {
-        // Pass token to Home_page activity
+        // Pass token to MainActivity activity
         Intent intent = new Intent(Login.this, MainActivity.class);
         String token = retrieveToken();
         String sellerId = retrieveSellerId();
@@ -187,7 +191,7 @@ public class Login extends AppCompatActivity {
         intent.putExtra("sellerid", sellerId);
         System.out.println("seler id  " + sellerId);
         startActivity(intent);
-        finish(); // Finish MainActivity to prevent going back
+        finish(); // Finish Login to prevent going back
     }
 }
 

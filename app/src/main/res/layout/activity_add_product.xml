@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Login">
 
     <!--    ADD PRODUCT-->
 
@@ -38,22 +38,23 @@
         android:id="@+id/txt_addProduct"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="@font/archivo_black"
         android:text="Add Product"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include" />
+
 
     <EditText
         android:id="@+id/txt_productName"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -64,16 +65,36 @@
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_productCode" />
 
     <EditText
+        android:id="@+id/txt_productPrice"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+        android:hint="Product Price"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productName" />
+
+    <EditText
         android:id="@+id/txt_productDescription"
-        android:layout_width="344dp"
+        android:layout_width="340dp"
         android:layout_height="153dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -85,10 +106,22 @@
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productName" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_productPrice" />
 
+
+    <Spinner
+        android:id="@+id/spinner_orderLink"
+        android:layout_width="344dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="11dp"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription" />
 
 
     <Button
@@ -96,7 +129,7 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_btn"
         android:backgroundTint="#006756"
@@ -104,15 +137,15 @@
         android:text="SAVE"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_orderLink" />
 
     <TextView
         android:id="@+id/txt_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="640dp"
+        android:layout_marginTop="628dp"
         android:layout_marginEnd="5dp"
         android:fontFamily="@font/archivo_black"
         android:text="Back"
@@ -120,7 +153,7 @@
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include" />
 </androidx.constraintlayout.widget.ConstraintLayout>

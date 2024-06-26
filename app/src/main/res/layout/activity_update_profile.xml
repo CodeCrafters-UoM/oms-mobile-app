@@ -4,175 +4,216 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".updateProduct">
+    tools:context=".updateProfile">
 
     <include
         android:id="@+id/include"
         layout="@layout/common_layout"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="13dp" />
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/txt_productDetails"
+        android:id="@+id/txt_myProfile"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="75dp"
         android:fontFamily="@font/archivo_black"
-        android:text="Product Details"
+        android:text="Update Profile"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include" />
 
+
+    <!-- Email Field -->
+
     <TextView
-        android:id="@+id/txt_productCode"
+        android:id="@+id/txt_name"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Product Code"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:text="Name"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productDetails" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_myProfile" />
 
     <EditText
-        android:id="@+id/edt_product_code"
+        android:id="@+id/txt_nameHint"
         android:layout_width="320dp"
         android:layout_height="30dp"
         android:background="@drawable/edit_background"
         android:ems="10"
-        android:fontFamily="@font/archivo_black"
+        android:fontFamily="sans-serif"
         android:paddingLeft="20dp"
         android:textColorHint="#888888"
         android:textSize="20dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productCode" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
     <TextView
-        android:id="@+id/txt_productName"
+        android:id="@+id/txt_email"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Product Name"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:text="Email"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_product_code" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_nameHint" />
 
     <EditText
-        android:id="@+id/edt_product_name"
-        android:layout_width="320dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="232dp"
-        android:background="@drawable/edit_background"
-        android:ems="10"
-        android:fontFamily="@font/archivo_black"
-        android:paddingLeft="15dp"
-        android:textColorHint="#888888"
-        android:textSize="20dp"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
-
-    <TextView
-        android:id="@+id/txt_productPrice"
-        android:layout_width="320dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Product Price"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_product_name" />
-
-    <EditText
-        android:id="@+id/edt_product_price"
+        android:id="@+id/txt_emailHint"
         android:layout_width="320dp"
         android:layout_height="30dp"
         android:background="@drawable/edit_background"
         android:ems="10"
-        android:fontFamily="@font/archivo_black"
-        android:paddingLeft="15dp"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
         android:textColorHint="#888888"
         android:textSize="20dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
+    <!-- Username Field -->
     <TextView
-        android:id="@+id/txt_productDescription"
+        android:id="@+id/txt_username"
         android:layout_width="320dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Product Description"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:text="Username"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_product_price" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_emailHint" />
 
     <EditText
-        android:id="@+id/edt_product_description"
-        android:layout_width="320dp"
-        android:layout_height="89dp"
-        android:background="@drawable/edit_background"
-        android:ems="10"
-        android:fontFamily="@font/archivo_black"
-        android:paddingLeft="10dp"
-        android:textColorHint="#888888"
-        android:textSize="20dp"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productDescription" />
-
-    <TextView
-        android:id="@+id/txt_productLink"
-        android:layout_width="320dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="Order Link"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_product_description" />
-
-    <EditText
-        android:id="@+id/txt_productLinkHint"
+        android:id="@+id/txt_usernameHint"
         android:layout_width="320dp"
         android:layout_height="30dp"
         android:background="@drawable/edit_background"
         android:ems="10"
-        android:paddingLeft="10dp"
-        android:fontFamily="@font/archivo_black"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
         android:textColorHint="#888888"
-        android:textSize="15dp"
+        android:textSize="20dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productLink" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_username" />
+
+    <!-- Role Field -->
+    <TextView
+        android:id="@+id/txt_role"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:text="Role"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_usernameHint" />
+
+    <EditText
+        android:id="@+id/txt_roleHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_role" />
+
+    <!-- Contact Number Field -->
+    <TextView
+        android:id="@+id/txt_contact_number"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:text="Contact Number"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_roleHint" />
+
+    <EditText
+        android:id="@+id/txt_contact_numberHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_contact_number" />
+
+    <!-- Business Name Field -->
+
+    <EditText
+        android:id="@+id/txt_business_nameHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_business_name" />
+
+    <TextView
+        android:id="@+id/txt_business_name"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
+        android:text="Business Name"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_contact_numberHint" />
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="85dp"
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_btn"
         android:backgroundTint="#006756"
@@ -180,24 +221,23 @@
         android:text="Save"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_business_nameHint" />
 
     <TextView
         android:id="@+id/txt_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/archivo_black"
         android:text="Back"
         android:textColor="#006756"
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintHorizontal_bias="0.878"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_productLinkHint" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txt_business_nameHint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

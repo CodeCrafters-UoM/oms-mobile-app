@@ -74,9 +74,12 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
             public void onResponse(Call<List<Order_card>> call, Response<List<Order_card>> response) {
                 if (response.isSuccessful()) {
                     List<Order_card> order_cards = response.body();
-                    if (order_cards != null) {
+                    Log.d(TAG, "Order list response.body() "+response.body());
+
+                    if (order_cards != null && !order_cards.isEmpty()) {//check order_cards object is not null or list is not empty
                         orderCards = order_cards; // Update the orderCards list
                         orderCardAdapter.setItems(orderCards);
+                        Log.d(TAG, "Order list orderCards"+orderCards);
                     } else {
                         Log.d(TAG, "Order list is empty");
                         Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
@@ -121,11 +124,10 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         i.putExtra("contact", orderCardAdapter.order_cards.get(position).getCustomer().getContactNumber());
         i.putExtra("paymentMethod", orderCardAdapter.order_cards.get(position).getPaymentMethod());
         i.putExtra("price", String.valueOf(orderCardAdapter.order_cards.get(position).getProduct().getPrice()));
-        i.putExtra("orders(All)",orderCardAdapter.order_cards.get(position).getTotalOrdersForCustomer());
-        i.putExtra("return(All)",orderCardAdapter.order_cards.get(position).getTotalReturnOrdersForCustomer());
-        i.putExtra("orders(my)",orderCardAdapter.order_cards.get(position).getTotalOrdersForCustomerForSeller());
-        i.putExtra("return(my)",orderCardAdapter.order_cards.get(position).getTotalReturnOrdersForCustomerForSeller());
-
+        i.putExtra("orders(All)",String.valueOf(orderCardAdapter.order_cards.get(position).getTotalOrdersForCustomer()));
+        i.putExtra("return(All)",String.valueOf(orderCardAdapter.order_cards.get(position).getTotalReturnOrdersForCustomer()));
+        i.putExtra("orders(my)",String.valueOf(orderCardAdapter.order_cards.get(position).getTotalOrdersForCustomerForSeller()));
+        i.putExtra("return(my)",String.valueOf(orderCardAdapter.order_cards.get(position).getTotalReturnOrdersForCustomerForSeller()));
 
         i.putExtra("jwtToken", jwtToken);
         startActivity(i);
@@ -142,5 +144,5 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
             }
         }
         orderCardAdapter.filterList(filteredList);
-    }
+}
 }

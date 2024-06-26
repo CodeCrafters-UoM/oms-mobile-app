@@ -35,7 +35,7 @@
             android:layout_marginEnd="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bars_solid" />
+            app:srcCompat="@drawable/baseline_density_medium_24" />
         </LinearLayout>
 
     <Button
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="#006756"
-        android:drawableTop="@drawable/file_lines_solid"
+        android:drawableTop="@drawable/orders"
         android:paddingTop="20dp"
         android:text="Orders"
         android:textSize="20dp" />
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/white"
-        android:drawableTop="@drawable/file_lines_solid"
+        android:drawableTop="@drawable/product"
         android:paddingTop="20dp"
         android:text="Products"
         android:textSize="20dp" />
@@ -64,7 +64,7 @@
         android:paddingTop="20dp"
         android:id="@+id/btn_home_order_links"
         android:layout_width="match_parent"
-        android:drawableTop="@drawable/file_lines_solid"
+        android:drawableTop="@drawable/link"
         android:text="Order Links"
         android:layout_weight="1"
         android:textSize="20dp"
@@ -76,7 +76,7 @@
         android:paddingTop="20dp"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:drawableTop="@drawable/file_lines_solid"
+        android:drawableTop="@drawable/report"
         android:text="Reports"
         android:layout_weight="1"
         android:textSize="20dp"

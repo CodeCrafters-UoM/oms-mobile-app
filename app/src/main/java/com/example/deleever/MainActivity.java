@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent clicked_product_btn = new Intent(getApplicationContext(), product_list.class);
+                clicked_product_btn.putExtra("jwtToken", jwtToken);
+                clicked_product_btn.putExtra("sellerid", sellerId);
                 startActivity(clicked_product_btn);
             }
         });
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent clicked_report_btn = new Intent(getApplicationContext(), Report.class);
                 clicked_report_btn.putExtra("jwtToken",jwtToken);
                 clicked_report_btn.putExtra("sellerid",sellerId);
+                System.out.println("hiiii" + sellerId);
                 startActivity(clicked_report_btn);
             }
         });
@@ -90,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("sellerid", sellerId);
+                System.out.println("sellerrrrrrrr" + sellerId);
                 startActivity(intent);
             }
         });

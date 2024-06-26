@@ -70,12 +70,12 @@ public class DisplayOrderLinks extends AppCompatActivity {
             public void onResponse(Call<List<OrderLinkModel>> call, Response<List<OrderLinkModel>> response) {
                 if (response.isSuccessful()){
                     List<OrderLinkModel> orderLinks =response.body();
-                    if(orderLinks!=null){
+                    if(orderLinks!=null && !orderLinks.isEmpty()){
                         orderLinksAdapter.setItems(orderLinks);
                         Log.d(TAG, "Items received: " + orderLinks.size());
                     } else {
                         Log.d(TAG, "Response body is null");
-                        Toast.makeText(DisplayOrderLinks.this, "Order list is empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DisplayOrderLinks.this, "Order links list is empty", Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Log.d(TAG, "Response unsuccessful. Code: " + response.code());
@@ -143,7 +143,7 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
             public void onClick(View v) {
                 try {
                     String productCode = orderLinkModel.getProduct().getProductCode();
-                    Toast.makeText(context,name +"Can't delete the link because product is assigned",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"product is assigned",Toast.LENGTH_SHORT).show();
                 }catch(NullPointerException e){
                     confirmation(orderLinkModel,name);
 
@@ -184,9 +184,9 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
             ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clipData = ClipData.newPlainText("Copy",linkValue);;
             clipboardManager.setPrimaryClip(clipData);
-            Toast.makeText(context,name +"copied",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,name +" copied",Toast.LENGTH_SHORT).show();
         }catch (NullPointerException e){
-            Toast.makeText(context,"cant copy.because product is not assign",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"product is not assigned",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -209,7 +209,7 @@ class OrderLinksAdapter extends RecyclerView.Adapter<OrderLinksAdapter.OrderLink
                         orderLinks.remove(position);
                         notifyItemRemoved(position);
                     }
-                    Toast.makeText(context, name + "link delete successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, name + " link delete successfully", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "mas "+response.message());
                     Log.d(TAG, "mas "+response.body());
 
@@ -312,8 +312,7 @@ class OrderLinkModel{
 
         public void setProductCode(String productCode) {
             this.productCode = productCode;
-        }
+  }
 
-    }
 }
-
+}

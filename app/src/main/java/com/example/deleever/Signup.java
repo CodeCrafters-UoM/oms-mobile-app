@@ -227,10 +227,13 @@ package com.example.deleever;
 
 
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
@@ -248,17 +251,17 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 import static com.example.deleever.constant.Constant.*;
 
+import java.time.LocalDateTime;
+
 public class Signup extends AppCompatActivity {
 
 
 
-    private EditText signup_name;
-    private EditText signup_business_name;
-    private EditText signup_email;
-    private EditText signup_phone_num;
-    private EditText signup_password;
-    private EditText signup_username;
+    private EditText signup_name,signup_business_name,signup_email,signup_phone_num,signup_password,signup_username,signup_cnfrmpw;
     private Button signup_register_btn;
+
+    String signup_name_validation,signup_business_name_validation,signup_email_validation,signup_phone_num_validation,
+            signup_password_validation,signup_cnfrmpw_validation,signup_username_validation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -277,20 +280,22 @@ public class Signup extends AppCompatActivity {
         signup_phone_num = findViewById(R.id.signup_phone_num);
         signup_username = findViewById(R.id.signup_username);
         signup_password = findViewById(R.id.signup_password);
+        signup_cnfrmpw = findViewById(R.id.signup_cnfrmpw);
 
         // Create ApiService instance
 
         signup_register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String signup_name_validation = signup_name.getText().toString();
-                String signup_business_name_validation = signup_business_name.getText().toString();
-                String signup_email_validation = signup_email.getText().toString();
-                String signup_phone_num_validation = signup_phone_num.getText().toString();
-                String signup_password_validation = signup_password.getText().toString();
-                String signup_username_validation = signup_username.getText().toString();
+                signup_name_validation = signup_name.getText().toString();
+                signup_business_name_validation = signup_business_name.getText().toString();
+                signup_email_validation = signup_email.getText().toString();
+                signup_phone_num_validation = signup_phone_num.getText().toString();
+                signup_password_validation = signup_password.getText().toString();
+                signup_username_validation = signup_username.getText().toString();
+                signup_cnfrmpw_validation = signup_cnfrmpw.getText().toString();
 
-                DataModal dataModal = new DataModal(signup_username_validation, signup_password_validation, signup_email_validation, signup_name_validation, signup_business_name_validation, signup_phone_num_validation);
+                DataModal dataModal = new DataModal(signup_username_validation, signup_cnfrmpw_validation, signup_email_validation, signup_name_validation, signup_business_name_validation, signup_phone_num_validation);
 
                 if (signup_name_validation.isEmpty()) {
                     Toast.makeText(Signup.this, "Enter your name", Toast.LENGTH_SHORT).show();
@@ -302,65 +307,79 @@ public class Signup extends AppCompatActivity {
                 }
                 if (signup_email_validation.isEmpty() || !(Patterns.EMAIL_ADDRESS.matcher(signup_email_validation).matches())) {
                     Toast.makeText(Signup.this, "Enter valid email", Toast.LENGTH_SHORT).show();
+                    signup_email.setText("");
                     return;
                 }
                 if (signup_phone_num_validation.isEmpty() || (signup_phone_num_validation.length() != 10)) {
                     Toast.makeText(Signup.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (signup_password_validation.isEmpty()) {
-                    Toast.makeText(Signup.this, "Enter your password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(signup_password_validation.length() <8){
-                    Toast.makeText(Signup.this, "Enter minimum 8 characters for your password", Toast.LENGTH_SHORT).show();
+                    signup_phone_num.setText("");
                     return;
                 }
                 if (signup_username_validation.isEmpty()) {
                     Toast.makeText(Signup.this, "Enter your username", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                if (signup_password_validation.isEmpty()) {
+                    Toast.makeText(Signup.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!(signup_password_validation.length()>=8 && signup_password_validation.length()<=12) ){
+                    Toast.makeText(Signup.this, "Enter characters between 8-12  for your password", Toast.LENGTH_SHORT).show();
+                    signup_password.setText("");
+                    return;
+                }
+                if((!signup_cnfrmpw_validation.equals(signup_password_validation)) ){
+                    Toast.makeText(Signup.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                    signup_cnfrmpw.setText("");
+                    return;
+                }
                 sendSignupDetails(dataModal);
             }
 
             private void sendSignupDetails(DataModal dataModal) {
-                    ApiService apiService = retrofit.create(ApiService.class);
+                ApiService apiService = retrofit.create(ApiService.class);
 
 
-                    Call<RegisterResponse> call = apiService.createPost(dataModal);
+                Call<RegisterResponse> call = apiService.createPost(dataModal);
 
-                    call.enqueue(new Callback<RegisterResponse>() {
-                        @Override
-                        public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                            if (response.isSuccessful() && response.body() != null) {
-                                RegisterResponse responseFromAPI = response.body();
-                                if (responseFromAPI.userId != null) {
-                                    Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                    clearFields();
-                                    Intent loginIntent = new Intent(Signup.this, Login.class);
-                                    startActivity(loginIntent);
-                                    // Finish the SignUp activity so that the user cannot navigate back to it
-                                    finish();
-                                } else {
-                                    Toast.makeText(Signup.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            else {
-                                try {
-                                    String errorBody = response.errorBody().string();
-                                    Toast.makeText(Signup.this, "Registration failed :"+errorBody, Toast.LENGTH_SHORT).show();
-                                } catch (Exception e) {
-                                    Toast.makeText(Signup.this, "Registration failed with unknown error", Toast.LENGTH_SHORT).show();
-                                }
+                call.enqueue(new Callback<RegisterResponse>() {
+                    @Override
+                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            RegisterResponse responseFromAPI = response.body();
+                            Log.d(TAG, "id "+responseFromAPI.userId);
+                            Log.d(TAG, "Registration successful" + response.body());
+
+                            if (responseFromAPI.userId != null) {
+                                Log.d(TAG, "id "+responseFromAPI.userId);
+                                Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                clearFields();
+                                Log.d(TAG, "Registration successful" + response.body());
+                                Intent loginIntent = new Intent(Signup.this, Login.class);
+                                startActivity(loginIntent);
+                                // Finish the SignUp activity so that the user cannot navigate back to it
+                                finish();
+                            } else {
+                                System.out.println("Registration failed" + response.body());
+                                clearFields();
+                                Toast.makeText(Signup.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-                        @Override
-                        public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                            Toast.makeText(Signup.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        else {
+                            try {
+                                String errorBody = response.errorBody().string();
+                                Toast.makeText(Signup.this, "Registration failed :"+errorBody, Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                Toast.makeText(Signup.this, "Registration failed with unknown error", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    });
+                    }
+
+                    @Override
+                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                        Toast.makeText(Signup.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
         });
@@ -405,6 +424,7 @@ public class Signup extends AppCompatActivity {
         signup_password.setText("");
         signup_business_name.setText("");
         signup_username.setText("");
+        signup_cnfrmpw.setText("");
     }
 
     class DataModal {
@@ -464,6 +484,6 @@ public class Signup extends AppCompatActivity {
 
         @SerializedName("error")
         public String error;
-}
+    }
 
 }

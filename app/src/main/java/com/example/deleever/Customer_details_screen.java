@@ -22,23 +22,23 @@ public class Customer_details_screen extends AppCompatActivity {
         setContentView(R.layout.activity_customer_details_screen);
         jwtToken = getIntent().getStringExtra("jwtToken");
         TextView ordersAll,returnOrdersAll,ordersMy,returnOrdersMy,customer_details_screen_name_data,customer_details_address_data,customer_details_contact_data,customer_details_to_home;
-        int orders_All,return_orders_All,orders_My,return_orders_My;
+        String orders_All,return_orders_All,orders_My,return_orders_My;
         String customer_name_data,customer_address_data,customer_contact_data;
 
-        orders_All =getIntent().getIntExtra("orders(All)",0);
+        orders_All =getIntent().getStringExtra("orders(All)");
         ordersAll = findViewById(R.id.orders_All);
         ordersAll.setText(String.valueOf(orders_All));
 
-        return_orders_All = getIntent().getIntExtra("returns(All)",0);
+        return_orders_All = getIntent().getStringExtra("return(All)");
         returnOrdersAll = findViewById(R.id.return_orders_All);
         returnOrdersAll.setText(String.valueOf(return_orders_All));
-        Log.d(TAG, "999return_orders_All: " + return_orders_All);
+        Log.d(TAG, "return_orders_All: " + return_orders_All);
 
-        orders_My = getIntent().getIntExtra("orders(my)",0);
+        orders_My = getIntent().getStringExtra("orders(my)");
         ordersMy = findViewById(R.id.orders_My);
         ordersMy.setText(String.valueOf(orders_My));
 
-        return_orders_My = getIntent().getIntExtra("return(my)",0);
+        return_orders_My = getIntent().getStringExtra("return(my)");
         returnOrdersMy = findViewById(R.id.return_orders_My);
         returnOrdersMy.setText(String.valueOf(return_orders_My));
 

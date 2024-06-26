@@ -9,8 +9,9 @@
     <include
         android:id="@+id/include"
         layout="@layout/common_layout"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="42dp" />
+
 
     <TextView
         android:id="@+id/txt_contactUs"
@@ -23,10 +24,9 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include" />
-
 
     <TextView
         android:id="@+id/txt_yourName"
@@ -35,18 +35,18 @@
         android:layout_marginTop="144dp"
         android:fontFamily="@font/archivo_black"
         android:text="Your Name:"
-        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/txt_yourNameField"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="148dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -56,9 +56,9 @@
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_yourName" />
 
 
     <TextView
@@ -68,19 +68,17 @@
         android:layout_marginTop="236dp"
         android:fontFamily="@font/archivo_black"
         android:text="Business Name:"
-        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/txt_businessNameField"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="240dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -90,9 +88,9 @@
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_businessName" />
 
     <TextView
         android:id="@+id/txt_contactNumber"
@@ -101,9 +99,9 @@
         android:layout_marginTop="332dp"
         android:fontFamily="@font/archivo_black"
         android:text="Contact Number:"
-        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,7 +110,6 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="336dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -122,9 +119,10 @@
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_contactNumber" />
+
 
     <TextView
         android:id="@+id/txt_message"
@@ -133,19 +131,17 @@
         android:layout_marginTop="432dp"
         android:fontFamily="@font/archivo_black"
         android:text="Message:"
-        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/txt_messageField"
         android:layout_width="340dp"
         android:layout_height="141dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="436dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_background"
         android:ems="10"
@@ -155,9 +151,9 @@
         android:textColorHint="#888888"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_message" />
 
     <Button
         android:id="@+id/btn_submit"

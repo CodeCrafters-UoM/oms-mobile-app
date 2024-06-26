@@ -173,15 +173,16 @@
             tools:layout_editor_absoluteY="545dp" />
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/custmer_details_to_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="267dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/home_btn_color"
         android:text="Back"
+        android:textColor="@color/custome_green"
+        android:textStyle="bold"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
