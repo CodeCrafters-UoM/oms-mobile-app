@@ -76,7 +76,7 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDown.setAdapter(adapter);
 }
-    }
+
     private String[] updateCurrentStatus(String currentStatus,String[] order_status) {
         order_status[0] = currentStatus;
         int y = findCurrentStatus(order_status, currentStatus);
@@ -147,14 +147,14 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
                 intent.putExtra("address", getIntent().getStringExtra("address"));
                 intent.putExtra("contact", getIntent().getStringExtra("contact"));
                 intent.putExtra("jwtToken", jwtToken);
-                intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
-                intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
-                intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
-                intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
+                intent.putExtra("orders(All)", getIntent().getStringExtra("orders(All)"));
+                intent.putExtra("orders(my)", getIntent().getStringExtra("orders(my)"));
+                intent.putExtra("return(my)", getIntent().getStringExtra("return(my)"));
+                intent.putExtra("return(All)", getIntent().getStringExtra("return(All)"));
                 startActivity(intent);
             }
         });
-
+    }
 
     private void fetchOrderDetails(int orderId,Intent intent) {
         Retrofit retrofit = new Retrofit.Builder()

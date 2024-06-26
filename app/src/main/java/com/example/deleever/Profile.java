@@ -362,6 +362,7 @@ import androidx.core.content.ContextCompat;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -380,16 +381,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.deleever.Login;
-import com.example.deleever.MainActivity;
-import static com.example.deleever.constant.Constant.*;
-import java.net.URISyntaxException;
 
+import java.net.URISyntaxException;
 public class Profile extends AppCompatActivity implements SocketManager.NotificationListener {
     private String jwtToken, userId, message;
     private SocketManager socketManager;
-
-    private String jwtToken, userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -417,7 +413,7 @@ public class Profile extends AppCompatActivity implements SocketManager.Notifica
                 Intent i = new Intent(getApplicationContext(), Notification.class);
 //        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        i.putExtra("sendData", message);
-//        i.putExtra("jwtToken",jwtToken);
+        i.putExtra("jwtToken",jwtToken);
                 System.out.println("  makeNotification  "+message  );
                 startActivity(i);
             }

@@ -33,7 +33,7 @@ public interface ApiService {
     Call<Void> deleteOrderLink(@Header("Authorization") String authToken, @Path("id") String id);
 
     @GET("notifications")
-    Call<List<NotificationCard>> getNotifications(@Path("userId") int userId);
+    Call<List<NotificationCard>> getNotifications(@Header("Authorization") String authToken);
 }
 
 

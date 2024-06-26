@@ -20,7 +20,7 @@
             android:name=".Signup"
             android:exported="false" />
         <activity
-            android:name=".Notification">
+            android:name=".Notification"
             android:exported="false" />
         <activity
             android:name=".resetPassword"
