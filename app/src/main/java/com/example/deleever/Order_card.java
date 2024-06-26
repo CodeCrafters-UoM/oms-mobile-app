@@ -27,6 +27,55 @@ public class Order_card {
     int totalReturnOrdersForCustomer;
     @SerializedName("totalReturnOrdersForCustomerForSeller")
     int totalReturnOrdersForCustomerForSeller;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getTotalOrdersForCustomer() {
+        return totalOrdersForCustomer;
+    }
+
+    public void setTotalOrdersForCustomer(int totalOrdersForCustomer) {
+        this.totalOrdersForCustomer = totalOrdersForCustomer;
+    }
+
+    public int getTotalOrdersForCustomerForSeller() {
+        return totalOrdersForCustomerForSeller;
+    }
+
+    public void setTotalOrdersForCustomerForSeller(int totalOrdersForCustomerForSeller) {
+        this.totalOrdersForCustomerForSeller = totalOrdersForCustomerForSeller;
+    }
+
+    public int getTotalReturnOrdersForCustomer() {
+        return totalReturnOrdersForCustomer;
+    }
+
+    public void setTotalReturnOrdersForCustomer(int totalReturnOrdersForCustomer) {
+        this.totalReturnOrdersForCustomer = totalReturnOrdersForCustomer;
+    }
+
+    public int getTotalReturnOrdersForCustomerForSeller() {
+        return totalReturnOrdersForCustomerForSeller;
+    }
+
+    public void setTotalReturnOrdersForCustomerForSeller(int totalReturnOrdersForCustomerForSeller) {
+        this.totalReturnOrdersForCustomerForSeller = totalReturnOrdersForCustomerForSeller;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @SerializedName("createdAt")
     private String dateAndTime;
 
@@ -95,53 +144,15 @@ public class Order_card {
         this.orderId = orderId;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
-    public int getTotalOrdersForCustomer() {
-        return totalOrdersForCustomer;
-    }
 
-    public void setTotalOrdersForCustomer(int totalOrdersForCustomer) {
-        this.totalOrdersForCustomer = totalOrdersForCustomer;
-    }
 
-    public int getTotalOrdersForCustomerForSeller() {
-        return totalOrdersForCustomerForSeller;
-    }
 
-    public void setTotalOrdersForCustomerForSeller(int totalOrdersForCustomerForSeller) {
-        this.totalOrdersForCustomerForSeller = totalOrdersForCustomerForSeller;
-    }
 
-    public int getTotalReturnOrdersForCustomer() {
-        return totalReturnOrdersForCustomer;
-    }
 
-    public void setTotalReturnOrdersForCustomer(int totalReturnOrdersForCustomer) {
-        this.totalReturnOrdersForCustomer = totalReturnOrdersForCustomer;
-    }
 
-    public int getTotalReturnOrdersForCustomerForSeller() {
-        return totalReturnOrdersForCustomerForSeller;
-    }
 
-    public void setTotalReturnOrdersForCustomerForSeller(int totalReturnOrdersForCustomerForSeller) {
-        this.totalReturnOrdersForCustomerForSeller = totalReturnOrdersForCustomerForSeller;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     // Method to extract the date part from the dateAndTime string
     public String SeparatedateString(String dateAndTime) {
