@@ -227,10 +227,13 @@ package com.example.deleever;
 
 
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
@@ -247,6 +250,8 @@ import com.google.gson.annotations.SerializedName;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import static com.example.deleever.constant.Constant.*;
+
+import java.time.LocalDateTime;
 
 public class Signup extends AppCompatActivity {
 
@@ -342,14 +347,21 @@ public class Signup extends AppCompatActivity {
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             RegisterResponse responseFromAPI = response.body();
+                            Log.d(TAG, "id "+responseFromAPI.userId);
+                            Log.d(TAG, "Registration successful" + response.body());
+
                             if (responseFromAPI.userId != null) {
+                                Log.d(TAG, "id "+responseFromAPI.userId);
                                 Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
                                 clearFields();
+                                Log.d(TAG, "Registration successful" + response.body());
                                 Intent loginIntent = new Intent(Signup.this, Login.class);
                                 startActivity(loginIntent);
                                 // Finish the SignUp activity so that the user cannot navigate back to it
                                 finish();
                             } else {
+                                System.out.println("Registration failed" + response.body());
+                                clearFields();
                                 Toast.makeText(Signup.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }
                         }

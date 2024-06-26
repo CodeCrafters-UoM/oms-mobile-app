@@ -23,7 +23,7 @@ public interface ApiService {
     @GET("reports")
     Call<ReportCard> getReportDetails(@Header("Authorization") String token);
 
-    @POST("api/v1/register")
+    @POST("register")
     Call<Signup.RegisterResponse> createPost(@Body Signup.DataModal dataModal);
 
     @PUT("orders")
