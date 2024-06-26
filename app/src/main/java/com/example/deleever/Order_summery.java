@@ -75,10 +75,8 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDown.setAdapter(adapter);
-
-
+}
     }
-
     private String[] updateCurrentStatus(String currentStatus,String[] order_status) {
         order_status[0] = currentStatus;
         int y = findCurrentStatus(order_status, currentStatus);
@@ -87,6 +85,7 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public int findCurrentStatus(String[] order_status ,String currentStatus){
+
         for(int i=1;i<order_status.length;i++){
             if(currentStatus.equals(order_status[i])){
                 return i;
@@ -152,14 +151,10 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
                 intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
                 intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
                 intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
-//
-
                 startActivity(intent);
             }
         });
 
-
-    }
 
     private void fetchOrderDetails(int orderId,Intent intent) {
         Retrofit retrofit = new Retrofit.Builder()

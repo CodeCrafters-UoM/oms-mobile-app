@@ -79,11 +79,11 @@
 
         <ImageView
             android:id="@+id/img_notification"
-            android:layout_width="56dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toStartOf="@+id/txt_notification"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_circle_notifications_24" />
@@ -200,7 +200,7 @@
             app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
         <TextView
-            android:id="@+id/txt_LogOut"
+            android:id="@+id/txt_LogOut"         
             android:layout_width="165dp"
             android:layout_height="50dp"
             android:layout_marginTop="4dp"
