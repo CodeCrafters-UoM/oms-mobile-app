@@ -9,24 +9,37 @@
     tools:context=".SplashScreen">
 
     <!--on below line we are adding an image view-->
-    <ImageView
-        android:id="@+id/idIVLogo"
+
+    <!--on below line we are creating progress bar-->
+
+
+
+    <TextView
+        android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:src="@drawable/logo"
-        />
+        android:layout_centerHorizontal="true"
+        android:text="Deleever"
+        android:textColor="@color/custome_green"
+        android:textSize="50dp" />
 
-    <!--on below line we are creating progress bar-->
+    <TextView
+        android:id="@+id/appSubName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appName"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:text="One step ahead"
+        android:textColor="@color/custome_green"
+        android:textSize="35dp" />
+
     <ProgressBar
         android:id="@+id/idPBLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idIVLogo"
+        android:layout_below="@id/appSubName"
         android:layout_centerInParent="true"
         android:indeterminateTint="@color/custome_green" />
 

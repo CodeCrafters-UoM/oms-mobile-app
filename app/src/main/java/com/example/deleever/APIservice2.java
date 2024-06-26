@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 
 public interface APIservice2 {
 
-    @POST("api/v1/login")
+    @POST("login")
     Call<LoginResponse> LogIn(
             @Body LoginRequest loginRequest
     );

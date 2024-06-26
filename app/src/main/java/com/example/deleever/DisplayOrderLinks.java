@@ -70,12 +70,12 @@ public class DisplayOrderLinks extends AppCompatActivity {
             public void onResponse(Call<List<OrderLinkModel>> call, Response<List<OrderLinkModel>> response) {
                 if (response.isSuccessful()){
                     List<OrderLinkModel> orderLinks =response.body();
-                    if(orderLinks!=null){
+                    if(orderLinks!=null && !orderLinks.isEmpty()){
                         orderLinksAdapter.setItems(orderLinks);
                         Log.d(TAG, "Items received: " + orderLinks.size());
                     } else {
                         Log.d(TAG, "Response body is null");
-                        Toast.makeText(DisplayOrderLinks.this, "Order list is empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DisplayOrderLinks.this, "Order links list is empty", Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Log.d(TAG, "Response unsuccessful. Code: " + response.code());
