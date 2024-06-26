@@ -23,7 +23,7 @@ public interface ApiService {
     @GET("reports")
     Call<ReportCard> getReportDetails(@Header("Authorization") String token);
 
-    @POST("api/v1/register")
+    @POST("register")
     Call<Signup.RegisterResponse> createPost(@Body Signup.DataModal dataModal);
 
     @PUT("orders")
@@ -32,7 +32,7 @@ public interface ApiService {
     @DELETE("orderlinks/delete/{id}")
     Call<Void> deleteOrderLink(@Header("Authorization") String authToken, @Path("id") String id);
 
-    @GET("/notifications")
+    @GET("notifications")
     Call<List<NotificationCard>> getNotifications(@Path("userId") int userId);
 }
 
