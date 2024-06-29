@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Customer_details_screen extends AppCompatActivity {
     ListView customer_details_list;
     private String jwtToken,updateStatus;
-    TextView ordersAll,returnOrdersAll,ordersMy,returnOrdersMy,customer_details_screen_name_data,customer_details_address_data,customer_details_contact_data,customer_details_to_home;
+    TextView ordersAll,returnOrdersAll,ordersMy,returnOrdersMy,customer_details_screen_name_data,customer_details_address_data,customer_details_contact_data,customer_details_to_order_summery;
     String orders_All,return_orders_All,orders_My,return_orders_My;
     String customer_name_data,customer_address_data,customer_contact_data;
 
@@ -142,11 +142,11 @@ public class Customer_details_screen extends AppCompatActivity {
         });
 
 
-        customer_details_to_home = findViewById(R.id.custmer_details_to_home);
-        customer_details_to_home.setOnClickListener(new View.OnClickListener() {
+        customer_details_to_order_summery = findViewById(R.id.custmer_details_to_home);
+        customer_details_to_order_summery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent custmer_details_to_home = new Intent(getApplicationContext(), MainActivity.class);
+                Intent custmer_details_to_home = new Intent(getApplicationContext(), Order_summery.class);
                 custmer_details_to_home.putExtra("jwtToken", jwtToken);
                 startActivity(custmer_details_to_home);}
         });
