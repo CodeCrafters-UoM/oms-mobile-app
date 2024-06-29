@@ -35,7 +35,7 @@
         android:layout_marginTop="192dp"
         android:fontFamily="@font/archivo_black"
         android:gravity="center"
-        android:text="The OTP has been sent to your mobile number. Check your mobile phone."
+        android:text="The OTP has been sent to your Email. Check your Email account."
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -52,6 +52,11 @@ public class Contact_us extends AppCompatActivity {
                     return;
                 }
 
+                if (!isValidPhoneNumber(telNo)) {
+                    Toast.makeText(Contact_us.this, "Please enter a valid 10-digit phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 ContactUsRequest request = new ContactUsRequest();
                 request.setName(name);
                 request.setBusinessName(businessName);
@@ -77,6 +82,12 @@ public class Contact_us extends AppCompatActivity {
         });
 
     }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        String phonePattern = "^[0-9]{10}$";
+        return phoneNumber.matches(phonePattern);
+    }
+
 
     private void sendContactUs(ContactUsRequest request) {
         Retrofit retrofit = new Retrofit.Builder()

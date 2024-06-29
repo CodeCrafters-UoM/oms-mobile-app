@@ -105,6 +105,7 @@ public class myProfile extends AppCompatActivity {
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
                 Toast.makeText(myProfile.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("FAIL PROF",t.getMessage());
             }
         });
 
