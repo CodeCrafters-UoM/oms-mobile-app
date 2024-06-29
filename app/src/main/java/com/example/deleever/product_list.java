@@ -145,6 +145,7 @@ public class product_list extends AppCompatActivity {
                         intent.putExtra("productName", selectedProduct.getName());
                         intent.putExtra("productDescription", selectedProduct.getDescription());
                         intent.putExtra("productPrice", selectedProduct.getPrice());
+                        intent.putExtra("productOrderLinkId", selectedProduct.getProductOrderLinkId());
                         intent.putExtra("jwtToken", jwtToken);
                         intent.putExtra("sellerid", sellerId);
                         startActivity(intent);
@@ -183,13 +184,16 @@ class Product {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("productOrderLinkId")
+    private String productOrderLinkId;
+
     @SerializedName("description")
     private String description;
 
     @SerializedName("price")
     private Double price;
 
-    @SerializedName("productOrderLinkId")
+    @SerializedName("productOrderLink")
     private String productOrderLink;
 
     @SerializedName("sellerId")
@@ -205,6 +209,9 @@ class Product {
     public void setOrderLink(String orderLink) {
         this.orderLink = orderLink;
     }
+
+    public String getProductOrderLinkId(){return productOrderLinkId;}
+    public void setProductOrderLinkId(String productOrderLinkId) { this.productOrderLinkId = productOrderLinkId;}
     public String getSellerId() {
         return sellerId;
     }

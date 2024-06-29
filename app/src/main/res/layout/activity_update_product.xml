@@ -105,6 +105,7 @@
         android:fontFamily="@font/archivo_black"
         android:paddingLeft="15dp"
         android:textColorHint="#888888"
+        android:inputType="number"
         android:textSize="20dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"

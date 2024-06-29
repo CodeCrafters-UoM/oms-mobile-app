@@ -241,7 +241,7 @@
         android:layout_width="85dp"
         android:layout_height="47dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/edit_btn"
         android:backgroundTint="#006756"
@@ -249,7 +249,7 @@
         android:text="Update"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_business_nameHint" />
 

@@ -39,7 +39,7 @@ public class Report extends AppCompatActivity {
     private RecyclerView reportList;
     private ReportAdapter reportAdapter;
     private List<ReportCard.OrderStatusCounts> reportCards = new ArrayList<>();
-    private TextView username, businessName, created_date;
+    private TextView username, businessName, created_date,txt_back;
     private Button reportToHome;
 
     @Override
@@ -49,6 +49,15 @@ public class Report extends AppCompatActivity {
 
         jwtToken = getIntent().getStringExtra("jwtToken");
 
+        txt_back = findViewById(R.id.txt_back);
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                i.putExtra("jwtToken",jwtToken);
+                startActivity(i);
+            }
+        });
         username = findViewById(R.id.username);
         businessName = findViewById(R.id.businessName);
         created_date = findViewById(R.id.created_date);
@@ -60,6 +69,7 @@ public class Report extends AppCompatActivity {
 
         setCurrentDate();
         fetchReportDetails();
+
     }
 
     private void setCurrentDate() {

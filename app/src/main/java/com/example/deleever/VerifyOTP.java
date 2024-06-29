@@ -5,10 +5,13 @@ import static com.example.deleever.constant.Constant.BASE_URL;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,12 +38,12 @@ public class VerifyOTP extends AppCompatActivity {
         btn_verifyOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String OTP = txt_OTP.getText().toString().trim();
-                if (OTP.isEmpty()) {
+                String otp = txt_OTP.getText().toString().trim();
+                if (otp.isEmpty()) {
                     Toast.makeText(VerifyOTP.this, "Please fill in field", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                verifyOTP(username, OTP);
+                verifyOTP(username, otp);
             }
         });
 
@@ -53,19 +56,20 @@ public class VerifyOTP extends AppCompatActivity {
         });
     }
 
-    private void verifyOTP(String username, String OTP) {
+    private void verifyOTP(String username, String otp) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         APIservice2 apiService = retrofit.create(APIservice2.class);
-        verifyOtpRequest reqOTP = new verifyOtpRequest(username, OTP);
+        verifyOtpRequest reqOTP = new verifyOtpRequest(username, otp);
         Call<Void> call = apiService.VerifyOTP(reqOTP);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    System.out.println( "Response Body: hiiiiiiiiiiii " + new Gson().toJson(response.body()));
                     Toast.makeText(VerifyOTP.this, "Verify OTP successfully", Toast.LENGTH_SHORT).show();
                     navigateToResetPassword(username);
                 } else {
@@ -117,11 +121,11 @@ public class VerifyOTP extends AppCompatActivity {
 
     public class verifyOtpRequest {
         private String username;
-        private String OTP;
+        private String otp;
 
-        public verifyOtpRequest(String username, String OTP) {
+        public verifyOtpRequest(String username, String otp) {
             this.username = username;
-            this.OTP = OTP;
+            this.otp = otp;
         }
     }
 }

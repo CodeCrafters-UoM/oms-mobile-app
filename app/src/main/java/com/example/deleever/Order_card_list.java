@@ -10,6 +10,8 @@ import androidx.appcompat.widget.SearchView; // Correct import for SearchView
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -33,12 +35,25 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     private String jwtToken;
     private String sellerId;
 
+    TextView txt_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_card_list);
         jwtToken = getIntent().getStringExtra("jwtToken");
         sellerId = getIntent().getStringExtra("sellerid");
+
+        txt_back = findViewById(R.id.txt_back);
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+
+                i.putExtra("jwtToken",jwtToken);
+                startActivity(i);
+            }
+        });
         setValues();
         fetchOrderDetails();
 
@@ -56,6 +71,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                 return true;
             }
         });
+
     }
 
     private void fetchOrderDetails() {
