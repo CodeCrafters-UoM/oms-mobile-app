@@ -115,12 +115,23 @@ public class updateProfile extends AppCompatActivity {
         String updatedBusinessName = editBusinessName.getText().toString().trim();
         String updatedContactNumber = editContactNumber.getText().toString().trim();
 
-
+        // Non-null validation
         if (updatedName.isEmpty() || updatedEmail.isEmpty() || updatedBusinessName.isEmpty() || updatedContactNumber.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Email validation
+        if (!isValidEmail(updatedEmail)) {
+            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Phone number validation
+        if (!isValidPhoneNumber(updatedContactNumber)) {
+            Toast.makeText(this, "Please enter a valid contact number", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         ProfileResponse updatedProfile = new ProfileResponse();
         updatedProfile.setName(updatedName);
@@ -130,6 +141,16 @@ public class updateProfile extends AppCompatActivity {
 
         updateProfileMethod(userId, updatedProfile);
     }
+
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("\\d{10}");
+    }
+
 
     private void updateProfileMethod(String userId, ProfileResponse updatedProfile) {
         Retrofit retrofit = updateProduct.RetrofitClient.getClient(BASE_URL); // Replace with your actual API base URL

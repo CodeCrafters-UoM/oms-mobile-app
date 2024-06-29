@@ -441,7 +441,7 @@ interface NotificationListener {
 
 
 class SocketManager {
-    private static volatile SocketManager instance;
+    private static  SocketManager instance;
     private Socket socket;
     private final String TAG = "SocketManager";
     private NotificationListener notificationListener; // Listener instance

@@ -32,8 +32,10 @@ public interface ApiService {
     @DELETE("orderlinks/delete/{id}")
     Call<Void> deleteOrderLink(@Header("Authorization") String authToken, @Path("id") String id);
 
-    @GET("notifications")
-    Call<List<NotificationCard>> getNotifications(@Header("Authorization") String authToken);
+
+        @GET("notifications")
+        Call<List<Notification.NotificationCard>> getNotifications(@Header("Authorization") String token);
+
 }
 
 

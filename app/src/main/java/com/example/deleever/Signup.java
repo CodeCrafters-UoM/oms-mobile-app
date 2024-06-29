@@ -251,7 +251,8 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 import static com.example.deleever.constant.Constant.*;
 
-import java.time.LocalDateTime;
+import org.json.JSONObject;
+
 
 public class Signup extends AppCompatActivity {
 
@@ -375,7 +376,14 @@ public class Signup extends AppCompatActivity {
                         else {
                             try {
                                 String errorBody = response.errorBody().string();
-                                Toast.makeText(Signup.this, "Registration failed :"+errorBody, Toast.LENGTH_SHORT).show();
+
+                                // Parse the JSON string to extract the error message
+                                JSONObject jsonObject = new JSONObject(errorBody);
+                                String errorMessage = jsonObject.getString("error");
+
+                                // Now you have the error message ("Username already exists") in errorMessage
+                                System.out.println(errorMessage);
+                                Toast.makeText(Signup.this, "Registration failed :"+errorMessage, Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
                                 Toast.makeText(Signup.this, "Registration failed with unknown error", Toast.LENGTH_SHORT).show();
                             }

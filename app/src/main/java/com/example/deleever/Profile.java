@@ -129,6 +129,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), Notification.class);
                 i.putExtra("jwtToken", jwtToken);
+                i.putExtra("sellerid", userId);
                 noti_round.setVisibility(View.GONE);
                 Count.setText("");
                 SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);

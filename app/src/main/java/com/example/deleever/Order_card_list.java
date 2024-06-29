@@ -35,7 +35,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     private String jwtToken;
     private String sellerId;
 
-    TextView txt_back;
+    TextView txt_back,empty_msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,11 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
         jwtToken = getIntent().getStringExtra("jwtToken");
         sellerId = getIntent().getStringExtra("sellerid");
 
+
         txt_back = findViewById(R.id.txt_back);
+
+        empty_msg.setVisibility(View.GONE);
+
         txt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +58,9 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                 startActivity(i);
             }
         });
+
+
+
         setValues();
         fetchOrderDetails();
 

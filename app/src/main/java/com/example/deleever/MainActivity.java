@@ -11,6 +11,7 @@ import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -45,9 +46,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Check if intent contains new sellerId and jwtToken
         Intent intent = getIntent();
-        jwtToken = intent.getStringExtra("jwtToken");
-        sellerId = intent.getStringExtra("sellerid");
+        if (intent.hasExtra("jwtToken") && intent.hasExtra("sellerid")) {
+            jwtToken = intent.getStringExtra("jwtToken");
+            sellerId = intent.getStringExtra("sellerid");
+
+            // Save jwtToken and sellerId in shared preferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("jwtToken", jwtToken);
+            editor.putString("sellerId", sellerId);
+            editor.apply();
+        } else {
+            // Retrieve jwtToken and sellerId from shared preferences if not passed in intent
+            jwtToken = sharedPreferences.getString("jwtToken", null);
+            sellerId = sharedPreferences.getString("sellerId", null);
+        }
 
         btn_home_order = findViewById(R.id.btn_home_order);
         btn_home_product = findViewById(R.id.btn_home_product);
