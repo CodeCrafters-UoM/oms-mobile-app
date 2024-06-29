@@ -46,6 +46,17 @@ public class DisplayOrderLinks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_order_links);
 
+        TextView txt_back = findViewById(R.id.txt_back);
+
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                i.putExtra("jwtToken",jwtToken);
+                startActivity(i);
+            }
+        });
+
         Intent intent = getIntent();
         jwtToken = intent.getStringExtra("jwtToken");
 

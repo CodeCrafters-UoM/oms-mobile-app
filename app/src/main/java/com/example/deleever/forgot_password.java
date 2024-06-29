@@ -48,6 +48,7 @@ public class forgot_password extends AppCompatActivity {
                 handleForgotPassword();
             }
         });
+
     }
 
     private void navigateToLogin() {

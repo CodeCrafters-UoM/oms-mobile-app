@@ -57,7 +57,7 @@
             android:id="@+id/customer_details_screen_name_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Customer name"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -76,7 +76,7 @@
             android:id="@+id/customer_details_address_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -95,7 +95,7 @@
             android:id="@+id/customer_details_contact_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -113,7 +113,7 @@
             android:id="@+id/orders_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Past orders(All)"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -131,7 +131,7 @@
             android:id="@+id/orders_My"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Past orders(My)"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -149,7 +149,7 @@
             android:id="@+id/return_orders_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Return orders(All)"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -167,7 +167,7 @@
             android:id="@+id/return_orders_My"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Return orders(My)"
+            android:text=""
             android:paddingBottom="10dp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="545dp" />
@@ -178,13 +178,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="267dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="Back"
         android:textColor="@color/custome_green"
-        android:textStyle="bold"
         android:textSize="15dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customer_details_list_row" />
 

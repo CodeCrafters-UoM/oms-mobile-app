@@ -349,21 +349,28 @@ public class Signup extends AppCompatActivity {
                             RegisterResponse responseFromAPI = response.body();
                             Log.d(TAG, "id "+responseFromAPI.userId);
                             Log.d(TAG, "Registration successful" + response.body());
-
-                            if (responseFromAPI.userId != null) {
-                                Log.d(TAG, "id "+responseFromAPI.userId);
-                                Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                clearFields();
-                                Log.d(TAG, "Registration successful" + response.body());
-                                Intent loginIntent = new Intent(Signup.this, Login.class);
-                                startActivity(loginIntent);
-                                // Finish the SignUp activity so that the user cannot navigate back to it
-                                finish();
-                            } else {
-                                System.out.println("Registration failed" + response.body());
-                                clearFields();
-                                Toast.makeText(Signup.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                            }
+                            Log.d(TAG, "id "+responseFromAPI.userId);
+                            Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                            clearFields();
+                            Log.d(TAG, "Registration successful" + response.body());
+                            Intent loginIntent = new Intent(Signup.this, Login.class);
+                            startActivity(loginIntent);
+                            // Finish the SignUp activity so that the user cannot navigate back to it
+                            finish();
+//                            if (responseFromAPI.userId != null) {
+//                                Log.d(TAG, "id "+responseFromAPI.userId);
+//                                Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
+//                                clearFields();
+//                                Log.d(TAG, "Registration successful" + response.body());
+//                                Intent loginIntent = new Intent(Signup.this, Login.class);
+//                                startActivity(loginIntent);
+//                                // Finish the SignUp activity so that the user cannot navigate back to it
+//                                finish();
+//                            } else {
+//                                System.out.println("Registration failed" + response.body());
+//                                clearFields();
+//                                Toast.makeText(Signup.this, "Registration failed", Toast.LENGTH_SHORT).show();
+//                            }
                         }
                         else {
                             try {
@@ -407,6 +414,7 @@ public class Signup extends AppCompatActivity {
                 startActivity(login_pg_connector);
             }
         });
+
     }
 
 

@@ -86,6 +86,7 @@ public class updateProfile extends AppCompatActivity {
             public void onClick(View v) {
                 showUpdateConfirmationDialog();            }
         });
+
     }
 
     private void showUpdateConfirmationDialog() {

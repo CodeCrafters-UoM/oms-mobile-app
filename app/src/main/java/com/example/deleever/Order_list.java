@@ -62,6 +62,7 @@ public class Order_list extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
     private void filter(String newText){

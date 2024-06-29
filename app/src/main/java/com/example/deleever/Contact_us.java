@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.annotations.SerializedName;
@@ -60,6 +61,21 @@ public class Contact_us extends AppCompatActivity {
                 sendContactUs(request);
             }
         });
+
+        TextView txt_back = findViewById(R.id.txt_back);
+        txt_back.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v){
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("sellerid", userId);
+                startActivity(intent);
+                finish(); // Close the current activity to prevent users from returning to it
+            }
+        });
+
     }
 
     private void sendContactUs(ContactUsRequest request) {

@@ -20,6 +20,7 @@ public class ActivationURL extends AppCompatActivity {
                 startActivity(activated_app);
             }
         });
+//        return 0;
     }
 }
 

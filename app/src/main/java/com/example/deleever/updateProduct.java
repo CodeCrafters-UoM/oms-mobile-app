@@ -83,6 +83,7 @@ public class updateProduct extends AppCompatActivity {
                 showUpdateConfirmationDialog();
             }
         });
+
     }
 
     private void fetchExistingProductCodes() {

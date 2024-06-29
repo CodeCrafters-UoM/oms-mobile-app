@@ -32,7 +32,7 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
 
     String orderId ;
 
-    TextView order_id,order_description,order_code,quantity,customer_name,customer_address,customer_contact,payment_method,price;
+    TextView order_id,order_description,order_code,quantity,customer_name,customer_address,customer_contact,payment_method,price,txt_back,more;
 
     UpdateStatus updateStatus;
     String[] new_order_status;
@@ -41,6 +41,19 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_summery);
+
+
+        txt_back = findViewById(R.id.txt_back);
+        more = findViewById(R.id.more);
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Order_card_list.class);
+                i.putExtra("jwtToken",jwtToken);
+                startActivity(i);
+            }
+        });
+
         String[] order_status = {" ","NEW","ACCEPT","REJECT", "DELIVER", "RETURN"};
         Log.d(TAG, "array old: " + order_status[0]);
 
@@ -50,19 +63,23 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
         String current_status = status;
         new_order_status = updateCurrentStatus(current_status,order_status);
         dropDown(new_order_status);
-
-//        TextView ordersummery_to_home =findViewById(R.id.ordersummery_to_home);
-//        ordersummery_to_home.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), Order_list.class);
-//                intent.putExtra("jwtToken", jwtToken);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
+        TextView Customer_details = findViewById(R.id.Customer_details);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Customer_details_screen.class);
+                intent.putExtra("orderId",getIntent().getStringExtra("orderId"));
+                intent.putExtra("name", getIntent().getStringExtra("name"));
+                intent.putExtra("address", getIntent().getStringExtra("address"));
+                intent.putExtra("contact", getIntent().getStringExtra("contact"));
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("orders(All)", getIntent().getStringExtra("orders(All)"));
+                intent.putExtra("orders(my)", getIntent().getStringExtra("orders(my)"));
+                intent.putExtra("return(my)", getIntent().getStringExtra("return(my)"));
+                intent.putExtra("return(All)", getIntent().getStringExtra("return(All)"));
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -136,80 +153,10 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
         payment_method.setText(getIntent().getStringExtra("paymentMethod"));
         price.setText(getIntent().getStringExtra("price"));
         int id = Integer.valueOf(orderId);
-        TextView Customer_details = findViewById(R.id.Customer_details);
 
-        Customer_details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Customer_details_screen.class);
-//                fetchOrderDetails(id,intent);
-                intent.putExtra("name", getIntent().getStringExtra("name"));
-                intent.putExtra("address", getIntent().getStringExtra("address"));
-                intent.putExtra("contact", getIntent().getStringExtra("contact"));
-                intent.putExtra("jwtToken", jwtToken);
-                intent.putExtra("orders(All)", getIntent().getStringExtra("orders(All)"));
-                intent.putExtra("orders(my)", getIntent().getStringExtra("orders(my)"));
-                intent.putExtra("return(my)", getIntent().getStringExtra("return(my)"));
-                intent.putExtra("return(All)", getIntent().getStringExtra("return(All)"));
-                startActivity(intent);
-            }
-        });
     }
 
-    private void fetchOrderDetails(int orderId,Intent intent) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // Create ApiService instance
-        ApiService apiService = retrofit.create(ApiService.class);
-
-        // Fetch items from the backend
-        Call<List<Order_card>> call = apiService.getItems("Bearer " + jwtToken);
-        call.enqueue(new Callback<List<Order_card>>() {
-            @Override
-            public void onResponse(Call<List<Order_card>> call, Response<List<Order_card>> response) {
-                if (response.isSuccessful()) {
-                    List<Order_card> order_cards = response.body();
-                    if(order_cards != null){
-                        for(Order_card orderCard :order_cards ){
-                            if(orderCard.getOrderId()==orderId){
-                                intent.putExtra("name", getIntent().getStringExtra("name"));
-                                intent.putExtra("address", getIntent().getStringExtra("address"));
-                                intent.putExtra("contact", getIntent().getStringExtra("contact"));
-                                intent.putExtra("jwtToken", jwtToken);
-                                intent.putExtra("orders(All)",getIntent().getStringExtra("orders(All)"));
-                                intent.putExtra("orders(my)",getIntent().getStringExtra("orders(my)"));
-                                intent.putExtra("return(my)",getIntent().getStringExtra("return(my)"));
-                                intent.putExtra("return(All)",getIntent().getStringExtra("return(All)"));
-                                System.out.println(getIntent().getStringExtra("return(All)"));
-                            }
-                        }
-
-                    }
-
-                } else {
-                    Log.d(TAG, "Response unsuccessful. Code: " + response.code());
-                    // Add more logging for debugging
-                    try {
-                        Log.d(TAG, "Error body: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Toast.makeText(Order_summery.this, "Response unsuccessful", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Order_card>> call, Throwable t) {
-                Log.e(TAG, "Error fetching orders", t);
-                Toast.makeText(Order_summery.this, "Error fetching orders", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
+//
 
 
     @Override
@@ -237,9 +184,6 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.isSuccessful()) {
                         Toast.makeText(Order_summery.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getApplicationContext(), Customer_details_screen.class);
-                        i.putExtra("jwtToken",jwtToken);
-
                         Log.d(TAG, "update body: " + response.body());
                     } else {
                         try {

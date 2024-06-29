@@ -29,7 +29,7 @@ import static com.example.deleever.constant.Constant.*;
 public class Product_details extends AppCompatActivity {
 
     private TextView txtProductCode, txtProductName, txtProductDescription, txtProductPrice, txtProductOrderLink;
-    private String jwtToken, copyLink, sellerId;
+    private String jwtToken, copyLink, sellerId, productOrderLinkId;
     private static final String TAG = "Product_details";
     private Button btnRemove;
 
@@ -50,6 +50,7 @@ public class Product_details extends AppCompatActivity {
         if (intent != null) {
             jwtToken = intent.getStringExtra("jwtToken");
             sellerId = intent.getStringExtra("sellerid");
+            productOrderLinkId = intent.getStringExtra("productOrderLinkId");
             txtProductCode.setText(intent.getStringExtra("productCode"));
             txtProductName.setText(intent.getStringExtra("productName"));
             txtProductDescription.setText(intent.getStringExtra("productDescription"));
@@ -125,7 +126,6 @@ public class Product_details extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        System.out.println("odreevss link fetch or noooooo");
         APIservice2 apiService = retrofit.create(APIservice2.class);
         Call<List<OrderLink>> call = apiService.getAllOrderlinks("Bearer " + jwtToken);
         call.enqueue(new Callback<List<OrderLink>>() {
@@ -133,24 +133,20 @@ public class Product_details extends AppCompatActivity {
             public void onResponse(Call<List<OrderLink>> call, Response<List<OrderLink>> response) {
                 if (response.isSuccessful()) {
                     List<OrderLink> orderLinks = response.body();
-                    Log.d(TAG, "Response Body: hiiiiiiiiiiii " + new Gson().toJson(response.body()));
+                    Log.d(TAG, "Response Body: " + new Gson().toJson(response.body()));
                     if (orderLinks != null) {
                         boolean orderLinkFound = false;
                         for (OrderLink orderLink : orderLinks) {
-                            if (orderLink.getProduct() != null && orderLink.getProduct().getProductCode() != null) {
-                                if (orderLink.getProduct().getProductCode().equals(txtProductCode.getText().toString())) {
-                                    txtProductOrderLink.setText(orderLink.getName());
-                                    Log.d(TAG, "Order Link set: " + txtProductOrderLink.getText());
-                                    copyLink = orderLink.getLink();
-                                    orderLinkFound = true;
-                                    break;
-                                }
-                            } else {
-                                Log.e(TAG, "OrderLink or Product or ProductCode is null");
+                            if (orderLink.getId() != null && orderLink.getId().equals(productOrderLinkId)) {
+                                txtProductOrderLink.setText(orderLink.getName());
+                                Log.d(TAG, "Order Link set: " + txtProductOrderLink.getText());
+                                copyLink = orderLink.getLink();
+                                orderLinkFound = true;
+                                break;
                             }
                         }
                         if (!orderLinkFound) {
-                            Log.e(TAG, "No matching order link found for product code: " + txtProductCode.getText().toString());
+                            Log.e(TAG, "No matching order link found for productOrderLinkId: " + productOrderLinkId);
                         }
                     } else {
                         Log.e("FetchOrderLinksError", "Response body is null");
@@ -166,6 +162,7 @@ public class Product_details extends AppCompatActivity {
             }
         });
     }
+
 
     private void checkProductOrders(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()

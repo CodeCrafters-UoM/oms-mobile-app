@@ -38,14 +38,15 @@ public class resetPassword extends AppCompatActivity {
         btn_resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password = txt_passWord.getText().toString().trim();
+                String newPassword = txt_passWord.getText().toString().trim();
                 String confirmPassword = txt_conpassWord.getText().toString().trim();
 
-                if (validateInputs(password, confirmPassword)) {
-                    resetUserPassword(username, password);
+                if (validateInputs(newPassword, confirmPassword)) {
+                    resetUserPassword(username, newPassword);
                 }
             }
         });
+
     }
 
     private boolean validateInputs(String password, String confirmPassword) {
@@ -67,14 +68,15 @@ public class resetPassword extends AppCompatActivity {
         return true;
     }
 
-    private void resetUserPassword(String username, String password) {
+    private void resetUserPassword(String username, String newPassword) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         APIservice2 apiService = retrofit.create(APIservice2.class);
-        resetPasswordRequest resetPass = new resetPasswordRequest(username, password);
+        resetPasswordRequest resetPass = new resetPasswordRequest(username, newPassword);
+        System.out.println("sssssssss" + resetPass.username + resetPass.newPassword);
         Call<Void> call = apiService.resetPassword(resetPass);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -98,11 +100,11 @@ public class resetPassword extends AppCompatActivity {
 
     public class resetPasswordRequest {
         private String username;
-        private String password;
+        private String newPassword;
 
-        public resetPasswordRequest(String username, String password) {
+        public resetPasswordRequest(String username, String newPassword) {
             this.username = username;
-            this.password = password;
+            this.newPassword = newPassword;
         }
     }
 }
