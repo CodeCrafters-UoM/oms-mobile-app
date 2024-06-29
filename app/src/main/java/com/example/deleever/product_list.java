@@ -13,8 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.lang.NumberFormatException;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -40,7 +39,7 @@ public class product_list extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        // Retrieve JWT token from intent extras
+        // Retrieve JWT token and sellerId from intent extras
         jwtToken = getIntent().getStringExtra("jwtToken");
         sellerId = getIntent().getStringExtra("sellerid");
 
@@ -53,17 +52,14 @@ public class product_list extends AppCompatActivity {
                 Intent i = new Intent(product_list.this, Add_product.class);
                 i.putExtra("jwtToken", jwtToken);
                 i.putExtra("sellerid", sellerId);
-                System.out.println("seler id  " + sellerId);
                 startActivity(i);
             }
         });
 
         TextView txt_back = findViewById(R.id.txt_back);
-        txt_back.setOnClickListener(new View.OnClickListener()
-
-        {
+        txt_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v){
+            public void onClick(View v) {
                 navigateToProductList();
             }
         });
@@ -96,11 +92,16 @@ public class product_list extends AppCompatActivity {
                     productList = response.body();
                     if (productList != null) {
                         Log.d(TAG, "Product list size: " + productList.size());
-                        for (Product product : productList) {
-                            Log.d(TAG, "Product Order Link: " + product.getProductOrderLink());
-//                            Log.d(TAG, "Product: " + product.getName());
+                        if (productList.isEmpty()) {
+                            // Show a toast message indicating that the product list is empty
+                            Toast.makeText(product_list.this, "Product list is empty", Toast.LENGTH_SHORT).show();
+                            // Optionally, you can also set a message in the ListView
+                            String[] emptyListMessage = {"No products available."};
+                            ArrayAdapter<String> emptyAdapter = new ArrayAdapter<>(product_list.this, android.R.layout.simple_list_item_1, emptyListMessage);
+                            listView.setAdapter(emptyAdapter);
+                        } else {
+                            displayProductList(productList);
                         }
-                        displayProductList(productList);
                     } else {
                         Log.e(TAG, "Product list is null");
                     }
@@ -165,14 +166,10 @@ public class product_list extends AppCompatActivity {
     private void navigateToProductList() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("jwtToken", jwtToken);
-//        String userId = sellerID;
         intent.putExtra("sellerid", sellerId);
         startActivity(intent);
         finish(); // Close the current activity to prevent users from returning to it
     }
-
-
-
 
 }
 
