@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import static com.example.deleever.constant.Constant.BASE_URL;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -44,6 +46,14 @@ public class resetPassword extends AppCompatActivity {
                 if (validateInputs(newPassword, confirmPassword)) {
                     resetUserPassword(username, newPassword);
                 }
+            }
+        });
+
+        TextView txt_back = findViewById(R.id.txt_back);
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToVerifyOTP(username);
             }
         });
 
@@ -96,6 +106,13 @@ public class resetPassword extends AppCompatActivity {
                 t.printStackTrace(); // Log the error
             }
         });
+    }
+
+    private void navigateToVerifyOTP(String username) {
+        Intent intent = new Intent(getApplicationContext(), VerifyOTP.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
+        finish(); // Close the current activity to prevent users from returning to it
     }
 
     public class resetPasswordRequest {
