@@ -35,7 +35,7 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
     private String jwtToken;
     private String sellerId;
 
-    TextView txt_back;
+    TextView txt_back,empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,9 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
 
 
         txt_back = findViewById(R.id.txt_back);
+        empty = findViewById(R.id.empty);
+
+        empty.setVisibility(View.GONE);
 
 
         txt_back.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +106,8 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
                         orderCardAdapter.setItems(orderCards);
                         Log.d(TAG, "Order list orderCards"+orderCards);
                     } else {
+                        empty.setVisibility(View.VISIBLE);
+                        empty.setText("Order list is empty");
                         Log.d(TAG, "Order list is empty");
                         Toast.makeText(Order_card_list.this, "Order list is empty", Toast.LENGTH_SHORT).show();
                     }
@@ -166,5 +171,5 @@ public class Order_card_list extends AppCompatActivity implements Order_card_lis
             }
         }
         orderCardAdapter.filterList(filteredList);
-}
+    }
 }

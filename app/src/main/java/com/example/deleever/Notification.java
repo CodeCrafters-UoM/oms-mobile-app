@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Notification extends AppCompatActivity {
     private static final String PREF_NAME = "MyPrefs";
-    private TextView textView;
+    private TextView textView,empty;
     private int notificationId;
 
     RecyclerView notifications_list;
@@ -51,6 +51,9 @@ public class Notification extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         userId = getIntent().getStringExtra("sellerid");
+        empty = findViewById(R.id.empty);
+
+        empty.setVisibility(View.GONE);
 
         TextView back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +68,6 @@ public class Notification extends AppCompatActivity {
         });
 
         jwtToken = getIntent().getStringExtra("jwtToken");
-
-        textView = findViewById(R.id.textViewData);
-
-        String xY = getIntent().getStringExtra("message");
-        textView.setText(xY);
 
         notifications_list = findViewById(R.id.notifications_list);
         notifications_list.setLayoutManager(new LinearLayoutManager(this));
@@ -97,6 +95,8 @@ public class Notification extends AppCompatActivity {
                         List<NotificationCard> filteredNotifications = filterClearedNotifications(notifications);
                         notificationAdapter.setItems(filteredNotifications);
                     } else {
+                        empty.setVisibility(View.VISIBLE);
+                        empty.setText("Notifications are empty");
                         Toast.makeText(Notification.this, "Notifications are empty", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -363,6 +363,6 @@ public class Notification extends AppCompatActivity {
 
         public void setTitle(String title) {
             this.title = title;
-        }
-    }
+ }
+}
 }
