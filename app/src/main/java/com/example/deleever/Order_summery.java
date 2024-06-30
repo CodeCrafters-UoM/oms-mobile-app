@@ -92,7 +92,7 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDown.setAdapter(adapter);
-}
+    }
 
     private String[] updateCurrentStatus(String currentStatus,String[] order_status) {
         order_status[0] = currentStatus;
@@ -133,7 +133,6 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
         jwtToken = getIntent().getStringExtra("jwtToken");
 
         order_id = findViewById(R.id.Order_id_data);
-        order_description = findViewById(R.id.Order_description_data);
         order_code = findViewById(R.id.Order_code_data);
         quantity = findViewById(R.id.quantity_data);
         customer_name = findViewById(R.id.customer_name_data);
@@ -237,5 +236,5 @@ class UpdateStatus {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
-}
+    }
 }

@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -41,6 +43,7 @@ public class DisplayOrderLinks extends AppCompatActivity {
     OrderLinksAdapter orderLinksAdapter;
     private static final String TAG = "MainActivity";
     public String jwtToken;
+    TextView empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,9 @@ public class DisplayOrderLinks extends AppCompatActivity {
         setContentView(R.layout.activity_display_order_links);
 
         TextView txt_back = findViewById(R.id.txt_back);
+
+        empty = findViewById(R.id.empty);
+        empty.setVisibility(View.GONE);
 
         txt_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +63,6 @@ public class DisplayOrderLinks extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         Intent intent = getIntent();
         jwtToken = intent.getStringExtra("jwtToken");
 
@@ -87,6 +92,8 @@ public class DisplayOrderLinks extends AppCompatActivity {
                         Log.d(TAG, "Items received: " + orderLinks.size());
                     } else {
                         Log.d(TAG, "Response body is null");
+                        empty.setVisibility(View.VISIBLE);
+                        empty.setText("Order links list is empty");
                         Toast.makeText(DisplayOrderLinks.this, "Order links list is empty", Toast.LENGTH_SHORT).show();
                     }
                 }else {
@@ -324,7 +331,7 @@ class OrderLinkModel{
 
         public void setProductCode(String productCode) {
             this.productCode = productCode;
-  }
-
 }
+
+    }
 }
