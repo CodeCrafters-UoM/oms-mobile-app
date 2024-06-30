@@ -173,16 +173,6 @@ public class Login extends AppCompatActivity implements NotificationListener {
             }
         });
 
-        // Set onClickListener for Forget Password TextView
-//        TextView txt_forgetPassword = findViewById(R.id.txt_forgetPassword);
-//        txt_forgetPassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Navigate to ForgotPassword activity
-//                Intent intent = new Intent(Login.this, ForgotPassword.class);
-//                startActivity(intent);
-//            }
-//        });
 
         // Set onClickListener for Show/Hide Password TextView
         txt_showPassword.setOnClickListener(new View.OnClickListener() {
