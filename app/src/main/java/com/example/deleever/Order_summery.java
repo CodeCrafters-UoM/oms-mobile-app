@@ -143,7 +143,6 @@ public class Order_summery extends AppCompatActivity implements AdapterView.OnIt
 
         orderId = getIntent().getStringExtra("orderId");
         order_id.setText(orderId);
-        order_description.setText(getIntent().getStringExtra("description"));
         order_code.setText(getIntent().getStringExtra("productCode"));
         quantity.setText(getIntent().getStringExtra("quantity"));
         customer_name.setText(getIntent().getStringExtra("name"));

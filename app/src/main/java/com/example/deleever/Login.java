@@ -439,8 +439,8 @@ class SocketManager {
 
     private SocketManager() {
         try {
-            Log.d(TAG, "Connecting to Socket.IO server at: " + BASE_URL);
-            String baseUrl = "https://api.deleever.one"; // Ensure this URL is correct
+            String baseUrl = "https://deleever.one"; // Ensure this URL is correct
+            Log.d(TAG, "Connecting to Socket.IO server at: " + baseUrl);
 
             socket = IO.socket(baseUrl);
         } catch (URISyntaxException e) {

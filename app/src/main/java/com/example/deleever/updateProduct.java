@@ -29,7 +29,7 @@ public class updateProduct extends AppCompatActivity {
     private EditText edtProductName, edtProductDescription, edtProductPrice, edtProductCode, edtProductOrderLink;
     private Button btnSave;
     private String productCode;
-    private String jwtToken;
+    private String jwtToken, productName, productDescription, productPrice, productOrderLink;
 
     private List<String> existingProductCodes = new ArrayList<>(); // List to store existing product codes
 
@@ -47,21 +47,15 @@ public class updateProduct extends AppCompatActivity {
 
         edtProductOrderLink.setEnabled(false);
 
-        TextView txt_back = findViewById(R.id.txt_back);
-        txt_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToBackProductDetails();
-            }
-        });
+
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("productCode")) {
             productCode = intent.getStringExtra("productCode");
-            String productName = intent.getStringExtra("productName");
-            String productDescription = intent.getStringExtra("productDescription");
-            String productPrice = intent.getStringExtra("productPrice");
-            String productOrderLink = intent.getStringExtra("productOrderLink");
+            productName = intent.getStringExtra("productName");
+            productDescription = intent.getStringExtra("productDescription");
+            productPrice = intent.getStringExtra("productPrice");
+            productOrderLink = intent.getStringExtra("productOrderLink");
             jwtToken = intent.getStringExtra("jwtToken");
 
             edtProductName.setText(productName);
@@ -74,6 +68,22 @@ public class updateProduct extends AppCompatActivity {
             Toast.makeText(this, "No product details received", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        TextView txt_back = findViewById(R.id.txt_back);
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Product_details.class);
+                intent.putExtra("jwtToken", jwtToken);
+                intent.putExtra("productCode", productCode);
+                intent.putExtra("productName", productName);
+                intent.putExtra("productDescription", productDescription);
+                intent.putExtra("productPrice", Double.parseDouble(productPrice));
+                intent.putExtra("productOrderLink", productOrderLink);
+                startActivity(intent);
+                finish(); // Close the current activity to prevent users from returning to it
+            }
+        });
 
         fetchExistingProductCodes(); // Fetch existing product codes on create
 
@@ -184,17 +194,17 @@ public class updateProduct extends AppCompatActivity {
         });
     }
 
-    private void navigateToBackProductDetails() {
-        Intent intent = new Intent(getApplicationContext(), Product_details.class);
-        intent.putExtra("jwtToken", jwtToken);
-        intent.putExtra("productCode", edtProductCode.getText().toString());
-        intent.putExtra("productName", edtProductName.getText().toString());
-        intent.putExtra("productDescription", edtProductDescription.getText().toString());
-        intent.putExtra("productPrice", Double.parseDouble(edtProductPrice.getText().toString()));
-        intent.putExtra("productOrderLink", edtProductOrderLink.getText().toString());
-        startActivity(intent);
-        finish(); // Close the current activity to prevent users from returning to it
-    }
+//    private void navigateToBackProductDetails() {
+//        Intent intent = new Intent(getApplicationContext(), Product_details.class);
+//        intent.putExtra("jwtToken", jwtToken);
+//        intent.putExtra("productCode", edtProductCode.getText().toString());
+//        intent.putExtra("productName", productName);
+//        intent.putExtra("productDescription", edtProductDescription.getText().toString());
+//        intent.putExtra("productPrice", Double.parseDouble(edtProductPrice.getText().toString()));
+//        intent.putExtra("productOrderLink", edtProductOrderLink.getText().toString());
+//        startActivity(intent);
+//        finish(); // Close the current activity to prevent users from returning to it
+//    }
 
     private void navigateToProductList() {
 
