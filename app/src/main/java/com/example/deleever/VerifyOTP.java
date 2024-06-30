@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -52,6 +53,14 @@ public class VerifyOTP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resendOTP(username);
+            }
+        });
+
+        TextView txt_back = findViewById(R.id.txt_back);
+        txt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToForgetPassword();
             }
         });
     }
@@ -115,6 +124,12 @@ public class VerifyOTP extends AppCompatActivity {
     private void navigateToResetPassword(String username) {
         Intent intent = new Intent(getApplicationContext(), resetPassword.class);
         intent.putExtra("username", username);
+        startActivity(intent);
+        finish(); // Close the current activity to prevent users from returning to it
+    }
+
+    private void navigateToForgetPassword() {
+        Intent intent = new Intent(getApplicationContext(), forgot_password.class);
         startActivity(intent);
         finish(); // Close the current activity to prevent users from returning to it
     }
