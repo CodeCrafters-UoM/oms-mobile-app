@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myProfile">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_layout"
+        tools:layout_editor_absoluteX="-10dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txt_myProfile"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="My Profile"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
+    <!-- Profile Photo with Edit Icon -->
+
+    <!-- Name Field -->
+
+    <ImageView
+        android:id="@+id/profile_photo"
+        android:layout_width="65dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/profile_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myProfile" />
+
+    <ImageView
+        android:id="@+id/edit_photo_icon"
+        android:layout_width="21dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:src="@drawable/edit_profile_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myProfile" />
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Name"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo" />
+
+    <TextView
+        android:id="@+id/txt_nameHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+    <!-- Email Field -->
+    <TextView
+        android:id="@+id/txt_email"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Email"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nameHint" />
+
+    <TextView
+        android:id="@+id/txt_emailHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
+    <!-- Username Field -->
+    <TextView
+        android:id="@+id/txt_username"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Username"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_emailHint" />
+
+    <TextView
+        android:id="@+id/txt_usernameHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_username" />
+
+    <!-- Role Field -->
+    <TextView
+        android:id="@+id/txt_role"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Role"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_usernameHint" />
+
+    <TextView
+        android:id="@+id/txt_roleHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_role" />
+
+    <!-- Contact Number Field -->
+    <TextView
+        android:id="@+id/txt_contact_number"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Contact Number"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_roleHint" />
+
+    <TextView
+        android:id="@+id/txt_contact_numberHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:inputType="phone"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_contact_number" />
+
+    <!-- Business Name Field -->
+
+    <TextView
+        android:id="@+id/txt_business_nameHint"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:background="@drawable/edit_background"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="20dp"
+        android:textColorHint="#888888"
+        android:textSize="20dp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_business_name" />
+
+    <TextView
+        android:id="@+id/txt_business_name"
+        android:layout_width="320dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Business Name"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_contact_numberHint" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="85dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_btn"
+        android:backgroundTint="#006756"
+        android:fontFamily="@font/archivo_black"
+        android:text="Update"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_business_nameHint" />
+
+    <TextView
+        android:id="@+id/txt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Back"
+        android:textColor="#006756"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_business_nameHint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

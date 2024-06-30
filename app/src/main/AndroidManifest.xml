@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,9 +14,79 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Deleever"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+      <activity
+            android:name=".Signup"
+            android:exported="false" />
+        <activity
+            android:name=".Notification"
+            android:exported="false" />
+        <activity
+            android:name=".resetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyOTP"
+            android:exported="false" />
+        <activity
+            android:name=".updateProfile"
+            android:exported="false" />
+        <activity
+            android:name=".myProfile"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayOrderLinks"
+            android:exported="false" />
+        <activity
+            android:name=".updateProduct"
+            android:exported="false" />
+        <activity
+            android:name=".Order_card_list"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Contact_us"
+            android:exported="false" />
+        <activity
+            android:name=".forgot_password"
+            android:exported="false" />
+        <activity
+            android:name=".Add_product"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Order_questionnaire"
+            android:exported="false" />
+        <activity
+            android:name=".Product_details"
+            android:exported="false" />
+        <activity
+            android:name=".ActivationURL"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Order_list"
+            android:exported="false" />
+        <activity
+            android:name=".Order_summery"
+            android:exported="false" />
+        <activity
+            android:name=".Report"
+            android:exported="false" />
+        <activity
+            android:name=".Customer_details_screen"
+            android:exported="false" />
+        <activity
+            android:name=".product_list"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

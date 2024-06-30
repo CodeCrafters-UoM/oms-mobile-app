@@ -1,51 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="110dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.063"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
 
-    <ImageButton
-        android:id="@+id/imageView7"
-        android:layout_width="38dp"
-        android:layout_height="41dp"
+        <ImageButton
+            android:id="@+id/img_threeLine"
+            android:layout_width="61dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_density_medium_24" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_home_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#006756"
+        android:drawableTop="@drawable/orders"
+        android:paddingTop="20dp"
+        android:text="Orders"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_home_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@color/white"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bars_solid" />
+        android:drawableTop="@drawable/product"
+        android:paddingTop="20dp"
+        android:text="Products"
+        android:textSize="20dp" />
 
-    <ImageButton
-        android:id="@+id/imageView9"
-        android:layout_width="41dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+    <Button
+        android:paddingTop="20dp"
+        android:id="@+id/btn_home_order_links"
+        android:layout_width="match_parent"
+        android:drawableTop="@drawable/link"
+        android:text="Order Links"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:background="#006756"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_home_report"
+        android:paddingTop="20dp"
         android:background="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_regular" />
+        android:layout_width="match_parent"
+        android:drawableTop="@drawable/report"
+        android:text="Reports"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"/>
 
-    <ImageButton
-        android:id="@+id/imageView10"
-        android:layout_width="45dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bell_regular" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
