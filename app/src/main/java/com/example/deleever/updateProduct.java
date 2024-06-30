@@ -190,7 +190,7 @@ public class updateProduct extends AppCompatActivity {
         intent.putExtra("productCode", edtProductCode.getText().toString());
         intent.putExtra("productName", edtProductName.getText().toString());
         intent.putExtra("productDescription", edtProductDescription.getText().toString());
-        intent.putExtra("productPrice", edtProductPrice.getText().toString());
+        intent.putExtra("productPrice", Double.parseDouble(edtProductPrice.getText().toString()));
         intent.putExtra("productOrderLink", edtProductOrderLink.getText().toString());
         startActivity(intent);
         finish(); // Close the current activity to prevent users from returning to it
