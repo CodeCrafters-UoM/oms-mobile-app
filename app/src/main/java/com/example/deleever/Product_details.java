@@ -51,13 +51,13 @@ public class Product_details extends AppCompatActivity {
             jwtToken = intent.getStringExtra("jwtToken");
             sellerId = intent.getStringExtra("sellerid");
             productOrderLinkId = intent.getStringExtra("productOrderLinkId");
+            txtProductOrderLink.setText(intent.getStringExtra("productOrderLink"));
             txtProductCode.setText(intent.getStringExtra("productCode"));
             txtProductName.setText(intent.getStringExtra("productName"));
             txtProductDescription.setText(intent.getStringExtra("productDescription"));
-            txtProductPrice.setText(String.valueOf(intent.getDoubleExtra("productPrice", 0.0)));
-
+            double productPrice = intent.getDoubleExtra("productPrice", 0.0);
+            txtProductPrice.setText(String.valueOf(productPrice));
             fetchOrderLinks();
-            checkProductOrders(intent.getStringExtra("productCode"));
         } else {
             Toast.makeText(this, "No intent data received", Toast.LENGTH_SHORT).show();
             finish();
@@ -90,25 +90,7 @@ public class Product_details extends AppCompatActivity {
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Product_details.this);
-                builder.setMessage("Are you sure you want to remove this product?")
-                        .setTitle("Confirm Removal");
-
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        String productCode = txtProductCode.getText().toString();
-                        Log.d(TAG, "Attempting to delete product with code: " + productCode);
-                        Log.d(TAG, "Using JWT token: " + jwtToken);
-                        deleteProduct(productCode);
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                checkProductOrdersBeforeRemove(txtProductCode.getText().toString());
             }
         });
 
@@ -163,8 +145,7 @@ public class Product_details extends AppCompatActivity {
         });
     }
 
-
-    private void checkProductOrders(String productCode) {
+    private void checkProductOrdersBeforeRemove(String productCode) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -187,10 +168,11 @@ public class Product_details extends AppCompatActivity {
                         }
                     }
                     if (hasOrders) {
-                        btnRemove.setEnabled(false);
+//                        btnRemove.setEnabled(false);
                         Toast.makeText(Product_details.this, "Product has orders, cannot be removed", Toast.LENGTH_SHORT).show();
                     } else {
-                        btnRemove.setEnabled(true);
+//                        btnRemove.setEnabled(true);
+                        showRemoveConfirmationDialog(productCode);
                     }
                 } else {
                     Log.e(TAG, "API error: " + response.code());
@@ -202,6 +184,27 @@ public class Product_details extends AppCompatActivity {
                 Log.e(TAG, "Network error: " + t.getMessage());
             }
         });
+    }
+
+    private void showRemoveConfirmationDialog(String productCode) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Product_details.this);
+        builder.setMessage("Are you sure you want to remove this product?")
+                .setTitle("Confirm Removal");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Log.d(TAG, "Attempting to delete product with code: " + productCode);
+                Log.d(TAG, "Using JWT token: " + jwtToken);
+                deleteProduct(productCode);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void deleteProduct(String productCode) {

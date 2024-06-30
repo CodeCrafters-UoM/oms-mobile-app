@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -97,10 +98,9 @@ public class Add_product extends AppCompatActivity {
         if (i != null) {
             jwtToken = i.getStringExtra("jwtToken");
             sellerId = i.getStringExtra("sellerid");
-            System.out.println("add product " + sellerId);
+            saveCredentialsToSharedPreferences(jwtToken, sellerId);
         } else {
-            Toast.makeText(this, "No JWT token received", Toast.LENGTH_SHORT).show();
-            finish();
+            getCredentialsFromSharedPreferences();
         }
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -296,5 +296,24 @@ public class Add_product extends AppCompatActivity {
         intent.putExtra("sellerid", sellerId);
         startActivity(intent);
         finish();
+    }
+
+    private void saveCredentialsToSharedPreferences(String jwtToken, String sellerId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("jwtToken", jwtToken);
+        editor.putString("sellerId", sellerId);
+        editor.apply();
+    }
+
+    private void getCredentialsFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        jwtToken = sharedPreferences.getString("jwtToken", null);
+        sellerId = sharedPreferences.getString("sellerId", null);
+
+        if (jwtToken == null || sellerId == null) {
+            Toast.makeText(this, "No credentials saved", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }
