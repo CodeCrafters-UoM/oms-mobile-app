@@ -116,14 +116,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
-                intent.putExtra("jwtToken", jwtToken);
-                intent.putExtra("sellerid", sellerId);
-                System.out.println("sellerrrrrrrr" + sellerId);
+                // No need to pass jwtToken and sellerId here
                 startActivity(intent);
             }
         });
-
     }
-
-
 }
