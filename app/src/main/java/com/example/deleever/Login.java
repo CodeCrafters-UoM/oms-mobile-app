@@ -439,7 +439,7 @@ class SocketManager {
 
     private SocketManager() {
         try {
-            String baseUrl = "https://deleever.one"; // Ensure this URL is correct
+            String baseUrl =  "https://oms-backend-c6yo.onrender.com"; // Ensure this URL is correct
             Log.d(TAG, "Connecting to Socket.IO server at: " + baseUrl);
 
             socket = IO.socket(baseUrl);

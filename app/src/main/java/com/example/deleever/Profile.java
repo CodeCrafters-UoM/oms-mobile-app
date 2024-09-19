@@ -63,18 +63,11 @@ public class Profile extends AppCompatActivity {
         noti_round.setVisibility(View.GONE);
 //
         jwtToken = getIntent().getStringExtra("jwtToken");
-        userId = getIntent().getStringExtra("sellerId");
+        userId = getIntent().getStringExtra("sellerid");
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         jwtToken = sharedPreferences.getString("jwtToken", null);
         userId = sharedPreferences.getString("sellerId", null);
-
-//        if (jwtToken == null || userId == null) {
-//            // Handle case where token or user ID is not found
-//            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
-//            finish();
-//            return;
-//        }
 
 
         messageCount = sharedPreferences.getInt("messageCount", 0);
